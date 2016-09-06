@@ -1,25 +1,47 @@
-const _ = require('lodash');
+exports.init = (server)=>{
 
-const models = require('require-all')({
-    dirname     :  __dirname,
-    filter      :  /(.+-model)\.js$/,
-    excludeDirs :  /^\.(git|svn)$/,
-    recursive   : true
-});
+// PERSONAL DATA TYPE
 
-const routers = require('require-all')({
-    dirname     :  __dirname,
-    filter      :  /(.+-routes)\.js$/,
-    excludeDirs :  /^\.(git|svn)$/,
-    recursive   : true
-});
+    // Staff Member resource
+    require('./staff-member/router').init(server);
+    require('./staff-member/model');
 
-module.exports = (app)=>{
+    // Personal Data resource
+    require('./personal-data/router').init(server);
+    require('./personal-data/model');
 
-    _.each(routers, (resource)=>{
-        _.each(resource, (router)=>{
-            router(app);
-        });
-    });
+    // Place of Origin resource
+    require('./place-of-origin/router').init(server);
+    require('./place-of-origin/model');
 
+    // Step by Step resource
+    require('./step-by-step/router').init(server);
+    require('./step-by-step/model');
+
+    // Socio-status resource
+    require('./socio-status/router').init(server);
+    require('./socio-status/model');
+
+    // Entitlements resource
+    require('./entitlements/router').init(server);
+    require('./entitlements/model');
+
+// PARAMETERS DATA TYPE
+
+    // Allowances resource
+    require('./param-allowances/router').init(server);
+    require('./param-allowances/model');
+
+    // Base Salary - CA resource
+    require('./param-base-salary-ca/router').init(server);
+    require('./param-base-salary-ca/model');
+
+    // Base Salary - TA resource
+    require('./param-base-salary-ta/router').init(server);
+    require('./param-base-salary-ta/model');
+
+    // Tax resource
+    require('./param-tax/router').init(server);
+    require('./param-tax/model');
+    
 };

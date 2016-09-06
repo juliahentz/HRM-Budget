@@ -3,9 +3,9 @@ const mongoose = require('mongoose');
 const schema = new mongoose.Schema({
 
     dateCreated     : {type: Date, default: Date.now},
-    name            : {type: String, required: true},
-    surname         : {type: String, required: true},
-    staffNumber     : {type: Number, required: true},
+    name            : {type: String},
+    surname         : {type: String},
+    staffNumber     : {type: Number},
     personalData    : { type: mongoose.Schema.Types.ObjectId, ref: 'PerosnalData' },
     placeOfOrigin   : [
         { type: mongoose.Schema.Types.ObjectId, ref: 'PlaceOfOrigin' }

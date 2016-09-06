@@ -7,7 +7,7 @@ function init(){
         .then(server.init)
         .then((server)=>{
 
-            require('./resources')(server);
+            require('./resources').init(server);
 
         })
         .catch((err)=>{
