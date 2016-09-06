@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 exports.init = function(app){
 
-    app.get('/api/staff-member', (req, res)=>{
+    app.get('/api/staff-members', (req, res)=>{
 
         const StaffMember = mongoose.model('StaffMember');
 
@@ -20,6 +20,28 @@ exports.init = function(app){
 
     });
 
+    app.get('/api/staff-member/:id', (req, res)=> {
+
+        const staffMemberId = req.params.id;
+
+        const StaffMember = mongoose.model('StaffMember');
+
+        var query = StaffMember.findById({_id: staffMemberId})
+
+        //query.populate('personalData placeOfOrigin stepByStep socioStatus entitlements');
+
+        query.exec(function (err, staffMemberDoc) {
+
+            if (!err) {
+                res.send(staffMemberDoc);
+            } else {
+                res.status(400).send(err);
+            }
+
+        });
+
+    });
+    
     app.post('/api/staff-member', (req, res)=>{
 
         const StaffMember = mongoose.model('StaffMember');

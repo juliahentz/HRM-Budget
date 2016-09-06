@@ -2,8 +2,19 @@ angular.module('HRMBudget', ['ui.bootstrap','ui.router','ngAnimate']);
 
 angular.module('HRMBudget').config(function($stateProvider, $urlRouterProvider) {
 
+    $stateProvider.state('staff', {
+        url: '/staff',
+        templateUrl: 'partial/staff/staff.html',
+        controller: 'StaffCtrl',
+        resolve:{
+            allStaffMembers: function(staffService){
+                return staffService.getAll();
+            }
+        }
+    });
+
     /* Add New States Above */
-    $urlRouterProvider.otherwise('/home');
+    $urlRouterProvider.otherwise('/staff');
 
 });
 

@@ -1,0 +1,30 @@
+<div class="col-md-12 hrm-budget-staffmember-container">
+
+    <div class="header-container">
+        <h2>Staff</h2>
+        <div class="btn btn-sm btn-success" ng-click="onClickButton()">Add New</div>
+    </div>
+
+    <div class="content-container">
+        <hr/>
+
+        <table class="table table-striped">
+            <tr>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Staff Number</th>
+                <th></th>
+                <th></th>
+            </tr>
+            <tr ng-repeat="staffMember in staffMembers">
+                <td>{{staffMember.name}}</td>
+                <td>{{staffMember.surname}}</td>
+                <td>{{staffMember.staffNumber}}</td>
+                <td><div class="btn btn-sm btn-default" ng-click="onClickButton(staffMember._id)">Edit</div></td>
+                <td><div class="btn btn-sm btn-danger" ng-click="onClickDelete(staffMember._id)">Delete</div></td>
+            </tr>
+        </table>
+    </div>
+
+
+</div>

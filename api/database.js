@@ -5,6 +5,8 @@ exports.connect = ()=>{
 
     return new Promise((resolve, reject)=>{
 
+        mongoose.Promise = global.Promise;
+
         mongoose.connect('mongodb://localhost/hrm-budget');
 
         mongoose.connection.on('error', (err)=>{
