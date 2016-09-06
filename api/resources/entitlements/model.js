@@ -1,10 +1,13 @@
-// DON'T FORGET TO ADD REQUIRE STATEMENTS IN THE INDEX.js FILE
+const mongoose = require('mongoose');
 
-var mongoose = require('mongoose');
+const schema = new mongoose.Schema({
 
-var schema = new mongoose.Schema({
-
-    dateCreated : { type : Date, default : Date.now }
+    dateOfChange        : {type: Date, required: true},
+    staffMemberId           : {type: String, required: true},
+    householdAllowance      : { type: Boolean },
+    childAllowance          : { type: Boolean },
+    dependentChildAllowance : { type: Boolean },
+    expatriationAllowance   : { type: Boolean }
 
 });
 

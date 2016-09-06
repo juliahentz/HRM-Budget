@@ -1,8 +1,6 @@
-// DON'T FORGET TO ADD REQUIRE STATEMENTS IN THE INDEX.js FILE
+const mongoose = require('mongoose');
 
-var mongoose = require('mongoose');
-
-var schema = new mongoose.Schema({
+const schema = new mongoose.Schema({
 
     dateCreated : { type : Date, default : Date.now }
 

@@ -1,15 +1,15 @@
-// DON'T FORGET TO ADD REQUIRE STATEMENTS IN THE INDEX.js FILE
+const mongoose = require('mongoose');
 
-var mongoose = require('mongoose');
+const schema = new mongoose.Schema({
 
-var schema = new mongoose.Schema({
-
-    SMId        : {type: String, required: true},
-    category    : {type: String, required: true},
-    grade       : {type: Number, required: true},
-    step        : {type: Number, required: true},
-    startGrade  : {type: Date, required: true},
-    endGrade    : {type: Date}
+    dateOfChange        : {type: Date, required: true},
+    staffMemberId       : {type: String, required: true},
+    category            : {type: String, required: true},
+    grade               : {type: Number, required: true},
+    step                : {type: Number, required: true},
+    startDateGrade      : {type: Date, required: true},
+    endDateGrade        : {type: Date},
+    fullTimePercentage  : {type: Number, required:true}
 
 });
 
