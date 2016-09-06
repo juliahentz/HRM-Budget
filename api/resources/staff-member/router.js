@@ -6,7 +6,7 @@ exports.init = function(app){
 
         const StaffMember = mongoose.model('StaffMember');
 
-        let query = StaffMember.find();
+        const query = StaffMember.find();
 
         //query.populate('personalData placeOfOrigin stepByStep socioStatus entitlements');
 
@@ -23,9 +23,7 @@ exports.init = function(app){
     app.post('/api/staff-member', (req, res)=>{
 
         const StaffMember = mongoose.model('StaffMember');
-        let staffMember = new StaffMember(req.body);
-
-        console.log('create staff member database element');
+        const staffMember = new StaffMember(req.body);
 
         staffMember.save( (err)=> {
 
@@ -41,8 +39,8 @@ exports.init = function(app){
 
     app.put('/api/staff-member/:id', (req, res)=> {
 
-        let staffMemberData = req.body;
-        let staffMemberId = req.params.id;
+        const staffMemberData = req.body;
+        const staffMemberId = req.params.id;
 
         const StaffMember = mongoose.model('StaffMember');
 
@@ -60,10 +58,10 @@ exports.init = function(app){
 
     app.delete('/api/staff-member/:id', (req, res)=> {
 
-        var staffMemberId = req.params.id;
+        const staffMemberId = req.params.id;
         const StaffMember = mongoose.model('StaffMember');
 
-        StaffMember.findByIdAndRemove(staffMemberId, function (err, staffMemberDoc) {
+        StaffMember.findByIdAndRemove(staffMemberId, (err, staffMemberDoc)=> {
 
             if (!err) {
                 res.sendStatus(200);
