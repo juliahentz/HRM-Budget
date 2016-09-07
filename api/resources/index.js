@@ -1,5 +1,11 @@
 exports.init = (server)=>{
 
+// POST DATA TYPE
+
+    // Post resource
+    require('./post/router').init(server);
+    require('./post/model');
+
 // PERSONAL DATA TYPE
 
     // Staff Member resource
@@ -43,5 +49,4 @@ exports.init = (server)=>{
     // Tax resource
     require('./param-tax/router').init(server);
     require('./param-tax/model');
-    
 };

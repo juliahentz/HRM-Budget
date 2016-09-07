@@ -26,7 +26,7 @@ exports.init = function(app){
 
         const StaffMember = mongoose.model('StaffMember');
 
-        var query = StaffMember.findById({_id: staffMemberId})
+        var query = StaffMember.findById({_id: staffMemberId});
 
         //query.populate('personalData placeOfOrigin stepByStep socioStatus entitlements');
 
