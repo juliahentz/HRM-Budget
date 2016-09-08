@@ -1,18 +1,40 @@
 <div>
 	<div class="modal-header">
 		<button type="button" class="close pull-right" ng-click="$dismiss()" aria-hidden="true">&times;</button>
-		<h4 class="modal-title">{{modalTitle}} Staff Member</h4>
+		<h4 class="modal-title">{{modalTitle}}</h4>
 	</div>
 	<div class="modal-body">
 
-        <label>Name</label>
-        <input type="text" class="form-control" ng-model="selectedStaffMember.name">
+        <div ng-if="modalTitle === 'Edit Staff Member'">
+            <label>Name</label>
+            <input type="text" class="form-control" ng-model="selectedStaffMember.name">
 
-        <label>Surname</label>
-        <input type="text" class="form-control" ng-model="selectedStaffMember.surname">
+            <label>Surname</label>
+            <input type="text" class="form-control" ng-model="selectedStaffMember.surname">
 
-        <label>Staff Number</label>
-        <input type="number" class="form-control" ng-model="selectedStaffMember.staffNumber">
+            <label>Staff Number</label>
+            <input type="number" class="form-control" ng-model="selectedStaffMember.staffNumber">
+        </div>
+
+        <div ng-if="modalTitle === 'Edit Post'">
+            <label>Post Title</label>
+            <input type="text" class="form-control" ng-model="selectedPost.postTitle">
+
+            <label>Contract Type</label>
+            <input type="text" class="form-control" ng-model="selectedPost.contractType">
+
+            <label>Category</label>
+            <input type="text" class="form-control" ng-model="selectedPost.postCategory">
+
+            <label>Grade</label>
+            <input type="text" class="form-control" ng-model="selectedPost.postGrade">
+
+            <label>Status</label>
+            <select class="form-control" ng-model="selectedPost.occupied">
+                <option value="true">Occupied</option>
+                <option value="false">Vacant</option>
+            </select>
+        </div>
 
 	</div>
 	<div class="modal-footer">

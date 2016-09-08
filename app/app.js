@@ -7,8 +7,11 @@ angular.module('HRMBudget').config(function($stateProvider, $urlRouterProvider) 
         templateUrl: 'partial/staff/staff.html',
         controller: 'StaffCtrl',
         resolve:{
-            allStaffMembers: function(staffService){
+            getAllStaffMembers: function(staffService){
                 return staffService.getAll();
+            },
+            getAllPosts: function(postService){
+                return postService.getAll();
             }
         }
     });
