@@ -36,6 +36,24 @@
             </select>
         </div>
 
+        <div ng-if="modalTitle === 'Assign Staff Member to Post'">
+            <h3>Post Details</h3>
+            <p>{{selectedPost.postTitle}}</p>
+            <p>{{selectedPost.contractType}}</p>
+            <p>{{selectedPost.postCategory}} {{selectedPost.postGrade}}</p>
+
+            <label>Assign Staff Member</label>
+            <select class="form-control" ng-options="staffMember.name + ' ' + staffMember.surname + ' (' + staffMember.staffNumber + ')' for staffMember in staffMembers track by staffMember" ng-model="selectedStaffOnPost.staff">
+            </select>
+
+            <label>Start Date on post</label>
+            <input type="date" class="form-control" ng-model="selectedStaffOnPost.startDate">
+
+            <label>End Date on post</label>
+            <input type="date" class="form-control" ng-model="selectedStaffOnPost.endDate">
+
+        </div>
+
 	</div>
 	<div class="modal-footer">
 		<button class="btn btn-default" ng-click="onClickClose()">Cancel</button>

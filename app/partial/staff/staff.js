@@ -26,8 +26,14 @@ angular.module('HRMBudget').controller('StaffCtrl',function(
                 },
             // B) POST RESOLVE
                 post:function(postService){
-                    if(message === "post" && id){
+                    if(message === "post" && id || message === 'fillPost' && id){
                         return postService.getOne(id);
+                    }
+                },
+            // C) MANAGE STAFF ON POST RESOLVE
+                mangageStaffOnPost:function(postService){
+                    if(message === "fillPost"){
+                        return postService.getAll();
                     }
                 },
                 title: function(){
@@ -47,6 +53,10 @@ angular.module('HRMBudget').controller('StaffCtrl',function(
                 // B.2 ADD NEW POST - conditional content
                     }else if(message === "newPost"){
                         return "Add New Post";
+
+                // C MANAGE STAFF ON POST
+                    }else if(message === "fillPost"){
+                        return "Assign Staff Member to Post"
                     }
                 }
             }
@@ -100,8 +110,8 @@ angular.module('HRMBudget').controller('StaffCtrl',function(
                         return 'staff';
 
                 // B.1 POST - conditional content
-                    }else if (message === 'post'){
-                        return 'post'
+                    }else if(message === 'post'){
+                        return 'post';
                     }
                 }
             }

@@ -20,6 +20,7 @@
                     <th></th>
                     <th></th>
                     <th></th>
+                    <th>Staff on post</th>
                 </tr>
                 <tr ng-repeat="post in posts">
                     <td>{{post.postTitle}}</td>
@@ -30,8 +31,8 @@
                     <td ng-if="!post.occupied">Vacant</td>
                     <td><div class="btn btn-xs btn-primary" ng-click="onClickButton('post', post._id)">Edit Post</div></td>
                     <td><div class="btn btn-xs btn-danger" ng-click="onClickDelete('post', post._id)">Delete Post</div></td>
-                    <td ng-if="post.occupied"><div class="btn btn-xs btn-success" ng-click="onClickButton('emptyPost', post._id)">Empty Post</div></td>
-                    <td ng-if="!post.occupied"><div class="btn btn-xs btn-success" ng-click="onClickButton('fillPost', post._id)">Fill Post</div></td>
+                    <td ng-if="!post.occupied"><div class="btn btn-xs btn-success" ng-click="onClickButton('fillPost', post._id)">Manage Staff Member</div></td>
+                    <td>{{post.staffOnPost[0]}}</td>
                 </tr>
             </table>
         </div>

@@ -10,7 +10,11 @@ const schema = new mongoose.Schema({
     endDate         :{type: Date},
     occupied        :{type: Boolean},
     staffOnPost     :[
-        {type: mongoose.Schema.Types.ObjectId, ref: 'StaffMember'}
+        {
+            startDate   : {type: Date},
+            endDate     : {type: Date},
+            staff       : {type: mongoose.Schema.Types.ObjectId, ref: 'StaffMember'}
+        }
     ]
 
 });
