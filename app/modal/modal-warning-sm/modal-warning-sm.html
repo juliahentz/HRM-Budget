@@ -4,7 +4,8 @@
 		<h4 class="modal-title" id="delete-modal-title">Are you sure you would like to delete the following Staff Member?</h4>
 	</div>
 	<div class="modal-body">
-		<p>{{selectedStaffMember.name}} <b>{{selectedStaffMember.surname}}</b></p>
+		<p ng-if="message === 'staff'">{{selectedStaffMember.name}} <b>{{selectedStaffMember.surname}}</b></p>
+		<p ng-if="message === 'post'">{{selectedPost.postTitle}} <b>{{selectedPost.contractType}}</b></p>
 	</div>
 	<div class="modal-footer">
 		<button class="btn btn-default" ng-click="$dismiss()">Cancel</button>

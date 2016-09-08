@@ -4,7 +4,7 @@ angular.module('HRMBudget').factory('postService',function(
 
     var postService = {
         model:{
-            item:null,
+            item:{},
             list:[]
         },
         getAll:function(cb){

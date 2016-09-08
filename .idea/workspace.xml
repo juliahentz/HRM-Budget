@@ -2,13 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e334675e-fbcb-45fb-bf0d-4972e6b0528f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.js" afterPath="$PROJECT_DIR$/app/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.less" afterPath="$PROJECT_DIR$/app/app.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/index.html" afterPath="$PROJECT_DIR$/app/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modal/modal-staff-member/modal-staff-member.html" afterPath="$PROJECT_DIR$/app/modal/modal-staff-member/modal-staff-member.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modal/modal-staff-member/modal-staff-member.js" afterPath="$PROJECT_DIR$/app/modal/modal-staff-member/modal-staff-member.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modal/modal-warning-sm/modal-warning-sm.html" afterPath="$PROJECT_DIR$/app/modal/modal-warning-sm/modal-warning-sm.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modal/modal-warning-sm/modal-warning-sm.js" afterPath="$PROJECT_DIR$/app/modal/modal-warning-sm/modal-warning-sm.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/partial/staff/staff.html" afterPath="$PROJECT_DIR$/app/partial/staff/staff.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/partial/staff/staff.js" afterPath="$PROJECT_DIR$/app/partial/staff/staff.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/service/post-service.js" afterPath="$PROJECT_DIR$/app/service/post-service.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/service/staff-service.js" afterPath="$PROJECT_DIR$/app/service/staff-service.js" />
     </list>
     <ignored path="FinalAssigment.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -49,41 +51,41 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="staff.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="staff.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/partial/staff/staff.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="32" column="46" selection-start-line="32" selection-start-column="46" selection-end-line="32" selection-end-column="46" />
+            <state relative-caret-position="556">
+              <caret line="50" column="96" selection-start-line="50" selection-start-column="85" selection-end-line="50" selection-end-column="96" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="staff.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="staff.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/partial/staff/staff.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="58" column="13" selection-start-line="58" selection-start-column="13" selection-end-line="58" selection-end-column="13" />
+            <state relative-caret-position="-600">
+              <caret line="8" column="42" selection-start-line="8" selection-start-column="42" selection-end-line="8" selection-end-column="42" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="modal-staff-member.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/modal/modal-staff-member/modal-staff-member.js">
+      <file leaf-file-name="modal-warning-sm.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/modal/modal-warning-sm/modal-warning-sm.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="36" column="45" selection-start-line="36" selection-start-column="45" selection-end-line="36" selection-end-column="45" />
+            <state relative-caret-position="270">
+              <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="modal-staff-member.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/modal/modal-staff-member/modal-staff-member.html">
+      <file leaf-file-name="modal-warning-sm.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/modal/modal-warning-sm/modal-warning-sm.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="55" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="55" />
+            <state relative-caret-position="165">
+              <caret line="11" column="87" selection-start-line="11" selection-start-column="87" selection-end-line="11" selection-end-column="87" />
               <folding />
             </state>
           </provider>
@@ -139,22 +141,22 @@
         <option value="$PROJECT_DIR$/api/server.js" />
         <option value="$PROJECT_DIR$/app/partial/staff/staff-spec.js" />
         <option value="$PROJECT_DIR$/app/partial/staff/staff.less" />
-        <option value="$PROJECT_DIR$/app/service/staff-service.js" />
         <option value="$PROJECT_DIR$/app/index.html" />
         <option value="$PROJECT_DIR$/app/modal/modal-warning-sm/modal-warning-sm.less" />
-        <option value="$PROJECT_DIR$/app/modal/modal-warning-sm/modal-warning-sm.html" />
-        <option value="$PROJECT_DIR$/app/modal/modal-warning-sm/modal-warning-sm.js" />
         <option value="$PROJECT_DIR$/api/resources/staff-member/router.js" />
         <option value="$PROJECT_DIR$/api/resources/post/model.js" />
         <option value="$PROJECT_DIR$/api/resources/index.js" />
         <option value="$PROJECT_DIR$/api/resources/post/router.js" />
         <option value="$PROJECT_DIR$/app/app.js" />
-        <option value="$PROJECT_DIR$/app/service/post-service.js" />
         <option value="$PROJECT_DIR$/app/app.less" />
-        <option value="$PROJECT_DIR$/app/modal/modal-staff-member/modal-staff-member.html" />
-        <option value="$PROJECT_DIR$/app/modal/modal-staff-member/modal-staff-member.js" />
-        <option value="$PROJECT_DIR$/app/partial/staff/staff.js" />
         <option value="$PROJECT_DIR$/app/partial/staff/staff.html" />
+        <option value="$PROJECT_DIR$/app/service/post-service.js" />
+        <option value="$PROJECT_DIR$/app/modal/modal-staff-member/modal-staff-member.html" />
+        <option value="$PROJECT_DIR$/app/service/staff-service.js" />
+        <option value="$PROJECT_DIR$/app/modal/modal-staff-member/modal-staff-member.js" />
+        <option value="$PROJECT_DIR$/app/modal/modal-warning-sm/modal-warning-sm.html" />
+        <option value="$PROJECT_DIR$/app/modal/modal-warning-sm/modal-warning-sm.js" />
+        <option value="$PROJECT_DIR$/app/partial/staff/staff.js" />
       </list>
     </option>
   </component>
@@ -285,6 +287,10 @@
               <option name="myItemId" value="modal" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="modal-warning-sm" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -401,12 +407,12 @@
       <option name="presentableId" value="Default" />
       <updated>1472600418927</updated>
       <workItem from="1472600420327" duration="965000" />
-      <workItem from="1472909002035" duration="31174000" />
+      <workItem from="1472909002035" duration="34880000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32139000" />
+    <option name="totallyTimeSpent" value="35845000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1271" height="753" extended-state="0" />
@@ -718,14 +724,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/modal/modal-warning-sm/modal-warning-sm.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="21" selection-start-line="3" selection-start-column="21" selection-end-line="3" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/api/resources/step-by-step/model.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -738,14 +736,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="4" column="55" selection-start-line="4" selection-start-column="55" selection-end-line="4" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/modal/modal-warning-sm/modal-warning-sm.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="76" selection-start-line="10" selection-start-column="63" selection-end-line="10" selection-end-column="76" />
           <folding />
         </state>
       </provider>
@@ -774,14 +764,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/service/staff-service.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="8" selection-start-line="5" selection-start-column="8" selection-end-line="76" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
@@ -794,14 +776,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="80" column="29" selection-start-line="80" selection-start-column="29" selection-end-line="80" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/service/post-service.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="40" selection-start-line="11" selection-start-column="40" selection-end-line="11" selection-end-column="40" />
           <folding />
         </state>
       </provider>
@@ -824,32 +798,64 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/modal/modal-staff-member/modal-staff-member.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="55" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="55" />
+        <state relative-caret-position="241">
+          <caret line="29" column="31" selection-start-line="29" selection-start-column="31" selection-end-line="29" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/service/staff-service.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="19" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/service/post-service.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-150">
+          <caret line="6" column="19" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="19" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/modal/modal-staff-member/modal-staff-member.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="36" column="45" selection-start-line="36" selection-start-column="45" selection-end-line="36" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/partial/staff/staff.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="58" column="13" selection-start-line="58" selection-start-column="13" selection-end-line="58" selection-end-column="13" />
+        <state relative-caret-position="900">
+          <caret line="60" column="40" selection-start-line="60" selection-start-column="40" selection-end-line="60" selection-end-column="40" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/partial/staff/staff.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="32" column="46" selection-start-line="32" selection-start-column="46" selection-end-line="32" selection-end-column="46" />
+        <state relative-caret-position="556">
+          <caret line="50" column="96" selection-start-line="50" selection-start-column="85" selection-end-line="50" selection-end-column="96" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/modal/modal-warning-sm/modal-warning-sm.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/modal/modal-warning-sm/modal-warning-sm.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="87" selection-start-line="11" selection-start-column="87" selection-end-line="11" selection-end-column="87" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/partial/staff/staff.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-600">
+          <caret line="8" column="42" selection-start-line="8" selection-start-column="42" selection-end-line="8" selection-end-column="42" />
           <folding />
         </state>
       </provider>

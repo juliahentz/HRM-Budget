@@ -4,7 +4,7 @@ angular.module('HRMBudget').factory('staffService',function(
 
     var staffService = {
         model:{
-            item:null,
+            item:{},
             list:[]
         },
         getAll:function(cb){

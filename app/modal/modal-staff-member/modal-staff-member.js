@@ -10,10 +10,9 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
     $scope.selectedStaffMember = staffService.model.item;
     $scope.modalTitle = title;
 
-    console.log($scope.modalTitle);
-
     $scope.onClickSave = function(){
 
+    // EDIT STAFF MEMBER
         if($scope.modalTitle === "Edit Staff Member"){
 
             staffService.update($scope.selectedStaffMember._id, $scope.selectedStaffMember, function(item){
@@ -21,18 +20,26 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
                 $uibModalInstance.close('Staff');
             });
 
-        }else if($scope.modalTitle === "Add New"){
+    // EDIT POST
+        }else if($scope.modalTitle === 'Edit Post'){
 
-            staffService.create($scope.selectedStaffMember, function(item){
+            postService.update($scope.selectedPost._id, $scope.selectedPost, function(item){
+
+                $uibModalInstance.close('Post');
+            });
+
+    // CREATE NEW STAFF MEMBER
+        }else if($scope.modalTitle === "Add New Staff") {
+
+            staffService.create($scope.selectedStaffMember, function (item) {
 
                 $uibModalInstance.close('Staff');
             });
 
-        }else if($scope.modalTitle === 'Edit Post'){
+    // CREATE NEW POST
+        }else if($scope.modalTitle === "Add New Post"){
 
-            console.log($scope.selectedPost);
-
-            postService.update($scope.selectedPost._id, $scope.selectedPost, function(item){
+            postService.create($scope.selectedPost, function(item){
 
                 $uibModalInstance.close('Post');
             });
@@ -43,15 +50,21 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
 
     $scope.onClickClose = function(){
 
-        if($scope.modalTitle === 'Edit Post'){
+        // STAFF MEMBER
+        if($scope.modalTitle === "Edit Staff Member" || $scope.modalTitle === "Add New Staff"){
 
-            postService.model.item = null;
+            staffService.model.item = {};
 
-        }else if($scope.modalTitle === 'Edit Staff Member'){
+        // POST
+        }else if($scope.modalTitle === 'Edit Post' || $scope.modalTitle === "Add New Post"){
 
-            staffService.model.item = null;
+            postService.model.item = {};
 
         }
+
+        $scope.selectedPost = {};
+        $scope.selectedStaffMember = {};
+        $scope.modalTitle = null;
 
         $uibModalInstance.close();
 

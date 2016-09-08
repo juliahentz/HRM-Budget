@@ -6,12 +6,7 @@ angular.module('HRMBudget').controller('StaffCtrl',function(
     $window
 ){
 
-// POST (POSITION) CALLS
-
     $scope.posts = postService.model.list;
-
-// STAFF MEMBER CALLS
-
     $scope.staffMembers = staffService.model.list;
 
     $scope.onClickButton = function(message, id) {
@@ -23,12 +18,12 @@ angular.module('HRMBudget').controller('StaffCtrl',function(
             size: 'md',
             resolve: {
                 staffMember: function(staffService){
-                    if(message === "staffMember"){
+                    if(message === "staffMember" && id){
                         return staffService.getOne(id);
                     }
                 },
                 post:function(postService){
-                    if(message === "post"){
+                    if(message === "post" && id){
                         return postService.getOne(id);
                     }
                 },
@@ -37,21 +32,23 @@ angular.module('HRMBudget').controller('StaffCtrl',function(
                         return "Edit Staff Member"
                     } else if(message === "post"){
                         return "Edit Post"
-                    }else{
-                        return "Add New"
+                    }else if(message === "newPost"){
+                        return "Add New Post"
+                    }else if(message === "newStaff"){
+                        return "Add New Staff"
                     }
                 }
             }
         }).result.then(function(message){
 
             if(message === 'Staff'){
-                staffService.model.item = null;
+                staffService.model.item = {};
 
                 staffService.getAll(function(list){
                     $scope.staffMembers = list;
                 });
             }else if(message === 'Post'){
-                postService.model.item = null;
+                postService.model.item = {};
 
                 postService.getAll(function(list){
                     $scope.posts = list;
@@ -62,7 +59,7 @@ angular.module('HRMBudget').controller('StaffCtrl',function(
 
     };
 
-    $scope.onClickDelete = function(id){
+    $scope.onClickDelete = function(message, id){
 
         var modalInstance = $uibModal.open({
             animation: true,
@@ -71,18 +68,38 @@ angular.module('HRMBudget').controller('StaffCtrl',function(
             size: 'md',
             resolve: {
                 staffMember: function(staffService){
-                    if(id){
+                    if(message === 'staffMember' && id){
                         return staffService.getOne(id);
+                    }
+                },
+                post: function(postService){
+                    if(message === 'post' && id){
+                        return postService.getOne(id);
+                    }
+                },
+                message: function(){
+                    if(message === 'staffMember'){
+                        return 'staff';
+                    }else if (message === 'post'){
+                        return 'post'
                     }
                 }
             }
-        }).result.then(function(){
+        }).result.then(function(message){
 
-            staffService.model.item = null;
+            if(message === 'staff'){
+                staffService.model.item = {};
 
-            staffService.getAll(function(list){
-                $scope.staffMembers = list;
-            });
+                staffService.getAll(function(list){
+                    $scope.staffMembers = list;
+                });
+            }else if(message === 'post'){
+                postService.model.item = {};
+
+                postService.getAll(function(list){
+                   $scope.posts = list;
+                });
+            }
 
         });
 
