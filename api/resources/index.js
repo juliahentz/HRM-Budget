@@ -38,13 +38,9 @@ exports.init = (server)=>{
     require('./param-allowances/router').init(server);
     require('./param-allowances/model');
 
-    // Base Salary - CA resource
-    require('./param-base-salary-ca/router').init(server);
-    require('./param-base-salary-ca/model');
-
-    // Base Salary - TA resource
-    require('./param-base-salary-ta/router').init(server);
-    require('./param-base-salary-ta/model');
+    // Contract Types
+    require('./param-contact-types/router').init(server);
+    require('./param-contact-types/model');
 
     // Tax resource
     require('./param-tax/router').init(server);
