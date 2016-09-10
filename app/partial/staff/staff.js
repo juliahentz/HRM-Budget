@@ -2,11 +2,14 @@ angular.module('HRMBudget').controller('StaffCtrl',function(
     $scope,
     staffService,
     postService,
-    $uibModal
+    $uibModal,
+    timeNow
 ){
 
     $scope.posts = postService.model.list;
     $scope.staffMembers = staffService.model.list;
+    $scope.timeNow = timeNow;
+
 
 // 1. ADD AND EDIT FUNCTIONALITIES
     $scope.onClickButton = function(message, id) {
@@ -134,5 +137,5 @@ angular.module('HRMBudget').controller('StaffCtrl',function(
                 });
             }
         });
-    }
+    };
 });

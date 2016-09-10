@@ -3,8 +3,7 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
     staffService,
     postService,
     $uibModalInstance,
-    title,
-    $interval
+    title
 ){
 
     $scope.selectedPost = postService.model.item;
@@ -17,11 +16,6 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
         startDate: null,
         endDate: null
     };
-
-    $interval(function(){
-        console.log($scope.selectedStaffOnPost);
-
-    }, 2000);
 
     $scope.onClickSave = function(){
 
@@ -61,7 +55,7 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
         }else if($scope.modalTitle === "Assign Staff Member to Post"){
 
             $scope.selectedPost.staffOnPost.push($scope.selectedStaffOnPost);
-            
+
             postService.update($scope.selectedPost._id, $scope.selectedPost, function(item){
 
                 $uibModalInstance.close('Post');

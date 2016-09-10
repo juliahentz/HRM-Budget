@@ -32,7 +32,12 @@
                     <td><div class="btn btn-xs btn-primary" ng-click="onClickButton('post', post._id)">Edit Post</div></td>
                     <td><div class="btn btn-xs btn-danger" ng-click="onClickDelete('post', post._id)">Delete Post</div></td>
                     <td ng-if="!post.occupied"><div class="btn btn-xs btn-success" ng-click="onClickButton('fillPost', post._id)">Manage Staff Member</div></td>
-                    <td>{{post.staffOnPost[0]}}</td>
+                    <td>
+                        <div ng-repeat="staffOnPost in post.staffOnPost">
+                            <span ng-if="staffOnPost.startDate <= timeNow && staffOnPost.endDate != null && staffOnPost.endDate >= timeNow">{{staffOnPost.staff.name}} <b>{{staffOnPost.staff.surname}}</b> ({{staffOnPost.staff.staffNumber}})</span>
+                            <span ng-if="staffOnPost.startDate <= timeNow && staffOnPost.endDate == null">{{staffOnPost.staff.name}} <b>{{staffOnPost.staff.surname}}</b> ({{staffOnPost.staff.staffNumber}})</span>
+                        </div>
+                    </td>
                 </tr>
             </table>
         </div>

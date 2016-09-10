@@ -12,7 +12,12 @@ angular.module('HRMBudget').config(function($stateProvider, $urlRouterProvider) 
             },
             getAllPosts: function(postService){
                 return postService.getAll();
+            },
+            timeNow: function(){
+                var now = new Date();
+                return now.toISOString();
             }
+            
         }
     });
 

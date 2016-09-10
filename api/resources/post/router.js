@@ -8,7 +8,10 @@ exports.init = function(app){
 
         const query = Post.find();
 
-        //query.populate('staffOnPost');
+        query.populate({
+            path: 'staffOnPost.staff',
+            model: 'StaffMember'
+        });
 
         query.exec( (err, postDoc)=> {
             if(!err){
