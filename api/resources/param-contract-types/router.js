@@ -9,15 +9,11 @@ exports.init = function(app){
         let query = ContractType.find();
         
         query.populate({
-            path: 'category',
-            model: 'ParamContactCategory',
+            path: 'grades',
+            model: 'ParamContractGrade',
             populate: {
-                path: 'grades',
-                model: 'ParamContractGrade',
-                populate: {
-                    path: 'steps',
-                    model: 'ParamContactStep'
-                }
+                path: 'steps',
+                model: 'ParamContactStep'
             }
         });
         
@@ -37,22 +33,18 @@ exports.init = function(app){
 
         const ContractType = mongoose.model('ParamContractType');
 
-        let query = ContractType.findById();
+        let query = ContractType.findById(contractTypeId);
 
         query.populate({
-            path: 'category',
-            model: 'ParamContactCategory',
+            path: 'grades',
+            model: 'ParamContractGrade',
             populate: {
-                path: 'grades',
-                model: 'ParamContractGrade',
-                populate: {
-                    path: 'steps',
-                    model: 'ParamContactStep'
-                }
+                path: 'steps',
+                model: 'ParamContactStep'
             }
         });
 
-        queey.exec({_id: contractTypeId}, (err, contractDoc)=> {
+        query.exec((err, contractDoc)=> {
 
             if (!err) {
                 res.send(contractDoc);

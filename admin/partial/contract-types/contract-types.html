@@ -1,0 +1,67 @@
+<div class="col-md-4">
+
+<!-- 1. Contract type-->
+
+    <h4>Create a contract type</h4>
+    <h5>Currently available contract types:</h5>
+    <ul>
+        <li ng-repeat="contract in contracts">{{contract.name}} <span class="btn btn-xs btn-danger" ng-click="deleteContactType(contract._id)">Delete</span></li>
+    </ul>
+    <input class="form-control" type="text" ng-model="contractModel.name">
+    <br/>
+    <div class="btn btn-primary" ng-click="createContactType()">Create a contract type</div>
+
+    <hr/>
+
+
+<!-- 3. Add grade for categories-->
+    <h4>Add grade for contract type</h4>
+    <label>Select categories</label>
+    <select class="form-control" ng-options="contract.name for contract in contracts" ng-model="selectedContract"></select>
+
+    <br/>
+    <label>Add grade</label>
+    <input class="form-control" type="number" ng-model="contractModel.grade">
+
+    <br/>
+    <div class="btn btn-primary" ng-click="createGrade()">Create a category</div>
+
+    <hr/>
+
+<!-- 4. Step-->
+
+    <h4>Add steps and basic salary rate to the grades</h4>
+    <label>Select the grade</label>
+    <select class="form-control" ng-options="contract.name for contract in contracts" ng-model="selectedContract"></select>
+    <select class="form-control" ng-options="grade.gradeNumber for grade in selectedContract.grades" ng-model="selectedGrade"></select>
+
+    <label>Add a new Step</label>
+    <input class="form-control" type="number" ng-model="contractModel.step">
+
+    <label>Add Basic salary to the step</label>
+    <input class="form-control" type="number" ng-model="contractModel.basicSalary">
+    <br/>
+    <div class="btn btn-primary" ng-click="createSteps()">Add new step and salary</div>
+
+</div>
+
+
+<div class="col-md-8">
+
+    <div ng-repeat="contract in contracts">
+        <h3>{{contract.name}}</h3>
+
+        <table class="table table-striped">
+            <tr>
+                <th>Grade / Step</th>
+                <th ng-repeat="step in stepList">{{step}}</th>
+            </tr>
+            <tr ng-repeat="grade in contract.grades">
+                <td>{{grade.gradeNumber}}</td>
+                <td ng-repeat="step in grade.steps">{{step.basicSalary}}</td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+

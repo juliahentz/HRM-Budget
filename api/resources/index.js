@@ -39,9 +39,15 @@ exports.init = (server)=>{
     require('./param-allowances/model');
 
     // Contract Types
-    require('./param-contact-types/router').init(server);
-    require('./param-contact-types/model');
+    require('./param-contract-types/router').init(server);
+    require('./param-contract-types/model');
 
+    require('./param-contract-grade/router').init(server);
+    require('./param-contract-grade/model');
+
+    require('./param-contract-step/router').init(server);
+    require('./param-contract-step/model');
+ 
     // Tax resource
     require('./param-tax/router').init(server);
     require('./param-tax/model');

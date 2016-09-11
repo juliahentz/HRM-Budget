@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 exports.init = function(app){
 
-    app.get('/api/parameters/contract/steps', function(req, res){
+    app.get('/api/parameters/contract-step/steps', function(req, res){
 
         const Step = mongoose.model('ParamContactStep');
 
@@ -16,7 +16,7 @@ exports.init = function(app){
 
     });
 
-    app.post('/api/parameters/contract/step', (req, res)=>{
+    app.post('/api/parameters/contract-step/step', (req, res)=>{
 
         const Step = mongoose.model('ParamContactStep');
         const step = new Step(req.body);
@@ -33,7 +33,7 @@ exports.init = function(app){
 
     });
 
-    app.put('/api/parameters/contract/step/:id', (req, res)=> {
+    app.put('/api/parameters/contract-step/step/:id', (req, res)=> {
 
         const stepData = req.body;
         const stepId = req.params.id;
@@ -52,7 +52,7 @@ exports.init = function(app){
 
     });
 
-    app.delete('/api/parameters/contract/step/:id', (req, res)=> {
+    app.delete('/api/parameters/contract-step/step/:id', (req, res)=> {
 
         const stepId = req.params.id;
         const Step = mongoose.model('ParamContactStep');

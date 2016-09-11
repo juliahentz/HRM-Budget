@@ -2,8 +2,18 @@ angular.module('admin', ['ui.bootstrap','ui.router','ngAnimate']);
 
 angular.module('admin').config(function($stateProvider, $urlRouterProvider) {
 
+    $stateProvider.state('contract-types', {
+        url: '/contract-types',
+        templateUrl: 'partial/contract-types/contract-types.html',
+        controller: 'ContractTypesCtrl',
+        resolve: {
+            getAllContract: function(contractService){
+                return contractService.getAll();
+            }
+        }
+    });
     /* Add New States Above */
-    $urlRouterProvider.otherwise('/home');
+    $urlRouterProvider.otherwise('/contract-types');
 
 });
 
