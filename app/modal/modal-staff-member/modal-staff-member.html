@@ -5,6 +5,8 @@
 	</div>
 	<div class="modal-body">
 
+<!-- 3. STAFF -->
+
         <div ng-if="modalTitle === 'Edit Staff Member' || modalTitle === 'Add New Staff'">
             <label>Name</label>
             <input type="text" class="form-control" ng-model="selectedStaffMember.name">
@@ -16,25 +18,20 @@
             <input type="number" class="form-control" ng-model="selectedStaffMember.staffNumber">
         </div>
 
+<!-- 2. POST -->
+
         <div ng-if="modalTitle === 'Edit Post' || modalTitle === 'Add New Post'">
             <label>Post Title</label>
             <input type="text" class="form-control" ng-model="selectedPost.postTitle">
 
             <label>Contract Type</label>
-            <input type="text" class="form-control" ng-model="selectedPost.contractType">
-
-            <label>Category</label>
-            <input type="text" class="form-control" ng-model="selectedPost.postCategory">
+            <select class="form-control" ng-options="contract.name for contract in allContracts" ng-model="selectedPost.contractType"></select>
 
             <label>Grade</label>
-            <input type="number" class="form-control" ng-model="selectedPost.postGrade">
-
-            <label>Status</label>
-            <select class="form-control" ng-model="selectedPost.occupied">
-                <option value="true">Occupied</option>
-                <option value="false">Vacant</option>
-            </select>
+            <select class="form-control" ng-options="grade.gradeNumber for grade in selectedPost.contractType.grades" ng-model="selectedPost.postGrade"></select>
         </div>
+
+<!-- Assing staff Member-->
 
         <div ng-if="modalTitle === 'Assign Staff Member to Post'">
             <h3>Post Details</h3>
@@ -46,6 +43,15 @@
             <select class="form-control" ng-options="staffMember.name + ' ' + staffMember.surname + ' (' + staffMember.staffNumber + ')' for staffMember in staffMembers" ng-model="selectedStaffOnPost.staff">
             </select>
 
+            <!--<label>Contract Type</label>
+            <select class="form-control" ng-options="contract.name for contract in allContracts" ng-model="selectedStaffOnPost.contractType"></select>
+
+            <label>Grade</label>
+            <select class="form-control" ng-options="grade.gradeNumber for grade in selectedPost.contractType.grades" ng-model="selectedStaffOnPost.postGrade"></select>
+
+            <label>Step</label>
+            <select class="form-control" ng-options="step.stepNumber for step in selectedPost.postGrade.steps" ng-model="selectedStaffOnPost.postStep"></select>
+-->
             <label>Start Date on post</label>
             <input type="date" class="form-control" ng-model="selectedStaffOnPost.startDate">
 

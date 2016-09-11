@@ -12,7 +12,7 @@ angular.module('admin').factory('contractStepService',function(
             return $http.get('/api/parameters/contract-step/steps')
                 .then(function(res){
 
-                    var list = rs.data;
+                    var list = res.data;
                     contractStepService.model.list = list;
 
                     if(cb){

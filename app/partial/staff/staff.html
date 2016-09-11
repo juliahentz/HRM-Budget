@@ -14,18 +14,20 @@
                 <tr>
                     <th>Post Title</th>
                     <th>Contract Type</th>
-                    <th>Category</th>
                     <th>Grade</th>
                     <th>Occupied</th>
                     <th></th>
                     <th></th>
                     <th></th>
                     <th>Staff on post</th>
+                    <th>Contract Type</th>
+                    <th>Grade</th>
+                    <th>Step</th>
+                    <th>Basic Salary</th>
                 </tr>
                 <tr ng-repeat="post in posts">
                     <td>{{post.postTitle}}</td>
                     <td>{{post.contractType}}</td>
-                    <td>{{post.postCategory}}</td>
                     <td>{{post.postGrade}}</td>
                     <td ng-if="post.occupied">Occupied</td>
                     <td ng-if="!post.occupied">Vacant</td>
@@ -38,6 +40,10 @@
                             <span ng-if="staffOnPost.startDate <= timeNow && staffOnPost.endDate == null">{{staffOnPost.staff.name}} <b>{{staffOnPost.staff.surname}}</b> ({{staffOnPost.staff.staffNumber}})</span>
                         </div>
                     </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                 </tr>
             </table>
         </div>

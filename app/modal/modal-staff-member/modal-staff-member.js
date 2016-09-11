@@ -3,7 +3,8 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
     staffService,
     postService,
     $uibModalInstance,
-    title
+    title,
+    paramContractService
 ){
 
     $scope.selectedPost = postService.model.item;
@@ -16,6 +17,14 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
         startDate: null,
         endDate: null
     };
+
+    $scope.allContracts = [];
+
+    $scope.postItem = {};
+
+    paramContractService.getAllContractTypes(function(items){
+        $scope.allContracts = items;
+    });
 
     $scope.onClickSave = function(){
 
@@ -46,7 +55,11 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
     // B.2  ADD NEW POST
         }else if($scope.modalTitle === "Add New Post") {
 
-            postService.create($scope.selectedPost, function (item) {
+            $scope.postItem.postTitle = $scope.selectedPost.postTitle;
+            $scope.postItem.contractType = $scope.selectedPost.contractType.name;
+            $scope.postItem.postGrade = $scope.selectedPost.postGrade.gradeNumber;
+
+            postService.create($scope.postItem, function (item) {
 
                 $uibModalInstance.close('Post');
             });
