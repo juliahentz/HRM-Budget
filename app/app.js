@@ -13,8 +13,8 @@ angular.module('HRMBudget').config(function($stateProvider, $urlRouterProvider) 
             getAllPosts: function(postService){
                 return postService.getAll();
             },
-            getContractTypes: function(){
-                
+            getContractTypes: function(paramContractService){
+                return paramContractService.getAllContractTypes();
             },
             timeNow: function(){
                 var now = new Date();

@@ -4,7 +4,8 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
     postService,
     $uibModalInstance,
     title,
-    paramContractService
+    paramContractService,
+    $interval
 ){
 
     $scope.selectedPost = postService.model.item;
@@ -18,13 +19,16 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
         endDate: null
     };
 
-    $scope.allContracts = [];
+    $scope.allContracts = paramContractService.model.types;
+    $scope.selectedContract = {};
 
     $scope.postItem = {};
 
-    paramContractService.getAllContractTypes(function(items){
-        $scope.allContracts = items;
-    });
+    $scope.innerModalPageNum = 1;
+
+    $scope.setInnerModalPage = function(pageNum){
+        $scope.innerModalPageNum = pageNum;
+    };
 
     $scope.onClickSave = function(){
 
@@ -38,11 +42,17 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
 
     // A.2 ADD NEW STAFF MEMBER
         }else if($scope.modalTitle === "Add New Staff") {
+            
+            if(innerModalPageNum === 1){
+                staffService.create($scope.selectedStaffMember, function (item) {
 
-            staffService.create($scope.selectedStaffMember, function (item) {
+                    $uibModalInstance.close('Staff');
+                });
+            }else if(innerModalPageNum === 2){
+                
+            }
 
-                $uibModalInstance.close('Staff');
-            });
+            
 
     // B.1 EDIT EXISTING POST
         }else if($scope.modalTitle === 'Edit Post'){

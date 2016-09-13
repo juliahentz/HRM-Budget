@@ -8,14 +8,46 @@
 <!-- 3. STAFF -->
 
         <div ng-if="modalTitle === 'Edit Staff Member' || modalTitle === 'Add New Staff'">
-            <label>Name</label>
-            <input type="text" class="form-control" ng-model="selectedStaffMember.name">
+            <div ng-if="innerModalPageNum === 1">
+                <label>Name</label>
+                <input type="text" class="form-control" ng-model="selectedStaffMember.name">
 
-            <label>Surname</label>
-            <input type="text" class="form-control" ng-model="selectedStaffMember.surname">
+                <label>Surname</label>
+                <input type="text" class="form-control" ng-model="selectedStaffMember.surname">
 
-            <label>Staff Number</label>
-            <input type="number" class="form-control" ng-model="selectedStaffMember.staffNumber">
+                <label>Staff Number</label>
+                <input type="number" class="form-control" ng-model="selectedStaffMember.staffNumber">
+            </div>
+
+            <div ng-if="innerModalPageNum === 2">
+                <p>{{selectedStaffMember.name}} <b>{{selectedStaffMember.surname}}</b></p>
+
+                <label>Contract type</label>
+                <select class="form-control" ng-options="contract as contract.name for contract in allContracts" ng-model="selectedStaffMember.contractType"></select>
+
+                <label>Grade</label>
+                <select class="form-control" ng-options="grade as grade.gradeNumber for grade in selectedStaffMember.contractType.grades" ng-model="selectedStaffMember.grade"></select>
+
+                <label>Step</label>
+                <select class="form-control" ng-options="step as step.stepNumber for step in selectedStaffMember.grade.steps" ng-model="selectedStaffMember.step"></select>
+
+            </div>
+
+            <div ng-if="innerModalPageNum === 3">
+
+            </div>
+
+            <div ng-if="innerModalPageNum === 4">
+
+            </div>
+
+
+            <div class="bottom-page-navigator-container">
+                <div class="page-indicator-circles-container" ng-click="setInnerModalPage(1)"><div class="page-indicator-circles"></div></div>
+                <div class="page-indicator-circles-container" ng-click="setInnerModalPage(2)"><div class="page-indicator-circles"></div></div>
+                <div class="page-indicator-circles-container" ng-click="setInnerModalPage(3)"><div class="page-indicator-circles"></div></div>
+                <div class="page-indicator-circles-container" ng-click="setInnerModalPage(4)"><div class="page-indicator-circles"></div></div>
+            </div>
         </div>
 
 <!-- 2. POST -->
