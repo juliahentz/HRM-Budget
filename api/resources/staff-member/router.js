@@ -9,6 +9,7 @@ exports.init = function(app){
         const query = StaffMember.find();
 
         //query.populate('personalData placeOfOrigin stepByStep socioStatus entitlements');
+        query.populate('stepByStep');
 
         query.exec( (err, staffMemberDoc)=> {
             if(!err){
@@ -29,6 +30,7 @@ exports.init = function(app){
         var query = StaffMember.findById({_id: staffMemberId});
 
         //query.populate('personalData placeOfOrigin stepByStep socioStatus entitlements');
+        query.populate('stepByStep');
 
         query.exec(function (err, staffMemberDoc) {
 

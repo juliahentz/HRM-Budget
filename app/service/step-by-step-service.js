@@ -1,4 +1,6 @@
-angular.module('HRMBudget').factory('stepByStepService',function() {
+angular.module('HRMBudget').factory('stepByStepService',function(
+    $http
+) {
 
     var stepByStepService = {
         model:{
@@ -7,7 +9,7 @@ angular.module('HRMBudget').factory('stepByStepService',function() {
         },
         getAll:function(cb){
 
-            return $http.get('/api/staff-members')
+            return $http.get('/api/step-by-steps')
                 .then(function(res){
 
                     var list = res.data;
@@ -21,7 +23,7 @@ angular.module('HRMBudget').factory('stepByStepService',function() {
         },
         getOne:function(id, cb){
 
-            return $http.get('/api/staff-member/'+id)
+            return $http.get('/api/step-by-step/'+id)
                 .then(function(res){
 
                     var item = res.data;
@@ -35,7 +37,7 @@ angular.module('HRMBudget').factory('stepByStepService',function() {
         },
         create:function(data, cb){
 
-            return $http.post('/api/staff-member', data)
+            return $http.post('/api/step-by-step', data)
                 .then(function(res){
 
                     var item = res.data;
@@ -49,7 +51,7 @@ angular.module('HRMBudget').factory('stepByStepService',function() {
         },
         update:function(id, data, cb){
 
-            return $http.put('/api/staff-member/'+id, data)
+            return $http.put('/api/step-by-step/'+id, data)
                 .then(function(res){
 
                     stepByStepService.model.item = res.data;
@@ -62,10 +64,10 @@ angular.module('HRMBudget').factory('stepByStepService',function() {
         },
         remove:function(id, cb){
 
-            return $http.delete('/api/staff-member/'+id)
+            return $http.delete('/api/step-by-step/'+id)
                 .then(function(res){
 
-                    stepByStepService.model.item = null;
+                    stepByStepService.model.item = {};
 
                     if(cb){
                         cb(res);

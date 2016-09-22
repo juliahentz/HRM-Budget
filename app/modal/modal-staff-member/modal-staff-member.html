@@ -23,13 +23,14 @@
                 <p>{{selectedStaffMember.name}} <b>{{selectedStaffMember.surname}}</b></p>
 
                 <label>Contract type</label>
-                <select class="form-control" ng-options="contract as contract.name for contract in allContracts" ng-model="selectedStaffMember.contractType"></select>
+                <select class="form-control" ng-options="contract.name as contract.name for contract in allContracts" ng-model="selectedContract.category" ng-change="getAllGrades()">
+                </select>
 
                 <label>Grade</label>
-                <select class="form-control" ng-options="grade as grade.gradeNumber for grade in selectedStaffMember.contractType.grades" ng-model="selectedStaffMember.grade"></select>
+                <select class="form-control" ng-options="grade.gradeNumber as grade.gradeNumber for grade in allGradesInContract" ng-model="selectedContract.grade" ng-change="getAllSteps()"></select>
 
                 <label>Step</label>
-                <select class="form-control" ng-options="step as step.stepNumber for step in selectedStaffMember.grade.steps" ng-model="selectedStaffMember.step"></select>
+                <select class="form-control" ng-options="step.stepNumber as step.stepNumber for step in allStepsInGrade" ng-model="selectedContract.step"></select>
 
             </div>
 
@@ -41,29 +42,17 @@
 
             </div>
 
-
             <div class="bottom-page-navigator-container">
-                <div class="page-indicator-circles-container" ng-click="setInnerModalPage(1)"><div class="page-indicator-circles"></div></div>
-                <div class="page-indicator-circles-container" ng-click="setInnerModalPage(2)"><div class="page-indicator-circles"></div></div>
-                <div class="page-indicator-circles-container" ng-click="setInnerModalPage(3)"><div class="page-indicator-circles"></div></div>
-                <div class="page-indicator-circles-container" ng-click="setInnerModalPage(4)"><div class="page-indicator-circles"></div></div>
+                <div class="page-indicator-circles-container"
+                     ng-click="setInnerModalPage(page)" ng-repeat="page in innerModalPages">
+                    <div class="page-indicator-circles"
+                         ng-class="{'page-indicator-circle-active':innerModalPageNum==page}">
+                    </div>
+                </div>
             </div>
         </div>
 
-<!-- 2. POST -->
-
-        <div ng-if="modalTitle === 'Edit Post' || modalTitle === 'Add New Post'">
-            <label>Post Title</label>
-            <input type="text" class="form-control" ng-model="selectedPost.postTitle">
-
-            <label>Contract Type</label>
-            <select class="form-control" ng-options="contract.name for contract in allContracts" ng-model="selectedPost.contractType"></select>
-
-            <label>Grade</label>
-            <select class="form-control" ng-options="grade.gradeNumber for grade in selectedPost.contractType.grades" ng-model="selectedPost.postGrade"></select>
-        </div>
-
-<!-- Assing staff Member-->
+<!-- Adding staff Member-->
 
         <div ng-if="modalTitle === 'Assign Staff Member to Post'">
             <h3>Post Details</h3>
@@ -72,8 +61,7 @@
             <p>{{selectedPost.postCategory}} {{selectedPost.postGrade}}</p>
 
             <label>Assign Staff Member</label>
-            <select class="form-control" ng-options="staffMember.name + ' ' + staffMember.surname + ' (' + staffMember.staffNumber + ')' for staffMember in staffMembers" ng-model="selectedStaffOnPost.staff">
-            </select>
+            <select class="form-control" ng-options="staffMember.name + ' ' + staffMember.surname + ' (' + staffMember.staffNumber + ')' for staffMember in staffMembers" ng-model="selectedStaffOnPost.staff"></select>
 
             <!--<label>Contract Type</label>
             <select class="form-control" ng-options="contract.name for contract in allContracts" ng-model="selectedStaffOnPost.contractType"></select>

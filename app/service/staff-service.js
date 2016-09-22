@@ -67,7 +67,7 @@ angular.module('HRMBudget').factory('staffService',function(
             return $http.delete('/api/staff-member/'+id)
                 .then(function(res){
 
-                    staffService.model.item = null;
+                    staffService.model.item = {};
 
                     if(cb){
                         cb(res);

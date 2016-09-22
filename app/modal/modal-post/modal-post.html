@@ -1,0 +1,24 @@
+<div>
+    <div class="modal-header">
+        <button type="button" class="close pull-right" ng-click="$dismiss()" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">{{modalTitle}}</h4>
+    </div>
+    <div class="modal-body">
+        <!-- 2. POST -->
+
+        <div ng-if="modalTitle === 'Edit Post' || modalTitle === 'Add New Post'">
+            <label>Post Title</label>
+            <input type="text" class="form-control" ng-model="selectedPost.postTitle">
+
+            <label>Contract Type</label>
+            <select class="form-control" ng-model="selectedPost.contractType" ng-options="contract.name as contract.name for contract in allContracts" ng-change="getAllGrades()"></select>
+
+            <label>Grade</label>
+            <select class="form-control" ng-model="selectedPost.postGrade" ng-options="grade.gradeNumber as grade.gradeNumber for grade in allGradesInContract"></select>
+        </div>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-default" ng-click="onClickClose()">Cancel</button>
+		<button type="button" class="btn btn-primary" ng-click="onClickSave()">Save changes</button>
+	</div>
+</div>

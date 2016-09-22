@@ -53,6 +53,9 @@
                     <th>Name</th>
                     <th>Surname</th>
                     <th>Staff Number</th>
+                    <th>Category</th>
+                    <th>Grade</th>
+                    <th>Step</th>
                     <th></th>
                     <th></th>
                 </tr>
@@ -60,6 +63,9 @@
                     <td>{{staffMember.name}}</td>
                     <td>{{staffMember.surname}}</td>
                     <td>{{staffMember.staffNumber}}</td>
+                    <td>{{staffMember.stepByStep[0].category}}</td>
+                    <td>{{staffMember.stepByStep[0].grade}}</td>
+                    <td>{{staffMember.stepByStep[0].step}}</td>
                     <td><div class="btn btn-sm btn-default" ng-click="onClickButton('staffMember', staffMember._id)">Edit</div></td>
                     <td><div class="btn btn-sm btn-danger" ng-click="onClickDelete('staffMember', staffMember._id)">Delete</div></td>
                 </tr>

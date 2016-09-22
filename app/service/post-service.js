@@ -67,7 +67,7 @@ angular.module('HRMBudget').factory('postService',function(
             return $http.delete('/api/post/'+id)
                 .then(function(res){
 
-                    postService.model.item = null;
+                    postService.model.item = {};
 
                     if(cb){
                         cb(res);

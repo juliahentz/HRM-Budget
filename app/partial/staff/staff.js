@@ -14,74 +14,93 @@ angular.module('HRMBudget').controller('StaffCtrl',function(
 // 1. ADD AND EDIT FUNCTIONALITIES
     $scope.onClickButton = function(message, id) {
 
-        var modalInstance = $uibModal.open({
-            animation: true,
-            templateUrl: 'modal/modal-staff-member/modal-staff-member.html',
-            controller: 'ModalStaffMemberCtrl',
-            size: 'md',
-            resolve: {
+        if(message === "staffMember" || message === "newStaff" || message === "fillPost"){
+            var modalInstanceStaff = $uibModal.open({
+                animation: true,
+                templateUrl: 'modal/modal-staff-member/modal-staff-member.html',
+                controller: 'ModalStaffMemberCtrl',
+                size: 'md',
+                resolve: {
 
-            // A) STAFF MEMBER RESOLVE
-                staffMember: function(staffService){
-                    if(message === "staffMember" && id){
-                        return staffService.getOne(id);
-                    }
-                },
-            // B) POST RESOLVE
-                post:function(postService){
-                    if(message === "post" && id || message === 'fillPost' && id){
-                        return postService.getOne(id);
-                    }
-                },
-            // C) MANAGE STAFF ON POST RESOLVE
-                mangageStaffOnPost:function(postService){
-                    if(message === "fillPost"){
-                        return postService.getAll();
-                    }
-                },
-                title: function(){
+                    // A) STAFF MEMBER RESOLVE
+                    staffMember: function(staffService){
+                        if(message === "staffMember" && id){
+                            return staffService.getOne(id);
+                        }
+                    },
 
-                // A.1 EDIT EXISTING STAFF MEMBER - conditional content
-                    if(message === "staffMember"){
-                        return "Edit Staff Member";
+                    // C) MANAGE STAFF ON POST RESOLVE
+                    mangageStaffOnPost:function(postService){
+                        if(message === "fillPost"){
+                            return postService.getAll();
+                        }
+                    },
+                    title: function(){
 
-                // A.2 ADD NEW STAFF MEMBER - conditional content
-                    }else if(message === "newStaff"){
-                        return "Add New Staff";
+                        // A.1 EDIT EXISTING STAFF MEMBER - conditional content
+                        if(message === "staffMember"){
+                            return "Edit Staff Member";
 
-                // B.1 EDIT EXISTING POST - conditional content
-                    }else if(message === "post"){
-                        return "Edit Post";
+                            // A.2 ADD NEW STAFF MEMBER - conditional content
+                        }else if(message === "newStaff"){
+                            return "Add New Staff";
 
-                // B.2 ADD NEW POST - conditional content
-                    }else if(message === "newPost"){
-                        return "Add New Post";
-
-                // C MANAGE STAFF ON POST
-                    }else if(message === "fillPost"){
-                        return "Assign Staff Member to Post"
+                            // C MANAGE STAFF ON POST
+                        }else if(message === "fillPost"){
+                            return "Assign Staff Member to Post"
+                        }
                     }
                 }
-            }
-        }).result.then(function(message){
+            }).result.then(function(message){
 
-        // A) STAFF MEMBER - two way binding update
-            if(message === 'Staff'){
-                staffService.model.item = {};
+                // A) STAFF MEMBER - two way binding update
+                if(message === 'Staff'){
+                    staffService.model.item = {};
 
-                staffService.getAll(function(list){
-                    $scope.staffMembers = list;
-                });
+                    staffService.getAll(function(list){
+                        $scope.staffMembers = list;
+                    });
+                }
+            });
 
-        // B) POST - two way binding update
-            }else if(message === 'Post'){
+        }else if(message === "post" || message === "newPost"){
+
+            var modalInstancePost = $uibModal.open({
+                animation: true,
+                templateUrl: 'modal/modal-post/modal-post.html',
+                controller: 'ModalPostCtrl',
+                size: 'md',
+                resolve: {
+                    // B) POST RESOLVE
+                    post:function(postService){
+                        if(message === "post" && id || message === 'fillPost' && id){
+                            return postService.getOne(id);
+                        }
+                    },
+                    title: function(){
+
+                            // B.1 EDIT EXISTING POST - conditional content
+                        if(message === "post"){
+                            return "Edit Post";
+
+                            // B.2 ADD NEW POST - conditional content
+                        }else if(message === "newPost"){
+                            return "Add New Post";
+
+                        }
+                    }
+                }
+            }).result.then(function(message){
+
                 postService.model.item = {};
 
                 postService.getAll(function(list){
                     $scope.posts = list;
                 })
-            }
-        });
+
+            });
+        }
+
     };
 
 // 2. DELETE FUNCTIONALITY
