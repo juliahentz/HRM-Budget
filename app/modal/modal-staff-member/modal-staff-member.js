@@ -12,7 +12,7 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
 
     $scope.currentTime = new Date();
     $scope.innerModalPageNum = 1;
-    
+
     // todo fix modal page number array
     $scope.innerModalPages = [1,2,3,4];
 
@@ -65,6 +65,18 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
         })
     };
 
+    $scope.datePeriodStart = {
+        year:2016,
+        month:1,
+        day:1
+    };
+
+    $scope.datePeriodEnd = {
+        year:2020,
+        month:12,
+        day:31
+    };
+
     // SEPARATING LOGIC FOR VARIOUS CASES IF DATABASE ELEMENT HAS BEEN ALREADY CREATED
     if(Object.keys($scope.selectedStaffMember).length == 0){
 
@@ -73,6 +85,18 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
 
         // todo fix first element to time selection
         $scope.selectedContract = $scope.selectedStaffMember.stepByStep[0];
+
+        var startDate = new Date($scope.selectedStaffMember.stepByStep[0].startDate);
+
+        $scope.datePeriodStart.year = startDate.getFullYear();
+        $scope.datePeriodStart.month = startDate.getMonth() + 1;
+        $scope.datePeriodStart.day = startDate.getDay();
+
+        var endDate = new Date($scope.selectedStaffMember.stepByStep[0].endDate);
+
+        $scope.datePeriodEnd.year = endDate.getFullYear();
+        $scope.datePeriodEnd.month = endDate.getMonth() + 1;
+        $scope.datePeriodEnd.day = endDate.getDay();
 
         $scope.getAllGrades();
         $scope.getAllSteps();
@@ -96,9 +120,11 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
                 });
             }else if($scope.innerModalPageNum === 2){
 
-                $scope.contractItem.category = $scope.selectedContract.category.name;
-                $scope.contractItem.grade = $scope.selectedContract.grade.gradeNumber;
-                $scope.contractItem.step = $scope.selectedContract.step.stepNumber;
+                $scope.contractItem.category = $scope.selectedContract.category;
+                $scope.contractItem.grade = $scope.selectedContract.grade;
+                $scope.contractItem.step = $scope.selectedContract.step;
+                $scope.contractItem.startDate = $scope.selectedContract.startDate;
+                $scope.contractItem.endDate = $scope.selectedContract.endDate;
 
                 // todo: fix first item to current date / selected date item
                 stepByStepService.update($scope.selectedStaffMember.stepByStep[0]._id, $scope.contractItem, function(stepByStepItem){
@@ -116,17 +142,23 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
 
                 staffService.create($scope.selectedStaffMember, function(staff){
 
+                    $scope.selectedStaffMember = staff;
                     $scope.innerModalPageNum = 2;
                 });
             }else if($scope.innerModalPageNum === 2){
-                $scope.contractItem.category = $scope.selectedContract.category.name;
-                $scope.contractItem.grade = $scope.selectedContract.grade.gradeNumber;
-                $scope.contractItem.step = $scope.selectedContract.step.stepNumber;
+
+                $scope.contractItem.category = $scope.selectedContract.category;
+                $scope.contractItem.grade = $scope.selectedContract.grade;
+                $scope.contractItem.step = $scope.selectedContract.step;
+                $scope.contractItem.startDate = $scope.selectedContract.startDate;
+                $scope.contractItem.endDate = $scope.selectedContract.endDate;
 
                 stepByStepService.create($scope.contractItem, function(item){
 
                     $scope.selectedStaffMember.stepByStep = [];
                     $scope.selectedStaffMember.stepByStep.push(item._id);
+
+                    console.log($scope.selectedStaffMember);
 
                     staffService.update($scope.selectedStaffMember._id, $scope.selectedStaffMember, function(item){
 
@@ -167,6 +199,14 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
         $scope.selectedPost = {};
         $scope.selectedStaffMember = {};
         $scope.modalTitle = null;
+
+        $scope.currentTime = new Date();
+        $scope.innerModalPageNum = 1;
+
+        $scope.contractItem = {};
+        $scope.allGradesInContract = [];
+        $scope.allStepsInGrade = [];
+        $scope.selectedContract = {};
 
         $uibModalInstance.close();
     }

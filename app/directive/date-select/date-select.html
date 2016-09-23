@@ -1,0 +1,15 @@
+<div class="row">
+    <div class="col-sm-3">
+        <h6>Day</h6>
+        <select ng-change="onChange()" ng-options="day as day for day in daysArray" ng-model="selectedDate.day" class="form-control"></select>
+    </div>
+    <div class="col-sm-3">
+        <h6>Month</h6>
+        <select ng-change="onChange()" ng-options="month as month for month in monthsArray" ng-model="selectedDate.month" class="form-control"></select>
+    </div>
+    <div class="col-sm-6">
+        <h6>Year</h6>
+        <select ng-change="onChange()" ng-options="year as year for year in yearsArray" ng-model="selectedDate.year" class="form-control"></select>
+    </div>
+
+</div>

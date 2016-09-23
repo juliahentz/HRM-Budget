@@ -20,6 +20,8 @@ angular.module('HRMBudget').controller('StaffCtrl',function(
                 templateUrl: 'modal/modal-staff-member/modal-staff-member.html',
                 controller: 'ModalStaffMemberCtrl',
                 size: 'md',
+                backdrop  : 'static',
+                keyboard  : false,
                 resolve: {
 
                     // A) STAFF MEMBER RESOLVE
@@ -70,6 +72,8 @@ angular.module('HRMBudget').controller('StaffCtrl',function(
                 templateUrl: 'modal/modal-post/modal-post.html',
                 controller: 'ModalPostCtrl',
                 size: 'md',
+                backdrop  : 'static',
+                keyboard  : false,
                 resolve: {
                     // B) POST RESOLVE
                     post:function(postService){
@@ -111,6 +115,8 @@ angular.module('HRMBudget').controller('StaffCtrl',function(
             templateUrl: 'modal/modal-warning-sm/modal-warning-sm.html',
             controller: 'ModalWarningSmCtrl',
             size: 'md',
+            backdrop  : 'static',
+            keyboard  : false,
             resolve: {
 
             // A) STAFF MEMBER RESOLVE

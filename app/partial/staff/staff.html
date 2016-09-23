@@ -56,6 +56,8 @@
                     <th>Category</th>
                     <th>Grade</th>
                     <th>Step</th>
+                    <th>Start date</th>
+                    <th>End date</th>
                     <th></th>
                     <th></th>
                 </tr>
@@ -66,6 +68,8 @@
                     <td>{{staffMember.stepByStep[0].category}}</td>
                     <td>{{staffMember.stepByStep[0].grade}}</td>
                     <td>{{staffMember.stepByStep[0].step}}</td>
+                    <td>{{staffMember.stepByStep[0].startDate}}</td>
+                    <td>{{staffMember.stepByStep[0].endDate}}</td>
                     <td><div class="btn btn-sm btn-default" ng-click="onClickButton('staffMember', staffMember._id)">Edit</div></td>
                     <td><div class="btn btn-sm btn-danger" ng-click="onClickDelete('staffMember', staffMember._id)">Delete</div></td>
                 </tr>
