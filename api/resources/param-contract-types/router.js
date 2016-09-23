@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 exports.init = function(app){
 
-    app.get('/api/parameters/contracts', function(req, res){
+    app.get('/api/parameters/contracts', (req, res)=>{
 
         const ContractType = mongoose.model('ParamContractType');
 
@@ -24,7 +24,6 @@ exports.init = function(app){
                 res.status(400).send(err);
             }
         });
-
     });
 
     app.get('/api/parameters/contract/:id', (req, res)=> {
@@ -51,9 +50,7 @@ exports.init = function(app){
             } else {
                 res.status(400).send(err);
             }
-
         });
-
     });
 
     app.post('/api/parameters/contract', (req, res)=>{
@@ -68,9 +65,7 @@ exports.init = function(app){
             } else {
                 res.status(400).send(err);
             }
-
         });
-
     });
 
     app.put('/api/parameters/contract/:id', (req, res)=> {
@@ -87,9 +82,7 @@ exports.init = function(app){
             } else {
                 res.status(400).send(err);
             }
-
         });
-
     });
 
     app.delete('/api/parameters/contract/:id', (req, res)=> {
@@ -104,10 +97,6 @@ exports.init = function(app){
             } else {
                 res.status(400).send(err);
             }
-
         });
-
     });
-
-
 };

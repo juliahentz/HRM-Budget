@@ -1,6 +1,6 @@
 exports.init = function(app){
 
-    app.get('/api/param-allowances', function(req, res){
+    app.get('/api/param-allowances', (req, res)=>{
 
     });
 

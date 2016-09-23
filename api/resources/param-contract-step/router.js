@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 exports.init = function(app){
 
-    app.get('/api/parameters/contract-step/steps', function(req, res){
+    app.get('/api/parameters/contract-step/steps', (req, res)=>{
 
         const Step = mongoose.model('ParamContactStep');
 
@@ -13,7 +13,6 @@ exports.init = function(app){
                 res.status(400).send(err);
             }
         });
-
     });
 
     app.post('/api/parameters/contract-step/step', (req, res)=>{
@@ -28,9 +27,7 @@ exports.init = function(app){
             } else {
                 res.status(400).send(err);
             }
-
         });
-
     });
 
     app.put('/api/parameters/contract-step/step/:id', (req, res)=> {
@@ -40,16 +37,14 @@ exports.init = function(app){
 
         const Step = mongoose.model('ParamContactStep');
 
-        Step.findByIdAndUpdate(stepId, stepData, {'new': true}, function (err, stepDoc) {
+        Step.findByIdAndUpdate(stepId, stepData, {'new': true}, (err, stepDoc)=> {
 
             if (!err) {
                 res.send(stepDoc);
             } else {
                 res.status(400).send(err);
             }
-
         });
-
     });
 
     app.delete('/api/parameters/contract-step/step/:id', (req, res)=> {
@@ -64,10 +59,6 @@ exports.init = function(app){
             } else {
                 res.status(400).send(err);
             }
-
         });
-
     });
-
-
 };

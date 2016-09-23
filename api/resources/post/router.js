@@ -20,7 +20,6 @@ exports.init = function(app){
                 res.status(400).send(err);
             }
         });
-
     });
 
     app.get('/api/post/:id', (req, res)=> {
@@ -33,16 +32,14 @@ exports.init = function(app){
 
         //query.populate('personalData placeOfOrigin stepByStep socioStatus entitlements');
 
-        query.exec(function (err, postDoc) {
+        query.exec( (err, postDoc)=> {
 
             if (!err) {
                 res.send(postDoc);
             } else {
                 res.status(400).send(err);
             }
-
         });
-
     });
 
     app.post('/api/post', (req, res)=>{
@@ -57,9 +54,7 @@ exports.init = function(app){
             } else {
                 res.status(400).send(err);
             }
-
         });
-
     });
 
     app.put('/api/post/:id', (req, res)=> {
@@ -69,16 +64,14 @@ exports.init = function(app){
 
         const Post = mongoose.model('Post');
 
-        Post.findByIdAndUpdate(postId, postData, {'new': true}, function (err, postDoc) {
+        Post.findByIdAndUpdate(postId, postData, {'new': true}, (err, postDoc)=> {
 
             if (!err) {
                 res.send(postDoc);
             } else {
                 res.status(400).send(err);
             }
-
         });
-
     });
 
     app.delete('/api/post/:id', (req, res)=> {
@@ -93,9 +86,6 @@ exports.init = function(app){
             } else {
                 res.status(400).send(err);
             }
-
         });
-
     });
-
 };

@@ -18,7 +18,6 @@ exports.init = function(app){
                 res.status(400).send(err);
             }
         });
-
     });
 
     app.get('/api/staff-member/:id', (req, res)=> {
@@ -32,16 +31,14 @@ exports.init = function(app){
         //query.populate('personalData placeOfOrigin stepByStep socioStatus entitlements');
         query.populate('stepByStep');
 
-        query.exec(function (err, staffMemberDoc) {
+        query.exec((err, staffMemberDoc)=> {
 
             if (!err) {
                 res.send(staffMemberDoc);
             } else {
                 res.status(400).send(err);
             }
-
         });
-
     });
     
     app.post('/api/staff-member', (req, res)=>{
@@ -56,9 +53,7 @@ exports.init = function(app){
             } else {
                 res.status(400).send(err);
             }
-
         });
-
     });
 
     app.put('/api/staff-member/:id', (req, res)=> {
@@ -68,16 +63,14 @@ exports.init = function(app){
 
         const StaffMember = mongoose.model('StaffMember');
 
-        StaffMember.findByIdAndUpdate(staffMemberId, staffMemberData, {'new': true}, function (err, staffMemberDoc) {
+        StaffMember.findByIdAndUpdate(staffMemberId, staffMemberData, {'new': true}, (err, staffMemberDoc)=> {
 
             if (!err) {
                 res.send(staffMemberDoc);
             } else {
                 res.status(400).send(err);
             }
-
         });
-
     });
 
     app.delete('/api/staff-member/:id', (req, res)=> {
@@ -92,9 +85,6 @@ exports.init = function(app){
             } else {
                 res.status(400).send(err);
             }
-
         });
-
     });
-
 };

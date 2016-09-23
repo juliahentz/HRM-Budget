@@ -1,6 +1,6 @@
 exports.init = function(app){
 
-    app.get('/api/sample', function(req, res){
+    app.get('/api/sample', (req, res)=>{
 
     });
 

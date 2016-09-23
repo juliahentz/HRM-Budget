@@ -13,7 +13,6 @@ exports.init = function(app){
                 res.status(400).send(err);
             }
         });
-
     });
 
     app.get('/api/step-by-step/:id', (req, res)=> {
@@ -22,16 +21,14 @@ exports.init = function(app){
 
         const StepByStep = mongoose.model('StepByStep');
 
-        StepByStep.findById(StepByStepId, function (err, stepByStepDoc) {
+        StepByStep.findById(StepByStepId, (err, stepByStepDoc)=> {
 
             if (!err) {
                 res.send(stepByStepDoc);
             } else {
                 res.status(400).send(err);
             }
-
         });
-
     });
 
     app.post('/api/step-by-step', (req, res)=>{
@@ -46,9 +43,7 @@ exports.init = function(app){
             } else {
                 res.status(400).send(err);
             }
-
         });
-
     });
 
     app.put('/api/step-by-step/:id', (req, res)=> {
@@ -58,16 +53,14 @@ exports.init = function(app){
 
         const StepByStep = mongoose.model('StepByStep');
 
-        StepByStep.findByIdAndUpdate(StepByStepId, StepByStepData, {'new': true}, function (err, stepByStepDoc) {
+        StepByStep.findByIdAndUpdate(StepByStepId, StepByStepData, {'new': true}, (err, stepByStepDoc)=> {
 
             if (!err) {
                 res.send(stepByStepDoc);
             } else {
                 res.status(400).send(err);
             }
-
         });
-
     });
 
     app.delete('/api/step-by-step/:id', (req, res)=> {
