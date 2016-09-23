@@ -59,12 +59,18 @@
 
             <div ng-if="innerModalPageNum === 3">
                 <label>Gender</label>
-
-                <label>Birth date</label>
-                <date-select></date-select>
+                <select class="form-control" ng-model="staffPersonalData.gender">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
 
                 <label>Nationality</label>
-                <select class="form-control"></select>
+                <select class="form-control"
+                        ng-options="countryList.alpha2Code as countryList.alpha2Code group by countryList.region for countryList in countryList | orderBy: countryList.alpha2Code"
+                        ng-model="staffPersonalData.nationality"></select>
+
+                <label>Birth date</label>
+                <date-select date-model="staffPersonalData.birthDate" current-date="datePeriodBirth"></date-select>
             </div>
 
             <div ng-if="innerModalPageNum === 4">

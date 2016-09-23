@@ -3,6 +3,7 @@ angular.module('HRMBudget').controller('ModalWarningSmCtrl',function(
     staffService,
     postService,
     stepByStepService,
+    personalDataService,
     $uibModalInstance,
     message
 ){
@@ -15,12 +16,12 @@ angular.module('HRMBudget').controller('ModalWarningSmCtrl',function(
 
     // A) STAFF MEMBER
         if($scope.message === 'staff'){
-
-            console.log('this');
-
+            
             angular.forEach($scope.selectedStaffMember.stepByStep, function(stepByStep, index){
                 stepByStepService.remove(stepByStep._id);
             });
+
+            personalDataService.remove($scope.selectedStaffMember.personalData._id);
             staffService.remove($scope.selectedStaffMember._id);
 
     // B) POST

@@ -5,6 +5,8 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
     staffService,
     paramContractService,
     stepByStepService,
+    publicApiService,
+    personalDataService,
     postService
 ){
 
@@ -20,7 +22,6 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
     $scope.staffMembers = staffService.model.list;
     $scope.selectedStaffMember = staffService.model.item;
     $scope.allContracts = paramContractService.model.types;
-
 
     // RESOLVES RECEIVED FROM CALLING THE MODAL
     $scope.modalTitle = title;
@@ -38,6 +39,7 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
 
     // REFERENCE VARIABLES TO SAVE THE RIGHT PROPERTIES TO BE SENT TO THE SERVER
     $scope.contractItem = {};
+    $scope.staffItem = {};
 
 // -- 2. LOGIC: CONTRACT FOR STAFF MEMBER ----------
 
@@ -104,8 +106,25 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
         $scope.selectedContract = {};
     }
 
+// -- 3. LOGIC: PERSONAL DATA FOR STAFF MEMBER -----
 
-// -- 3. LOGIC: SAVE MODAL -------------------------
+    $scope.staffPersonalData = $scope.selectedStaffMember.personalData;
+    $scope.countryList = [];
+
+    $scope.datePeriodBirth = {
+        year: 1990,
+        month:1,
+        day:1
+    };
+
+    publicApiService.getAllCountries(function(){
+        angular.forEach(publicApiService.model.list, function(country, index){
+            $scope.countryList.push(country);
+        });
+    });
+
+
+// -- . LOGIC: SAVE MODAL -------------------------
 
     $scope.onClickSave = function(){
 
@@ -130,8 +149,13 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
                 stepByStepService.update($scope.selectedStaffMember.stepByStep[0]._id, $scope.contractItem, function(stepByStepItem){
                     staffService.update($scope.selectedStaffMember._id, $scope.selectedStaffMember, function(item){
 
-                        $uibModalInstance.close('Staff');
+                        $scope.innerModalPageNum = 3;
                     });
+                });
+            }else if($scope.innerModalPageNum === 3){
+                personalDataService.update($scope.selectedStaffMember.personalData._id, $scope.staffPersonalData, function(){
+
+                    $uibModalInstance.close('Staff');
                 });
             }
 
@@ -145,7 +169,7 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
                     $scope.selectedStaffMember = staff;
                     $scope.innerModalPageNum = 2;
                 });
-            }else if($scope.innerModalPageNum === 2){
+            }else if($scope.innerModalPageNum === 2) {
 
                 $scope.contractItem.category = $scope.selectedContract.category;
                 $scope.contractItem.grade = $scope.selectedContract.grade;
@@ -153,17 +177,27 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
                 $scope.contractItem.startDate = $scope.selectedContract.startDate;
                 $scope.contractItem.endDate = $scope.selectedContract.endDate;
 
-                stepByStepService.create($scope.contractItem, function(item){
+                stepByStepService.create($scope.contractItem, function (item) {
 
                     $scope.selectedStaffMember.stepByStep = [];
                     $scope.selectedStaffMember.stepByStep.push(item._id);
 
                     console.log($scope.selectedStaffMember);
 
-                    staffService.update($scope.selectedStaffMember._id, $scope.selectedStaffMember, function(item){
+                    staffService.update($scope.selectedStaffMember._id, $scope.selectedStaffMember, function (item) {
+
+                        $scope.innerModalPageNum = 3;
+                    });
+                })
+            }else if($scope.innerModalPageNum === 3){
+                personalDataService.create($scope.staffPersonalData, function(item){
+
+                    $scope.staffItem.personalData = item._id;
+
+                    staffService.update($scope.selectedStaffMember._id, $scope.staffItem, function(staff){
 
                         $uibModalInstance.close('Staff');
-                    });
+                    })
                 });
             }
 
@@ -207,6 +241,8 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
         $scope.allGradesInContract = [];
         $scope.allStepsInGrade = [];
         $scope.selectedContract = {};
+
+        $scope.staffPersonalData = {};
 
         $uibModalInstance.close();
     }

@@ -2,10 +2,10 @@ const mongoose = require('mongoose');
 
 const schema = new mongoose.Schema({
 
-    staffMemberId   : {type: String, required: true},
-    gender          : {type: String, required: true},
-    birthDate       : {type: Date, required: true},
-    nationality     : {type: String, required: true}
+    staffMemberId   : {type: String},
+    gender          : {type: String},
+    birthDate       : {type: Date},
+    nationality     : {type: String}
 
 });
 

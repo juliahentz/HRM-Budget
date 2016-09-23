@@ -6,7 +6,7 @@ const schema = new mongoose.Schema({
     name            : {type: String},
     surname         : {type: String},
     staffNumber     : {type: Number},
-    personalData    : { type: mongoose.Schema.Types.ObjectId, ref: 'PerosnalData' },
+    personalData    : { type: mongoose.Schema.Types.ObjectId, ref: 'PersonalData' },
     placeOfOrigin   : [
         { type: mongoose.Schema.Types.ObjectId, ref: 'PlaceOfOrigin' }
     ],

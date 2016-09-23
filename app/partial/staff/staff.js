@@ -10,7 +10,6 @@ angular.module('HRMBudget').controller('StaffCtrl',function(
     $scope.staffMembers = staffService.model.list;
     $scope.timeNow = timeNow;
 
-
 // 1. ADD AND EDIT FUNCTIONALITIES
     $scope.onClickButton = function(message, id) {
 
