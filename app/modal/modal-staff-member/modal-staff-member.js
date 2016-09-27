@@ -40,6 +40,8 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
 
     // REFERENCE VARIABLES TO SAVE THE RIGHT PROPERTIES TO BE SENT TO THE SERVER
     $scope.contractItem = {};
+    $scope.contractInnerItem = {};
+
     $scope.staffItem = {};
     $scope.socioStatusItem = {};
     $scope.socioStatusInnerItem = {};
@@ -91,15 +93,15 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
     }else if($scope.selectedStaffMember.stepByStep.length != 0){
 
         // todo fix first element to time selection
-        $scope.selectedContract = $scope.selectedStaffMember.stepByStep[0];
+        $scope.selectedContract = $scope.selectedStaffMember.stepByStep.positionsFilled[0];
 
-        var startDate = new Date($scope.selectedStaffMember.stepByStep[0].startDate);
+        var startDate = new Date($scope.selectedStaffMember.stepByStep.positionsFilled[0].startDate);
 
         $scope.datePeriodStart.year = startDate.getFullYear();
         $scope.datePeriodStart.month = startDate.getMonth() + 1;
         $scope.datePeriodStart.day = startDate.getDay();
 
-        var endDate = new Date($scope.selectedStaffMember.stepByStep[0].endDate);
+        var endDate = new Date($scope.selectedStaffMember.stepByStep.positionsFilled[0].endDate);
 
         $scope.datePeriodEnd.year = endDate.getFullYear();
         $scope.datePeriodEnd.month = endDate.getMonth() + 1;
@@ -158,18 +160,20 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
                 });
             }else if($scope.innerModalPageNum === 2){
 
-                $scope.contractItem.category = $scope.selectedContract.category;
-                $scope.contractItem.grade = $scope.selectedContract.grade;
-                $scope.contractItem.step = $scope.selectedContract.step;
-                $scope.contractItem.startDate = $scope.selectedContract.startDate;
-                $scope.contractItem.endDate = $scope.selectedContract.endDate;
+                $scope.contractItem.positionsFilled = [];
+
+                $scope.contractInnerItem.category = $scope.selectedContract.category;
+                $scope.contractInnerItem.grade = $scope.selectedContract.grade;
+                $scope.contractInnerItem.step = $scope.selectedContract.step;
+                $scope.contractInnerItem.startDate = $scope.selectedContract.startDate;
+                $scope.contractInnerItem.endDate = $scope.selectedContract.endDate;
+
+                $scope.contractItem.positionsFilled.push($scope.contractInnerItem);
 
                 // todo: fix first item to current date / selected date item
-                stepByStepService.update($scope.selectedStaffMember.stepByStep[0]._id, $scope.contractItem, function(stepByStepItem){
-                    staffService.update($scope.selectedStaffMember._id, $scope.selectedStaffMember, function(item){
+                stepByStepService.update($scope.selectedStaffMember.stepByStep._id, $scope.contractItem, function(stepByStepItem){
 
-                        $scope.innerModalPageNum = 3;
-                    });
+                    $scope.innerModalPageNum = 3;
                 });
             }else if($scope.innerModalPageNum === 3){
                 personalDataService.update($scope.selectedStaffMember.personalData._id, $scope.staffPersonalData, function(){
@@ -190,17 +194,20 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
                 });
             }else if($scope.innerModalPageNum === 2) {
 
-                $scope.contractItem.category = $scope.selectedContract.category;
-                $scope.contractItem.grade = $scope.selectedContract.grade;
-                $scope.contractItem.step = $scope.selectedContract.step;
-                $scope.contractItem.startDate = $scope.selectedContract.startDate;
-                $scope.contractItem.endDate = $scope.selectedContract.endDate;
+                $scope.contractItem.positionsFilled = [];
+
+                $scope.contractInnerItem.category = $scope.selectedContract.category;
+                $scope.contractInnerItem.grade = $scope.selectedContract.grade;
+                $scope.contractInnerItem.step = $scope.selectedContract.step;
+                $scope.contractInnerItem.startDate = $scope.selectedContract.startDate;
+                $scope.contractInnerItem.endDate = $scope.selectedContract.endDate;
+
+                $scope.contractItem.positionsFilled.push($scope.contractInnerItem);
 
                 stepByStepService.create($scope.contractItem, function (item) {
 
-                    $scope.selectedStaffMember.stepByStep = [];
-                    $scope.selectedStaffMember.stepByStep.push(item._id);
-                    
+                    $scope.selectedStaffMember.stepByStep = item._id;
+
                     staffService.update($scope.selectedStaffMember._id, $scope.selectedStaffMember, function (item) {
 
                         $scope.innerModalPageNum = 3;

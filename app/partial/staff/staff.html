@@ -68,11 +68,14 @@
                     <td>{{staffMember.name}}</td>
                     <td>{{staffMember.surname}}</td>
                     <td>{{staffMember.staffNumber}}</td>
-                    <td>{{staffMember.stepByStep[0].category}}</td>
-                    <td>{{staffMember.stepByStep[0].grade}}</td>
-                    <td>{{staffMember.stepByStep[0].step}}</td>
-                    <td>{{staffMember.stepByStep[0].startDate | date:'dd/MM/yyyy'}}</td>
-                    <td>{{staffMember.stepByStep[0].endDate | date:'dd/MM/yyyy'}}</td>
+
+                    <!--todo fix the display of right element based on selected date-->
+
+                    <td>{{staffMember.stepByStep.positionsFilled[0].category}}</td>
+                    <td>{{staffMember.stepByStep.positionsFilled[0].grade}}</td>
+                    <td>{{staffMember.stepByStep.positionsFilled[0].step}}</td>
+                    <td>{{staffMember.stepByStep.positionsFilled[0].startDate | date:'dd/MM/yyyy'}}</td>
+                    <td>{{staffMember.stepByStep.positionsFilled[0].endDate | date:'dd/MM/yyyy'}}</td>
                     <td>{{staffMember.personalData.gender}}</td>
                     <td>{{staffMember.personalData.nationality}}</td>
                     <td>{{staffMember.personalData.birthDate | date:'dd/MM/yyyy'}}</td>
