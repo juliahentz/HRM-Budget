@@ -7,18 +7,10 @@ const schema = new mongoose.Schema({
     surname         : {type: String},
     staffNumber     : {type: Number},
     personalData    : { type: mongoose.Schema.Types.ObjectId, ref: 'PersonalData' },
-    placeOfOrigin   : [
-        { type: mongoose.Schema.Types.ObjectId, ref: 'PlaceOfOrigin' }
-    ],
-    stepByStep      : [
-        { type: mongoose.Schema.Types.ObjectId, ref: 'StepByStep' }
-    ],
-    socioStatus     : [
-        { type: mongoose.Schema.Types.ObjectId, ref: 'SocioStatus' }
-    ],
-    entitlements    : [
-        { type: mongoose.Schema.Types.ObjectId, ref: 'Entitlements' }
-    ]
+    placeOfOrigin   : { type: mongoose.Schema.Types.ObjectId, ref: 'PlaceOfOrigin' },
+    stepByStep      : { type: mongoose.Schema.Types.ObjectId, ref: 'StepByStep' },
+    socioStatus     : { type: mongoose.Schema.Types.ObjectId, ref: 'SocioStatus' },
+    entitlements    : { type: mongoose.Schema.Types.ObjectId, ref: 'Entitlements' }
     
 
 });

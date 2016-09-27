@@ -16,7 +16,7 @@ angular.module('HRMBudget').controller('ModalWarningSmCtrl',function(
 
     // A) STAFF MEMBER
         if($scope.message === 'staff'){
-            
+
             angular.forEach($scope.selectedStaffMember.stepByStep, function(stepByStep, index){
                 stepByStepService.remove(stepByStep._id);
             });

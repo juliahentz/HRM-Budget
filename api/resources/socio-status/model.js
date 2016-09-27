@@ -3,12 +3,27 @@ const mongoose = require('mongoose');
 const schema = new mongoose.Schema({
 
     dateOfChange        : {type: Date},
-    maritalStatus       : {type: String},
-    marriageStartDate   : {type: Date},
-    numChildren         : {type: Number},
-    numDependentChildren: {type: Number},
-    fullTimePercentage  : {type: Number}
-
+    maritalStatus       : [
+        {
+        status:     {type: String},
+        startDate:  {type: Date},
+        endDate:  {type: Date}
+        }
+    ],
+    numChildren         : [
+        {
+        status:     {type: Number},
+        startDate:  {type: Date},
+        endDate:  {type: Date}
+        }
+    ],
+    fullTimePercentage  : [
+        {
+        status:     {type: Number},
+        startDate:  {type: Date},
+        endDate:  {type: Date}
+        }
+    ]
 
 });
 

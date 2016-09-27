@@ -7,6 +7,7 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
     stepByStepService,
     publicApiService,
     personalDataService,
+    socioStatusService,
     postService
 ){
 
@@ -16,7 +17,7 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
     $scope.innerModalPageNum = 1;
 
     // todo fix modal page number array
-    $scope.innerModalPages = [1,2,3,4];
+    $scope.innerModalPages = [1,2,3,4,5];
 
     // REFERENCING MODELS RECEIVED FROM SERVER
     $scope.staffMembers = staffService.model.list;
@@ -40,6 +41,10 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
     // REFERENCE VARIABLES TO SAVE THE RIGHT PROPERTIES TO BE SENT TO THE SERVER
     $scope.contractItem = {};
     $scope.staffItem = {};
+    $scope.socioStatusItem = {};
+    $scope.socioStatusInnerItem = {};
+    $scope.socioStatusInnerItem2 = {};
+    $scope.socioStatusInnerItem3 = {};
 
 // -- 2. LOGIC: CONTRACT FOR STAFF MEMBER ----------
 
@@ -124,6 +129,20 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
     });
 
 
+// -- 4. LOGIC: SOCIO-STATUS FOR STAFF MEMBER ------
+    // todo: connecting the modal to the variable is tricky, it is an array,
+    // todo: I need to create a separate variable to save accordingly, now it should be [0]
+
+    //$scope.staffSocioStatus = $scope.selectedStaffMember.socioStatus;
+    $scope.staffSocioStatus = {};
+
+    $scope.datePeriodNow = {};
+
+    $scope.datePeriodNow.year = $scope.currentTime.getFullYear();
+    $scope.datePeriodNow.month = $scope.currentTime.getMonth() +1;
+    $scope.datePeriodNow.day = $scope.currentTime.getDay();
+
+
 // -- . LOGIC: SAVE MODAL -------------------------
 
     $scope.onClickSave = function(){
@@ -181,9 +200,7 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
 
                     $scope.selectedStaffMember.stepByStep = [];
                     $scope.selectedStaffMember.stepByStep.push(item._id);
-
-                    console.log($scope.selectedStaffMember);
-
+                    
                     staffService.update($scope.selectedStaffMember._id, $scope.selectedStaffMember, function (item) {
 
                         $scope.innerModalPageNum = 3;
@@ -196,10 +213,44 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
 
                     staffService.update($scope.selectedStaffMember._id, $scope.staffItem, function(staff){
 
-                        $uibModalInstance.close('Staff');
+                        $scope.innerModalPageNum = 4;
                     })
                 });
+            }else if($scope.innerModalPageNum === 4){
+
+                $scope.socioStatusItem.maritalStatus = [];
+
+                $scope.socioStatusInnerItem.status = $scope.staffSocioStatus.maritalStatus;
+                $scope.socioStatusInnerItem.startDate = $scope.staffSocioStatus.maritalStartDate.toISOString();
+
+                $scope.socioStatusItem.maritalStatus.push($scope.socioStatusInnerItem);
+
+
+                $scope.socioStatusItem.numChildren = [];
+
+                $scope.socioStatusInnerItem2.status = $scope.staffSocioStatus.numChildren;
+                $scope.socioStatusInnerItem2.startDate = $scope.staffSocioStatus.numChildrenStartDate.toISOString();
+
+                $scope.socioStatusItem.numChildren.push($scope.socioStatusInnerItem2);
+
+
+                $scope.socioStatusItem.fullTimePercentage = [];
+
+                $scope.socioStatusInnerItem3.status = $scope.staffSocioStatus.fullTimePerc;
+                $scope.socioStatusInnerItem3.startDate = $scope.staffSocioStatus.fullTimePercStartDate.toISOString();
+
+                $scope.socioStatusItem.fullTimePercentage.push($scope.socioStatusInnerItem3);
+
+                socioStatusService.create($scope.socioStatusItem, function(item){
+                    $scope.staffItem.socioStatus = item._id;
+
+                    staffService.update($scope.selectedStaffMember._id, $scope.staffItem, function(staff){
+
+                        $uibModalInstance.close('Staff');
+                    });
+                });
             }
+
 
     // C) MANAGE STAFF ON POST
         }else if($scope.modalTitle === "Assign Staff Member to Post"){
@@ -245,5 +296,75 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
         $scope.staffPersonalData = {};
 
         $uibModalInstance.close();
+    };
+
+
+// DATEPICKER
+    // todo name variables appropriately to which element they belong to
+    $scope.today = function() {
+        $scope.staffSocioStatus.maritalStartDate = new Date();
+        $scope.staffSocioStatus.numChildrenStartDate = new Date();
+        $scope.staffSocioStatus.fullTimePercStartDate = new Date();
+    };
+    $scope.today();
+
+    $scope.inlineOptions = {
+        customClass: getDayClass,
+        minDate: new Date(),
+        showWeeks: true
+    };
+
+    $scope.dateOptions = {
+        formatYear: 'yyyy',
+        maxDate: new Date(2500, 12, 31),
+        minDate: new Date(1900, 1, 1),
+        startingDay: 1
+    };
+
+    $scope.open1 = function() {
+        $scope.popup1.opened = true;
+    };
+    $scope.open2 = function() {
+        $scope.popup2.opened = true;
+    };
+    $scope.open3 = function() {
+        $scope.popup3.opened = true;
+    };
+
+    $scope.setDate = function(year, month, day) {
+        $scope.staffSocioStatus.maritalStartDate = new Date(year, month, day);
+        $scope.staffSocioStatus.numChildrenStartDate = new Date(year, month, day);
+        $scope.staffSocioStatus.fullTimePercStartDate = new Date(year, month, day);
+    };
+
+    $scope.format = 'dd/MM/yyyy';
+    $scope.altInputFormats = ['M!/d!/yyyy'];
+
+    $scope.popup1 = {
+        opened: false
+    };
+    $scope.popup2 = {
+        opened: false
+    };
+    $scope.popup3 = {
+        opened: false
+    };
+
+    function getDayClass(data) {
+        var date = data.date,
+            mode = data.mode;
+        if (mode === 'day') {
+            var dayToCheck = new Date(date).setHours(0,0,0,0);
+
+            for (var i = 0; i < $scope.events.length; i++) {
+                var currentDay = new Date($scope.events[i].date).setHours(0,0,0,0);
+
+                if (dayToCheck === currentDay) {
+                    return $scope.events[i].status;
+                }
+            }
+        }
+
+        return '';
     }
 });

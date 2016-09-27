@@ -71,17 +71,105 @@
 
                 <label>Birth date</label>
                 <date-select date-model="staffPersonalData.birthDate" current-date="datePeriodBirth"></date-select>
+
             </div>
 
             <div ng-if="innerModalPageNum === 4">
-                <label>Effective of</label>
-                <date-select></date-select>
 
-                <label>Marital status</label>
-                <select class="form-control"></select>
+                <div class="col-md-6">
+                    <label>Marital status</label>
 
-                <label>Number of children</label>
-                <input type="number" class="form-control">
+                    <select class="form-control" ng-model="staffSocioStatus.maritalStatus">
+                        <option value="Married">Married</option>
+                        <option value="Divorced / Single">Divorced / Single</option>
+                    </select>
+                </div>
+
+                <div class="col-md-6">
+                    <label>Effective of</label>
+                    <p class="input-group">
+                        <input type="text"
+                               class="form-control"
+                               uib-datepicker-popup="{{format}}"
+                               ng-model="staffSocioStatus.maritalStartDate"
+                               is-open="popup1.opened"
+                               datepicker-options="dateOptions"
+                               on-open-focus="false"
+                               show-button-bar="false"
+                               ng-required="true"
+                               close-text="Close"
+                               alt-input-formats="altInputFormats" />
+                        <span class="input-group-btn">
+                            <button type="button"
+                                    class="btn btn-default"
+                                    ng-click="open1()">
+                                <i class="fa fa-calendar"></i>
+                            </button>
+                        </span>
+                    </p>
+                </div>
+
+                <div class="col-md-6">
+                    <label>Number of children</label>
+                    <input type="number" class="form-control" ng-model="staffSocioStatus.numChildren">
+                </div>
+                <div class="col-md-6">
+                    <label>Effective of</label>
+                    <p class="input-group">
+                        <input type="text"
+                               class="form-control"
+                               uib-datepicker-popup="{{format}}"
+                               ng-model="staffSocioStatus.numChildrenStartDate"
+                               is-open="popup2.opened"
+                               datepicker-options="dateOptions"
+                               ng-required="true"
+                               on-open-focus="false"
+                               show-button-bar="false"
+                               close-text="Close"
+                               alt-input-formats="altInputFormats" />
+                        <span class="input-group-btn">
+                            <button type="button"
+                                    class="btn btn-default"
+                                    ng-click="open2()">
+                                <i class="fa fa-calendar"></i>
+                            </button>
+                        </span>
+                    </p>
+                </div>
+
+                <div class="col-md-6">
+                    <label>Fulltime percentage</label>
+                    <input type="number" class="form-control" ng-model="staffSocioStatus.fullTimePerc">
+                </div>
+                <div class="col-md-6">
+                    <label>Effective of</label>
+                    <p class="input-group">
+                        <input type="text"
+                               class="form-control"
+                               uib-datepicker-popup="{{format}}"
+                               ng-model="staffSocioStatus.fullTimePercStartDate"
+                               is-open="popup3.opened"
+                               datepicker-options="dateOptions"
+                               ng-required="true"
+                               on-open-focus="false"
+                               show-button-bar="false"
+                               close-text="Close"
+                               alt-input-formats="altInputFormats" />
+                        <span class="input-group-btn">
+                            <button type="button"
+                                    class="btn btn-default"
+                                    ng-click="open3()">
+                                <i class="fa fa-calendar"></i>
+                            </button>
+                        </span>
+                    </p>
+                </div>
+
+
+            </div>
+
+            <div ng-if="innerModalPageNum === 5">
+
             </div>
 
             <div class="bottom-page-navigator-container">

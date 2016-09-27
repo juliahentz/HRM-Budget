@@ -20,7 +20,7 @@ angular.module('HRMBudget').config(function($stateProvider, $urlRouterProvider) 
                 var now = new Date();
                 return now.toISOString();
             }
-            
+
         }
     });
 

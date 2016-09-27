@@ -33,3 +33,18 @@
 .btn{
     border-radius: 0;
 }
+
+.glyphicon {
+    .fa-icon();
+}
+.glyphicon-chevron-left:before { content: @fa-var-chevron-left; }
+.glyphicon-chevron-right:before { content: @fa-var-chevron-right; }
+.glyphicon-chevron-up:before { content: @fa-var-chevron-up; }
+.glyphicon-chevron-down:before { content: @fa-var-chevron-down; }
+
+.glyphicon:extend(.fa all) {
+    &.glyphicon-chevron-right:extend(.fa-chevron-right all) {};
+    &.glyphicon-chevron-left:extend(.fa-chevron-left all) {};
+    &.glyphicon-chevron-up:extend(.fa-chevron-up all) {};
+    &.glyphicon-chevron-down:extend(.fa-chevron-down all) {};
+}
