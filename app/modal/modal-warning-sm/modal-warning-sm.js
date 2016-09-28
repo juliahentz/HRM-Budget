@@ -4,6 +4,7 @@ angular.module('HRMBudget').controller('ModalWarningSmCtrl',function(
     postService,
     stepByStepService,
     personalDataService,
+    socioStatusService,
     $uibModalInstance,
     message
 ){
@@ -19,6 +20,7 @@ angular.module('HRMBudget').controller('ModalWarningSmCtrl',function(
 
             stepByStepService.remove($scope.selectedStaffMember.stepByStep._id);
             personalDataService.remove($scope.selectedStaffMember.personalData._id);
+            socioStatusService.remove($scope.selectedStaffMember.socioStatus._id);
             staffService.remove($scope.selectedStaffMember._id);
 
     // B) POST

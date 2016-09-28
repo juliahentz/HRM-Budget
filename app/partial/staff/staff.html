@@ -61,6 +61,9 @@
                     <th>Gender</th>
                     <th>Nationality</th>
                     <th>Birth date</th>
+                    <th>Marital status</th>
+                    <th>Number of children</th>
+                    <th>Fulltime percentage</th>
                     <th></th>
                     <th></th>
                 </tr>
@@ -79,6 +82,9 @@
                     <td>{{staffMember.personalData.gender}}</td>
                     <td>{{staffMember.personalData.nationality}}</td>
                     <td>{{staffMember.personalData.birthDate | date:'dd/MM/yyyy'}}</td>
+                    <td>{{staffMember.socioStatus.maritalStatus[0].status}}</td>
+                    <td>{{staffMember.socioStatus.numChildren[0].status}}</td>
+                    <td>{{staffMember.socioStatus.fullTimePercentage[0].status}}</td>
                     <td><div class="btn btn-sm btn-default" ng-click="onClickButton('staffMember', staffMember._id)">Edit</div></td>
                     <td><div class="btn btn-sm btn-danger" ng-click="onClickDelete('staffMember', staffMember._id)">Delete</div></td>
                 </tr>

@@ -114,8 +114,12 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
     }
 
 // -- 3. LOGIC: PERSONAL DATA FOR STAFF MEMBER -----
+    if($scope.selectedStaffMember.personalData == null){
+        $scope.staffPersonalData = {};
+    }else{
+        $scope.staffPersonalData = $scope.selectedStaffMember.personalData;
+    }
 
-    $scope.staffPersonalData = $scope.selectedStaffMember.personalData;
     $scope.countryList = [];
 
     $scope.datePeriodBirth = {
@@ -132,11 +136,21 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
 
 
 // -- 4. LOGIC: SOCIO-STATUS FOR STAFF MEMBER ------
-    // todo: connecting the modal to the variable is tricky, it is an array,
-    // todo: I need to create a separate variable to save accordingly, now it should be [0]
+    // todo: fix array element to current date filter
+    // todo: fix end date to the array elements!!!
 
-    //$scope.staffSocioStatus = $scope.selectedStaffMember.socioStatus;
-    $scope.staffSocioStatus = {};
+    if($scope.selectedStaffMember.socioStatus == null){
+        $scope.staffSocioStatus = {};
+    }else{
+        $scope.staffSocioStatus = {};
+        $scope.staffSocioStatus.maritalStatus = $scope.selectedStaffMember.socioStatus.maritalStatus[0].status;
+        $scope.staffSocioStatus.numChildren = $scope.selectedStaffMember.socioStatus.numChildren[0].status;
+        $scope.staffSocioStatus.fullTimePerc = $scope.selectedStaffMember.socioStatus.fullTimePercentage[0].status;
+
+        $scope.staffSocioStatus.maritalStartDate = $scope.selectedStaffMember.socioStatus.maritalStatus[0].startDate;
+        $scope.staffSocioStatus.numChildrenStartDate = $scope.selectedStaffMember.socioStatus.numChildren[0].startDate;
+        $scope.staffSocioStatus.fullTimePercStartDate = $scope.selectedStaffMember.socioStatus.fullTimePercentage[0].startDate;
+    }
 
     $scope.datePeriodNow = {};
 
@@ -178,9 +192,39 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
             }else if($scope.innerModalPageNum === 3){
                 personalDataService.update($scope.selectedStaffMember.personalData._id, $scope.staffPersonalData, function(){
 
-                    $uibModalInstance.close('Staff');
+                    $scope.innerModalPageNum = 4;
                 });
+            }else if($scope.innerModalPageNum === 4){
+
+                $scope.socioStatusItem.maritalStatus = [];
+
+                $scope.socioStatusInnerItem.status = $scope.staffSocioStatus.maritalStatus;
+                $scope.socioStatusInnerItem.startDate = $scope.staffSocioStatus.maritalStartDate.toISOString();
+
+                $scope.socioStatusItem.maritalStatus.push($scope.socioStatusInnerItem);
+
+
+                $scope.socioStatusItem.numChildren = [];
+
+                $scope.socioStatusInnerItem2.status = $scope.staffSocioStatus.numChildren;
+                $scope.socioStatusInnerItem2.startDate = $scope.staffSocioStatus.numChildrenStartDate.toISOString();
+
+                $scope.socioStatusItem.numChildren.push($scope.socioStatusInnerItem2);
+
+
+                $scope.socioStatusItem.fullTimePercentage = [];
+
+                $scope.socioStatusInnerItem3.status = $scope.staffSocioStatus.fullTimePerc;
+                $scope.socioStatusInnerItem3.startDate = $scope.staffSocioStatus.fullTimePercStartDate.toISOString();
+
+                $scope.socioStatusItem.fullTimePercentage.push($scope.socioStatusInnerItem3);
+
+                socioStatusService.update($scope.selectedStaffMember.socioStatus._id, $scope.socioStatusItem, function(socioStatusItem){
+
+                    $uibModalInstance.close('Staff');
+                })
             }
+
 
     // A.2 ADD NEW STAFF MEMBER
         }else if($scope.modalTitle === "Add New Staff") {
@@ -307,12 +351,22 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
 
 
 // DATEPICKER
-    // todo name variables appropriately to which element they belong to
-    $scope.today = function() {
-        $scope.staffSocioStatus.maritalStartDate = new Date();
-        $scope.staffSocioStatus.numChildrenStartDate = new Date();
-        $scope.staffSocioStatus.fullTimePercStartDate = new Date();
-    };
+
+    // todo fix array element to current date filter
+    if($scope.selectedStaffMember.socioStatus == null){
+        $scope.today = function() {
+            $scope.staffSocioStatus.maritalStartDate = new Date();
+            $scope.staffSocioStatus.numChildrenStartDate = new Date();
+            $scope.staffSocioStatus.fullTimePercStartDate = new Date();
+        };
+    }else{
+        $scope.today = function() {
+            $scope.staffSocioStatus.maritalStartDate = new Date($scope.selectedStaffMember.socioStatus.maritalStatus[0].startDate);
+            $scope.staffSocioStatus.numChildrenStartDate = new Date($scope.selectedStaffMember.socioStatus.numChildren[0].startDate);
+            $scope.staffSocioStatus.fullTimePercStartDate = new Date($scope.selectedStaffMember.socioStatus.fullTimePercentage[0].startDate);
+        }
+    }
+
     $scope.today();
 
     $scope.inlineOptions = {
