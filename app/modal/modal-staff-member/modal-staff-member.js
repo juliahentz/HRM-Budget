@@ -161,7 +161,8 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
 
 
 
-    $scope.buhrmaInput = $scope.selectedStaffMember.name;
+    $scope.staffMemberName = $scope.selectedStaffMember.name;
+    $scope.staffMemberSurname = $scope.selectedStaffMember.surname;
 
 // -- . LOGIC: SAVE MODAL -------------------------
 

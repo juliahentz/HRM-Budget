@@ -19,15 +19,15 @@
     font-weight: normal;
     position:relative;
     top: 25px !important;
-    font-size: 13px;
+    font-size: 14px !important;
     transition-duration: .2s;
     transition-timing-function: cubic-bezier(.4,0,.2,1);
+    pointer-events: none;
 }
 
 .buhrma-label-focus{
     color: @buhrma-blue !important;
-    transform: translateY(-20px);
+    transform: translateY(-20px) scale(0.9,0.9);
     transition-duration: .2s;
     transition-timing-function: cubic-bezier(.4,0,.2,1);
-    font-size:10px;
 }

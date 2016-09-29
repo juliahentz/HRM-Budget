@@ -10,27 +10,11 @@
         <div ng-if="modalTitle === 'Edit Staff Member' || modalTitle === 'Add New Staff'">
             <div ng-if="innerModalPageNum === 1">
 
-                <ng-buhrma-input buhrma-input-model="buhrmaInput" buhrma-input-text="Name"></ng-buhrma-input>
-
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-
-                <label>Name</label>
-                <input type="text"
-                       class="form-control"
-                       ng-model="selectedStaffMember.name">
+                <ng-buhrma-input buhrma-input-model="staffMemberName" buhrma-input-text="Name"></ng-buhrma-input>
 
                 <br/>
 
-                <label>Surname</label>
-                <input type="text"
-                       class="form-control"
-                       id="bootstrap-override-input"
-                       ng-model="selectedStaffMember.surname">
-                <br/>
+                <ng-buhrma-input buhrma-input-model="staffMemberSurname" buhrma-input-text="Surname"></ng-buhrma-input>
 
                 <label>Staff Number</label>
                 <input type="number"
