@@ -9,20 +9,51 @@
 
         <div ng-if="modalTitle === 'Edit Staff Member' || modalTitle === 'Add New Staff'">
             <div ng-if="innerModalPageNum === 1">
+
+                <ng-buhrma-input buhrma-input-model="buhrmaInput" buhrma-input-text="Name"></ng-buhrma-input>
+
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+
                 <label>Name</label>
                 <input type="text"
                        class="form-control"
                        ng-model="selectedStaffMember.name">
 
+                <br/>
+
                 <label>Surname</label>
                 <input type="text"
                        class="form-control"
+                       id="bootstrap-override-input"
                        ng-model="selectedStaffMember.surname">
+                <br/>
 
                 <label>Staff Number</label>
                 <input type="number"
                        class="form-control"
+                       id="bootstrap-override-input"
                        ng-model="selectedStaffMember.staffNumber">
+                <br/>
+
+                <label>Gender</label>
+                <select class="form-control" ng-model="staffPersonalData.gender">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+                <br/>
+
+                <label>Nationality</label>
+                <select class="form-control"
+                        ng-options="countryList.alpha2Code as countryList.alpha2Code group by countryList.region for countryList in countryList | orderBy: countryList.alpha2Code"
+                        ng-model="staffPersonalData.nationality"></select>
+                <br/>
+
+                <label>Birth date</label>
+                <date-select date-model="staffPersonalData.birthDate" current-date="datePeriodBirth"></date-select>
             </div>
 
             <div ng-if="innerModalPageNum === 2">
@@ -53,24 +84,12 @@
                 </div>
                 <div class="col-sm-6">
                     <label>End Date (if specified)</label>
-                    <date-select date-model="selectedContract.endDate" current-date="datePeriodEnd"></date-select><br/>
+                    <date-select date-model="selectedContract.endDate"
+                                 current-date="datePeriodEnd"></date-select><br/>
                 </div>
             </div>
 
             <div ng-if="innerModalPageNum === 3">
-                <label>Gender</label>
-                <select class="form-control" ng-model="staffPersonalData.gender">
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                </select>
-
-                <label>Nationality</label>
-                <select class="form-control"
-                        ng-options="countryList.alpha2Code as countryList.alpha2Code group by countryList.region for countryList in countryList | orderBy: countryList.alpha2Code"
-                        ng-model="staffPersonalData.nationality"></select>
-
-                <label>Birth date</label>
-                <date-select date-model="staffPersonalData.birthDate" current-date="datePeriodBirth"></date-select>
 
             </div>
 
@@ -96,6 +115,7 @@
                                datepicker-options="dateOptions"
                                on-open-focus="false"
                                show-button-bar="false"
+                               id="bootstrap-override-input"
                                ng-required="true"
                                close-text="Close"
                                alt-input-formats="altInputFormats" />
@@ -111,7 +131,7 @@
 
                 <div class="col-md-6">
                     <label>Number of children</label>
-                    <input type="number" class="form-control" ng-model="staffSocioStatus.numChildren">
+                    <input type="number" class="form-control" id="bootstrap-override-input" ng-model="staffSocioStatus.numChildren">
                 </div>
                 <div class="col-md-6">
                     <label>Effective of</label>
@@ -122,6 +142,7 @@
                                ng-model="staffSocioStatus.numChildrenStartDate"
                                is-open="popup2.opened"
                                datepicker-options="dateOptions"
+                               id="bootstrap-override-input"
                                ng-required="true"
                                on-open-focus="false"
                                show-button-bar="false"
@@ -139,7 +160,7 @@
 
                 <div class="col-md-6">
                     <label>Fulltime percentage</label>
-                    <input type="number" class="form-control" ng-model="staffSocioStatus.fullTimePerc">
+                    <input type="number" id="bootstrap-override-input" class="form-control" ng-model="staffSocioStatus.fullTimePerc">
                 </div>
                 <div class="col-md-6">
                     <label>Effective of</label>
@@ -150,6 +171,7 @@
                                ng-model="staffSocioStatus.fullTimePercStartDate"
                                is-open="popup3.opened"
                                datepicker-options="dateOptions"
+                               id="bootstrap-override-input"
                                ng-required="true"
                                on-open-focus="false"
                                show-button-bar="false"
@@ -203,10 +225,16 @@
             <select class="form-control" ng-options="step.stepNumber for step in selectedPost.postGrade.steps" ng-model="selectedStaffOnPost.postStep"></select>
 -->
             <label>Start Date on post</label>
-            <input type="date" class="form-control" ng-model="selectedStaffOnPost.startDate">
+            <input type="date"
+                   class="form-control"
+                   id="bootstrap-override-input"
+                   ng-model="selectedStaffOnPost.startDate">
 
             <label>End Date on post</label>
-            <input type="date" class="form-control" ng-model="selectedStaffOnPost.endDate">
+            <input type="date"
+                   class="form-control"
+                   id="bootstrap-override-input"
+                   ng-model="selectedStaffOnPost.endDate">
 
         </div>
 

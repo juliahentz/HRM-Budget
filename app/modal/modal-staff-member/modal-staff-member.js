@@ -8,7 +8,8 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
     publicApiService,
     personalDataService,
     socioStatusService,
-    postService
+    postService,
+    $interval
 ){
 
 // -- 1. INIT --------------------------------------
@@ -159,6 +160,9 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
     $scope.datePeriodNow.day = $scope.currentTime.getDay();
 
 
+
+    $scope.buhrmaInput = $scope.selectedStaffMember.name;
+
 // -- . LOGIC: SAVE MODAL -------------------------
 
     $scope.onClickSave = function(){
@@ -167,6 +171,11 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
         if($scope.modalTitle === "Edit Staff Member"){
 
             if($scope.innerModalPageNum === 1){
+
+                personalDataService.update($scope.selectedStaffMember.personalData._id, $scope.staffPersonalData, function(){
+
+                    $scope.innerModalPageNum = 4;
+                });
 
                 staffService.update($scope.selectedStaffMember._id, $scope.selectedStaffMember, function(item){
 
@@ -190,10 +199,7 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
                     $scope.innerModalPageNum = 3;
                 });
             }else if($scope.innerModalPageNum === 3){
-                personalDataService.update($scope.selectedStaffMember.personalData._id, $scope.staffPersonalData, function(){
 
-                    $scope.innerModalPageNum = 4;
-                });
             }else if($scope.innerModalPageNum === 4){
 
                 $scope.socioStatusItem.maritalStatus = [];
@@ -231,10 +237,15 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
 
             if($scope.innerModalPageNum === 1){
 
-                staffService.create($scope.selectedStaffMember, function(staff){
+                personalDataService.create($scope.staffPersonalData, function(item){
 
-                    $scope.selectedStaffMember = staff;
-                    $scope.innerModalPageNum = 2;
+                    $scope.staffItem.personalData = item._id;
+
+                    staffService.create($scope.selectedStaffMember, function(staff){
+
+                        $scope.selectedStaffMember = staff;
+                        $scope.innerModalPageNum = 2;
+                    });
                 });
             }else if($scope.innerModalPageNum === 2) {
 
@@ -258,15 +269,7 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
                     });
                 })
             }else if($scope.innerModalPageNum === 3){
-                personalDataService.create($scope.staffPersonalData, function(item){
 
-                    $scope.staffItem.personalData = item._id;
-
-                    staffService.update($scope.selectedStaffMember._id, $scope.staffItem, function(staff){
-
-                        $scope.innerModalPageNum = 4;
-                    })
-                });
             }else if($scope.innerModalPageNum === 4){
 
                 $scope.socioStatusItem.maritalStatus = [];
@@ -428,4 +431,7 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
 
         return '';
     }
+
+    $scope.inFocus = false;
+
 });
