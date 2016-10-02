@@ -131,7 +131,7 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
 
     publicApiService.getAllCountries(function(){
         angular.forEach(publicApiService.model.list, function(country, index){
-            $scope.countryList.push(country);
+            $scope.countryList.push(country.alpha2Code);
         });
     });
 
@@ -158,11 +158,6 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
     $scope.datePeriodNow.year = $scope.currentTime.getFullYear();
     $scope.datePeriodNow.month = $scope.currentTime.getMonth() +1;
     $scope.datePeriodNow.day = $scope.currentTime.getDay();
-
-
-
-    $scope.staffMemberName = $scope.selectedStaffMember.name;
-    $scope.staffMemberSurname = $scope.selectedStaffMember.surname;
 
 // -- . LOGIC: SAVE MODAL -------------------------
 

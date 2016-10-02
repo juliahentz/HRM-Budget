@@ -10,30 +10,23 @@
         <div ng-if="modalTitle === 'Edit Staff Member' || modalTitle === 'Add New Staff'">
             <div ng-if="innerModalPageNum === 1">
 
-                <ng-buhrma-input buhrma-input-model="staffMemberName" buhrma-input-text="Name"></ng-buhrma-input>
-
+                <ng-buhrma-input buhrma-input-model="selectedStaffMember.name" buhrma-input-text="Name"></ng-buhrma-input>
                 <br/>
 
-                <ng-buhrma-input buhrma-input-model="staffMemberSurname" buhrma-input-text="Surname"></ng-buhrma-input>
-
-                <label>Staff Number</label>
-                <input type="number"
-                       class="form-control"
-                       id="bootstrap-override-input"
-                       ng-model="selectedStaffMember.staffNumber">
+                <ng-buhrma-input buhrma-input-model="selectedStaffMember.surname" buhrma-input-text="Surname"></ng-buhrma-input>
                 <br/>
 
-                <label>Gender</label>
-                <select class="form-control" ng-model="staffPersonalData.gender">
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                </select>
+                <ng-buhrma-input buhrma-input-model="selectedStaffMember.staffNumber" buhrma-input-text="Staff Number"></ng-buhrma-input>
                 <br/>
 
-                <label>Nationality</label>
-                <select class="form-control"
-                        ng-options="countryList.alpha2Code as countryList.alpha2Code group by countryList.region for countryList in countryList | orderBy: countryList.alpha2Code"
-                        ng-model="staffPersonalData.nationality"></select>
+                <ng-buhrma-select buhrma-select-model="staffPersonalData.gender"
+                                  buhrma-select-text="Gender"
+                                  buhrma-select-options="['Male', 'Female']"></ng-buhrma-select>
+                <br/>
+
+                <ng-buhrma-select buhrma-select-model="staffPersonalData.nationality"
+                                  buhrma-select-text="Nationality"
+                                  buhrma-select-options="countryList"></ng-buhrma-select>
                 <br/>
 
                 <label>Birth date</label>

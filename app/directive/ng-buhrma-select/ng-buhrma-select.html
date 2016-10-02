@@ -1,0 +1,20 @@
+<div class="buhrma-select-container">
+    <label id="buhrma-label-select">{{buhrmaSelectText}}</label>
+    <div class="form-control"
+         id="buhrma-select"
+         ng-click="onClick()"
+         tabindex="0"
+         ng-keypress="onBuhrmaKeyDown($event)"
+         ng-model="model">{{model}}</div>
+
+        <div class="buhrma-select-box">
+            <div class="buhrma-select-box-input"
+                 id="anchor{{$index}}"
+                 ng-mouseover="onMyMouseEnter($event)"
+                 ng-mouseleave="onMyMouseLeave($event)"
+                 ng-click="onSelect($event)"
+                 ng-repeat="option in selectOptions track by $index">{{option}}</div>
+
+    </div>
+    <i class="fa fa-angle-down" aria-hidden="true" id="buhrma-select-icon"></i>
+</div>
