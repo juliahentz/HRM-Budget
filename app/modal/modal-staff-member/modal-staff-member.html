@@ -10,13 +10,13 @@
         <div ng-if="modalTitle === 'Edit Staff Member' || modalTitle === 'Add New Staff'">
             <div ng-if="innerModalPageNum === 1">
 
-                <ng-buhrma-input buhrma-input-model="selectedStaffMember.name" buhrma-input-text="Name"></ng-buhrma-input>
+                <ng-buhrma-input buhrma-input-model="selectedStaffMember.name" buhrma-input-text="Name" buhrma-input-type="text"></ng-buhrma-input>
                 <br/>
 
-                <ng-buhrma-input buhrma-input-model="selectedStaffMember.surname" buhrma-input-text="Surname"></ng-buhrma-input>
+                <ng-buhrma-input buhrma-input-model="selectedStaffMember.surname" buhrma-input-text="Surname" buhrma-input-type="text"></ng-buhrma-input>
                 <br/>
 
-                <ng-buhrma-input buhrma-input-model="selectedStaffMember.staffNumber" buhrma-input-text="Staff Number"></ng-buhrma-input>
+                <ng-buhrma-input buhrma-input-model="selectedStaffMember.staffNumber" buhrma-input-text="Staff Number" buhrma-input-type="number"></ng-buhrma-input>
                 <br/>
 
                 <ng-buhrma-select buhrma-select-model="staffPersonalData.gender"
@@ -35,6 +35,12 @@
 
             <div ng-if="innerModalPageNum === 2">
                 <p>{{selectedStaffMember.name}} <b>{{selectedStaffMember.surname}}</b></p>
+
+                <ng-buhrma-select buhrma-select-model="selectedContract.category"
+                                  buhrma-select-text="Contract type"
+                                  buhrma-select-options="allContractNames"
+                                  ng-change="getAllGrades()"></ng-buhrma-select>
+                <br/>
 
                 <label>Contract type</label>
                 <select class="form-control"

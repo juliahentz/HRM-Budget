@@ -13,9 +13,19 @@ angular.module('HRMBudget').directive('ngBuhrmaSelect', function(
         templateUrl: 'directive/ng-buhrma-select/ng-buhrma-select.html',
         link: function(scope, element, attrs, fn) {
 
+            scope.updateModel = function(item) {
+                ctrl.$setViewValue(item);
+            };
+
+            scope.labelElement = $(element.find('label')[0]);
+
             scope.model = scope.buhrmaSelectModel;
             scope.selectOptions = scope.buhrmaSelectOptions;
             scope.selectOptions.sort();
+
+            if(scope.model != null){
+                scope.labelElement.addClass('buhrma-label-focus');
+            }
 
             scope.$selectBox = angular.element(element[0].querySelector('.buhrma-select-box'));
 
@@ -84,13 +94,14 @@ angular.module('HRMBudget').directive('ngBuhrmaSelect', function(
                 scope.model = evt.currentTarget.innerText;
                 scope.buhrmaSelectModel = evt.currentTarget.innerText;
                 scope.$selectBox.removeClass('buhrma-select-box-visible');
+                scope.labelElement.addClass('buhrma-label-focus');
             };
 
             scope.onEnter = function(item){
                 scope.model = item[0].innerText;
                 scope.buhrmaSelectModel = item[0].innerText;
                 scope.$selectBox.removeClass('buhrma-select-box-visible');
-
+                scope.labelElement.addClass('buhrma-label-focus');
             }
         }
     };

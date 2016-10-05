@@ -135,6 +135,11 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
         });
     });
 
+    $scope.allContractNames = [];
+    angular.forEach($scope.allContracts, function(contract, index){
+        $scope.allContractNames.push(contract.name);
+    });
+
 
 // -- 4. LOGIC: SOCIO-STATUS FOR STAFF MEMBER ------
     // todo: fix array element to current date filter

@@ -4,7 +4,8 @@ angular.module('HRMBudget').directive('ngBuhrmaInput', function() {
         replace: false,
         scope: {
             buhrmaInputModel: '=',
-            buhrmaInputText: '@'
+            buhrmaInputText: '@',
+            buhrmaInputType: '@'
         },
         templateUrl: 'directive/ng-buhrma-input/ng-buhrma-input.html',
         link: function(scope, element, attrs, fn) {

@@ -1,7 +1,26 @@
-#buhrma-label-select {
-    color: @buhrma-blue;
+
+#buhrma-label-select{
+    color: @buhrma-grey;
+    flex-grow: 1;
+    margin: 0;
+    border-radius: 0;
+    border: 0 none;
+    background-color: transparent;
+    box-shadow: none;
     font-weight: normal;
-    font-size: 12.6px;
+    position:relative;
+    top: 25px !important;
+    font-size: 14px !important;
+    transition-duration: .2s;
+    transition-timing-function: cubic-bezier(.4,0,.2,1);
+    pointer-events: none;
+}
+
+.buhrma-label-select-focus{
+    color: @buhrma-blue !important;
+    transform: translateY(-20px) scale(0.9,0.9);
+    transition-duration: .2s;
+    transition-timing-function: cubic-bezier(.4,0,.2,1);
 }
 
 .buhrma-select-box {
