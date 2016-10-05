@@ -52,27 +52,69 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
 // -- 2. LOGIC: CONTRACT FOR STAFF MEMBER ----------
 
     // REFERENCING ARRAYS IN ORDER TO SAVE THE LIST OF AVAILABLE GRADES AND STEPS IN A SPECIFIC CONTRACT
+    $scope.allContractNames = [];
     $scope.allGradesInContract = [];
+    $scope.allGradesInContractObj = [];
     $scope.allStepsInGrade = [];
+    $scope.contractSelectClicked = false;
+    $scope.gradeSelectClicked = false;
+
+    angular.forEach($scope.allContracts, function(contract, index){
+        $scope.allContractNames.push(contract.name);
+    });
 
     // LOOPING THROUGH ALL CONTRACTS AND REFERENCING THE GRADES AVAILABLE IN THE CURRENTLY SELECTED CONTRACT
     $scope.getAllGrades = function(){
-        angular.forEach($scope.allContracts, function(contract, index){
 
-            if(contract.name === $scope.selectedContract.category){
-                $scope.allGradesInContract = contract.grades;
-            }
-        })
+        if($scope.contractSelectClicked == false){
+            $scope.contractSelectClicked = true;
+        }else {
+            angular.forEach($scope.allContracts, function(contract, index){
+                if(contract.name === $scope.selectedContract.category){
+
+                    if($scope.allGradesInContract.length == 0){
+                        angular.forEach(contract.grades, function(grade, j){
+                            $scope.allGradesInContract.push(grade.gradeNumber);
+                            $scope.allGradesInContractObj.push(grade);
+                        });
+                    }else{
+                        $scope.allGradesInContract = [];
+                        angular.forEach(contract.grades, function(grade, j){
+                            $scope.allGradesInContract.push(grade.gradeNumber);
+                            $scope.allGradesInContractObj.push(grade);
+                        });
+                    }
+                }
+            });
+            $scope.contractSelectClicked = false;
+        }
     };
 
     // LOOPING THROUGH ALL GRADES AND REFERENCING THE STEPS AVAILABLE IN THE CURRENTLY SELECTED CONTRACT
     $scope.getAllSteps = function(){
-        angular.forEach($scope.allGradesInContract, function(grade, index){
 
-            if(grade.gradeNumber === $scope.selectedContract.grade){
-                $scope.allStepsInGrade = grade.steps;
-            }
-        })
+        if($scope.gradeSelectClicked == false){
+            $scope.gradeSelectClicked = true;
+        }else {
+            angular.forEach($scope.allGradesInContractObj, function(grade, index){
+
+                if(grade.gradeNumber == $scope.selectedContract.grade){
+
+                    if($scope.allStepsInGrade.length == 0){
+                        angular.forEach(grade.steps, function(step, j){
+                            $scope.allStepsInGrade.push(step.stepNumber);
+                        });
+                    }else{
+                        $scope.allStepsInGrade = [];
+                        angular.forEach(grade.steps, function(step, j){
+                            $scope.allStepsInGrade.push(step.stepNumber);
+                        });
+                    }
+                }
+            });
+            $scope.gradeSelectClicked = false;
+        }
+
     };
 
     $scope.datePeriodStart = {
@@ -133,11 +175,6 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
         angular.forEach(publicApiService.model.list, function(country, index){
             $scope.countryList.push(country.alpha2Code);
         });
-    });
-
-    $scope.allContractNames = [];
-    angular.forEach($scope.allContracts, function(contract, index){
-        $scope.allContractNames.push(contract.name);
     });
 
 

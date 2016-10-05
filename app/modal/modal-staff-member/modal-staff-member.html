@@ -1,7 +1,8 @@
 <div>
 	<div class="modal-header">
 		<button type="button" class="close pull-right" aria-hidden="true">&times;</button>
-		<h4 class="modal-title">{{modalTitle}}</h4>
+		<h4 class="modal-title">{{modalTitle}}, <p>{{selectedStaffMember.name}} <b>{{selectedStaffMember.surname}}</b></p>
+        </h4>
 	</div>
 	<div class="modal-body">
 
@@ -34,33 +35,24 @@
             </div>
 
             <div ng-if="innerModalPageNum === 2">
-                <p>{{selectedStaffMember.name}} <b>{{selectedStaffMember.surname}}</b></p>
 
                 <ng-buhrma-select buhrma-select-model="selectedContract.category"
                                   buhrma-select-text="Contract type"
                                   buhrma-select-options="allContractNames"
-                                  ng-change="getAllGrades()"></ng-buhrma-select>
+                                  ng-click="getAllGrades()"></ng-buhrma-select>
                 <br/>
 
-                <label>Contract type</label>
-                <select class="form-control"
-                        ng-options="contract.name as contract.name for contract in allContracts"
-                        ng-model="selectedContract.category"
-                        ng-change="getAllGrades()">
-                </select>
-
-                <label>Grade</label>
-                <select class="form-control"
-                        ng-options="grade.gradeNumber as grade.gradeNumber for grade in allGradesInContract"
-                        ng-model="selectedContract.grade"
-                        ng-change="getAllSteps()"></select>
-
-                <label>Step</label>
-                <select class="form-control"
-                        ng-options="step.stepNumber as step.stepNumber for step in allStepsInGrade"
-                        ng-model="selectedContract.step"></select>
-
+                <ng-buhrma-select buhrma-select-model="selectedContract.grade"
+                                  buhrma-select-text="Grade"
+                                  buhrma-select-options="allGradesInContract"
+                                  ng-click="getAllSteps()"></ng-buhrma-select>
                 <br/>
+
+                <ng-buhrma-select buhrma-select-model="selectedContract.step"
+                                  buhrma-select-text="Step"
+                                  buhrma-select-options="allStepsInGrade"></ng-buhrma-select>
+                <br/>
+
                 <div class="col-sm-6">
                     <label>Start Date</label>
                     <date-select date-model="selectedContract.startDate" current-date="datePeriodStart"></date-select><br/>

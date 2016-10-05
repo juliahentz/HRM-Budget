@@ -8,19 +8,17 @@ angular.module('HRMBudget').directive('ngBuhrmaSelect', function(
         scope: {
             buhrmaSelectModel: '=',
             buhrmaSelectText: '@',
-            buhrmaSelectOptions: '='
+            buhrmaSelectOptions: '=?'
         },
         templateUrl: 'directive/ng-buhrma-select/ng-buhrma-select.html',
         link: function(scope, element, attrs, fn) {
-
-            scope.updateModel = function(item) {
-                ctrl.$setViewValue(item);
-            };
 
             scope.labelElement = $(element.find('label')[0]);
 
             scope.model = scope.buhrmaSelectModel;
             scope.selectOptions = scope.buhrmaSelectOptions;
+            //scope.selectOptions = scope[attrs.buhrmaSelectOptions];
+
             scope.selectOptions.sort();
 
             if(scope.model != null){
@@ -34,7 +32,23 @@ angular.module('HRMBudget').directive('ngBuhrmaSelect', function(
             scope.onClick = function(){
 
                 scope.$selectBox.addClass('buhrma-select-box-visible');
+                scope.selectOptions = scope.buhrmaSelectOptions;
             };
+
+            $(document).bind('click', function(event){
+                var isClickedElementChildOfPopup = element
+                        .find(event.target)
+                        .length > 0;
+
+                if (isClickedElementChildOfPopup)
+                    return;
+
+                scope.$apply(function(){
+
+                    scope.$selectBox.removeClass('buhrma-select-box-visible');
+                    scope.selectOptions = scope.buhrmaSelectOptions;
+                });
+            });
 
             scope.keyArray = [];
             scope.previousSelectedItem = {};
@@ -95,6 +109,7 @@ angular.module('HRMBudget').directive('ngBuhrmaSelect', function(
                 scope.buhrmaSelectModel = evt.currentTarget.innerText;
                 scope.$selectBox.removeClass('buhrma-select-box-visible');
                 scope.labelElement.addClass('buhrma-label-focus');
+                scope.selectOptions = scope.buhrmaSelectOptions;
             };
 
             scope.onEnter = function(item){
@@ -102,6 +117,7 @@ angular.module('HRMBudget').directive('ngBuhrmaSelect', function(
                 scope.buhrmaSelectModel = item[0].innerText;
                 scope.$selectBox.removeClass('buhrma-select-box-visible');
                 scope.labelElement.addClass('buhrma-label-focus');
+                scope.selectOptions = scope.buhrmaSelectOptions;
             }
         }
     };
