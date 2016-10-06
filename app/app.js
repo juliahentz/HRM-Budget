@@ -2,10 +2,27 @@ angular.module('HRMBudget', ['ui.bootstrap','ui.router','ngAnimate']);
 
 angular.module('HRMBudget').config(function($stateProvider, $urlRouterProvider) {
 
-    $stateProvider.state('staff', {
-        url: '/staff',
-        templateUrl: 'partial/staff/staff.html',
-        controller: 'StaffCtrl',
+    $stateProvider.state('app', {
+
+        url:'/',
+        abstract:true,
+        views:{
+            header:{
+                templateUrl:'partial/header/header.html',
+                controller:'HeaderCtrl'
+            }
+        }
+
+    });
+
+    $stateProvider.state('app.staff', {
+        url: 'staff',
+        views: {
+            'main@':{
+                templateUrl: 'partial/staff/staff.html',
+                controller: 'StaffCtrl',
+            }
+        },
         resolve:{
             getAllStaffMembers: function(staffService){
                 return staffService.getAll();

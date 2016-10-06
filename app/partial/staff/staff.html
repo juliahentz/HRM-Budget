@@ -1,15 +1,64 @@
-<div class="col-md-12 hrm-budget-staffmember-container">
+<div class="hrm-budget-staffmember-container">
 
-    <div class="header-container">
-        <h2>Staff</h2>
-        <div class="btn btn-sm btn-success" ng-click="onClickButton('newPost')">Add New Post</div>
-        <div class="btn btn-sm btn-success" ng-click="onClickButton('newStaff')">Add New Staff</div>
+    <div>
+        <div class="icon-container" ng-click="onClickButton('newPost')"><i class="fa fa-plus" aria-hidden="true"></i></div>
+        <div class="btn btn-sm buhrma-btn" ng-click="onClickButton('newPost')">Add New Post</div>
+        <div class="icon-container" ng-click="onClickButton('newStaff')"><i class="fa fa-plus" aria-hidden="true"></i></div>
+        <div class="btn btn-sm buhrma-btn" ng-click="onClickButton('newStaff')">Add New Staff</div>
+
     </div>
+    <hr/>
+    <br/>
+    <div>
+        <div class="buhrma-table-container">
+            <table class="table buhrma-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Surname</th>
+                        <th>Staff Number</th>
+                        <th>Category</th>
+                        <th>Grade</th>
+                        <th>Step</th>
+                        <th>Start date</th>
+                        <th>End date</th>
+                        <th>Gender</th>
+                        <th>Nationality</th>
+                        <th>Birth date</th>
+                        <th>Marital status</th>
+                        <th>Nr of children</th>
+                        <th>Fulltime %</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="staffMember in staffMembers">
+                        <td>{{staffMember.name}}</td>
+                        <td>{{staffMember.surname}}</td>
+                        <td>{{staffMember.staffNumber}}</td>
 
-    <div class="content-container">
-        <hr/>
+                        <!--todo fix the display of right element based on selected date-->
 
-        <div class="col-lg-12">
+                        <td>{{staffMember.stepByStep.positionsFilled[0].category}}</td>
+                        <td>{{staffMember.stepByStep.positionsFilled[0].grade}}</td>
+                        <td>{{staffMember.stepByStep.positionsFilled[0].step}}</td>
+                        <td>{{staffMember.stepByStep.positionsFilled[0].startDate | date:'dd/MM/yyyy'}}</td>
+                        <td>{{staffMember.stepByStep.positionsFilled[0].endDate | date:'dd/MM/yyyy'}}</td>
+                        <td>{{staffMember.personalData.gender}}</td>
+                        <td>{{staffMember.personalData.nationality}}</td>
+                        <td>{{staffMember.personalData.birthDate | date:'dd/MM/yyyy'}}</td>
+                        <td>{{staffMember.socioStatus.maritalStatus[0].status}}</td>
+                        <td>{{staffMember.socioStatus.numChildren[0].status}}</td>
+                        <td>{{staffMember.socioStatus.fullTimePercentage[0].status}}</td>
+                        <td><div class="btn btn-xs btn-default" ng-click="onClickButton('staffMember', staffMember._id)"><i class="fa fa-pencil" aria-hidden="true"></i></div></td>
+                        <td><div class="btn btn-xs btn-danger" ng-click="onClickDelete('staffMember', staffMember._id)"><i class="fa fa-trash-o" aria-hidden="true"></i></div></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!--<div>
             <table class="table table-striped">
                 <tr>
                     <th>Post Title</th>
@@ -46,51 +95,7 @@
                     <td></td>
                 </tr>
             </table>
-        </div>
-        <div class="col-lg-12">
-            <table class="table table-striped">
-                <tr>
-                    <th>Name</th>
-                    <th>Surname</th>
-                    <th>Staff Number</th>
-                    <th>Category</th>
-                    <th>Grade</th>
-                    <th>Step</th>
-                    <th>Start date</th>
-                    <th>End date</th>
-                    <th>Gender</th>
-                    <th>Nationality</th>
-                    <th>Birth date</th>
-                    <th>Marital status</th>
-                    <th>Number of children</th>
-                    <th>Fulltime percentage</th>
-                    <th></th>
-                    <th></th>
-                </tr>
-                <tr ng-repeat="staffMember in staffMembers">
-                    <td>{{staffMember.name}}</td>
-                    <td>{{staffMember.surname}}</td>
-                    <td>{{staffMember.staffNumber}}</td>
-
-                    <!--todo fix the display of right element based on selected date-->
-
-                    <td>{{staffMember.stepByStep.positionsFilled[0].category}}</td>
-                    <td>{{staffMember.stepByStep.positionsFilled[0].grade}}</td>
-                    <td>{{staffMember.stepByStep.positionsFilled[0].step}}</td>
-                    <td>{{staffMember.stepByStep.positionsFilled[0].startDate | date:'dd/MM/yyyy'}}</td>
-                    <td>{{staffMember.stepByStep.positionsFilled[0].endDate | date:'dd/MM/yyyy'}}</td>
-                    <td>{{staffMember.personalData.gender}}</td>
-                    <td>{{staffMember.personalData.nationality}}</td>
-                    <td>{{staffMember.personalData.birthDate | date:'dd/MM/yyyy'}}</td>
-                    <td>{{staffMember.socioStatus.maritalStatus[0].status}}</td>
-                    <td>{{staffMember.socioStatus.numChildren[0].status}}</td>
-                    <td>{{staffMember.socioStatus.fullTimePercentage[0].status}}</td>
-                    <td><div class="btn btn-sm btn-default" ng-click="onClickButton('staffMember', staffMember._id)">Edit</div></td>
-                    <td><div class="btn btn-sm btn-danger" ng-click="onClickDelete('staffMember', staffMember._id)">Delete</div></td>
-                </tr>
-            </table>
-        </div>
-
+        </div>-->
     </div>
 
 

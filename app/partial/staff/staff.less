@@ -1,0 +1,77 @@
+.hrm-budget-staffmember-container {
+
+    margin-left: 30px;
+    margin-right: 30px;
+
+    .icon-container {
+        width: 20px;
+        height: 20px;
+        border-radius: 10px;
+        background-color: @buhrma-blue;
+        color: #fff;
+        text-align: center;
+        font-size: 8px;
+        line-height: 20px;
+        float: left;
+        margin-right: 10px;
+    }
+    .icon-container:hover {
+        cursor: pointer;
+    }
+
+    .buhrma-table-container {
+        max-width: 100%;
+        overflow: scroll;
+    }
+
+    table {
+        border-collapse: separate;
+        border-spacing: 0 0.4em;
+        white-space: nowrap;
+        overflow-x: scroll;
+
+        thead {
+            th {
+                border-bottom: solid 0.5px @buhrma-blue !important;
+                box-shadow: none;
+                color: @buhrma-blue;
+                line-height: 8px;
+                font-weight: 300 !important;
+                padding-left: 0;
+                text-transform: uppercase;
+                padding-right: 30px;
+            }
+        }
+
+        tbody {
+            tr {
+                box-shadow: 0 0 7px #cccccc;
+                background-color: #fff;
+
+                td {
+                    border-right: solid #e2e3e3 0.5px;
+                }
+            }
+        }
+    }
+
+    .buhrma-btn {
+        color: @buhrma-blue;
+        border-bottom: solid 1px @buhrma-blue;
+        line-height: 8px;
+        text-align: left;
+        padding-left: 0;
+        width: 120px;
+        transition-duration: .2s;
+        transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+        float: left;
+        margin-right: 20px;
+    }
+
+    .buhrma-btn:hover {
+        font-size: 13px;
+        transition-duration: .2s;
+        transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+    }
+
+}
