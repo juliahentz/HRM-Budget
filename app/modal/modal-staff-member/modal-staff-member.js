@@ -18,7 +18,7 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
     $scope.innerModalPageNum = 1;
 
     // todo fix modal page number array
-    $scope.innerModalPages = [1,2,3,4,5];
+    $scope.innerModalPages = [1,2,3];
 
     // REFERENCING MODELS RECEIVED FROM SERVER
     $scope.staffMembers = staffService.model.list;
@@ -395,25 +395,27 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
 
 // DATEPICKER
 
-    $interval(function(){
-        console.log($scope.staffSocioStatus.maritalStartDate);
-    }, 1000);
-
     // todo fix array element to current date filter
-    /*if($scope.selectedStaffMember.socioStatus == null){
+    if($scope.selectedStaffMember.socioStatus == null){
         $scope.today = function() {
             $scope.staffSocioStatus.maritalStartDate = new Date();
             $scope.staffSocioStatus.numChildrenStartDate = new Date();
             $scope.staffSocioStatus.fullTimePercStartDate = new Date();
+            $scope.staffPersonalData.birthDate  = new Date();
+            $scope.selectedContract.startDate  = new Date();
+            $scope.selectedContract.endDate  = new Date();
         };
     }else{
         $scope.today = function() {
             $scope.staffSocioStatus.maritalStartDate = new Date($scope.selectedStaffMember.socioStatus.maritalStatus[0].startDate);
             $scope.staffSocioStatus.numChildrenStartDate = new Date($scope.selectedStaffMember.socioStatus.numChildren[0].startDate);
             $scope.staffSocioStatus.fullTimePercStartDate = new Date($scope.selectedStaffMember.socioStatus.fullTimePercentage[0].startDate);
+            $scope.staffPersonalData.birthDate  = new Date($scope.staffPersonalData.birthDate);
+            $scope.selectedContract.startDate  = new Date($scope.selectedContract.startDate);
+            $scope.selectedContract.endDate  = new Date($scope.selectedContract.endDate);
         }
     }
 
-    $scope.today();*/
+    $scope.today();
 
 });

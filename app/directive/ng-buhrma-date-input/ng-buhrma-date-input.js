@@ -5,7 +5,8 @@ angular.module('HRMBudget').directive('ngBuhrmaDateInput', function(
         restrict: 'E',
         replace: false,
         scope: {
-            buhrmaDateModel: '='
+            buhrmaDateModel: '=',
+            buhrmaDateText: '@'
         },
         templateUrl: 'directive/ng-buhrma-date-input/ng-buhrma-date-input.html',
         link: function(scope, element, attrs, fn) {
