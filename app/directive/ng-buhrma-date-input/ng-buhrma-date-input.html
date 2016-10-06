@@ -1,0 +1,23 @@
+<div class="ng-buhrma-date-input">
+    <label>Effective of</label>
+    <p class="input-group">
+        <input type="text"
+               class="form-control"
+               uib-datepicker-popup="{{format}}"
+               ng-model="dateModel"
+               is-open="popup.opened"
+               datepicker-options="dateOptions"
+               id="bootstrap-override-input"
+               ng-required="true"
+               on-open-focus="false"
+               show-button-bar="false"
+               close-text="Close"
+               alt-input-formats="altInputFormats" />
+                        <span class="input-group-btn" ng-click="open()">
+                            <button class="btn btn-default">
+                                <i class="fa fa-calendar"></i>
+                            </button>
+                        </span>
+    </p>
+</div>
+

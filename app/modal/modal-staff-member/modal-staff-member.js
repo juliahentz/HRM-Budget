@@ -114,7 +114,6 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
             });
             $scope.gradeSelectClicked = false;
         }
-
     };
 
     $scope.datePeriodStart = {
@@ -237,9 +236,6 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
                     $scope.innerModalPageNum = 3;
                 });
             }else if($scope.innerModalPageNum === 3){
-
-            }else if($scope.innerModalPageNum === 4){
-
                 $scope.socioStatusItem.maritalStatus = [];
 
                 $scope.socioStatusInnerItem.status = $scope.staffSocioStatus.maritalStatus;
@@ -267,6 +263,10 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
 
                     $uibModalInstance.close('Staff');
                 })
+
+            }else if($scope.innerModalPageNum === 4){
+
+
             }
 
 
@@ -308,8 +308,6 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
                 })
             }else if($scope.innerModalPageNum === 3){
 
-            }else if($scope.innerModalPageNum === 4){
-
                 $scope.socioStatusItem.maritalStatus = [];
 
                 $scope.socioStatusInnerItem.status = $scope.staffSocioStatus.maritalStatus;
@@ -341,6 +339,10 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
                         $uibModalInstance.close('Staff');
                     });
                 });
+
+            }else if($scope.innerModalPageNum === 4){
+
+
             }
 
 
@@ -393,8 +395,12 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
 
 // DATEPICKER
 
+    $interval(function(){
+        console.log($scope.staffSocioStatus.maritalStartDate);
+    }, 1000);
+
     // todo fix array element to current date filter
-    if($scope.selectedStaffMember.socioStatus == null){
+    /*if($scope.selectedStaffMember.socioStatus == null){
         $scope.today = function() {
             $scope.staffSocioStatus.maritalStartDate = new Date();
             $scope.staffSocioStatus.numChildrenStartDate = new Date();
@@ -408,68 +414,6 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
         }
     }
 
-    $scope.today();
-
-    $scope.inlineOptions = {
-        customClass: getDayClass,
-        minDate: new Date(),
-        showWeeks: true
-    };
-
-    $scope.dateOptions = {
-        formatYear: 'yyyy',
-        maxDate: new Date(2500, 12, 31),
-        minDate: new Date(1900, 1, 1),
-        startingDay: 1
-    };
-
-    $scope.open1 = function() {
-        $scope.popup1.opened = true;
-    };
-    $scope.open2 = function() {
-        $scope.popup2.opened = true;
-    };
-    $scope.open3 = function() {
-        $scope.popup3.opened = true;
-    };
-
-    $scope.setDate = function(year, month, day) {
-        $scope.staffSocioStatus.maritalStartDate = new Date(year, month, day);
-        $scope.staffSocioStatus.numChildrenStartDate = new Date(year, month, day);
-        $scope.staffSocioStatus.fullTimePercStartDate = new Date(year, month, day);
-    };
-
-    $scope.format = 'dd/MM/yyyy';
-    $scope.altInputFormats = ['M!/d!/yyyy'];
-
-    $scope.popup1 = {
-        opened: false
-    };
-    $scope.popup2 = {
-        opened: false
-    };
-    $scope.popup3 = {
-        opened: false
-    };
-
-    function getDayClass(data) {
-        var date = data.date,
-            mode = data.mode;
-        if (mode === 'day') {
-            var dayToCheck = new Date(date).setHours(0,0,0,0);
-
-            for (var i = 0; i < $scope.events.length; i++) {
-                var currentDay = new Date($scope.events[i].date).setHours(0,0,0,0);
-
-                if (dayToCheck === currentDay) {
-                    return $scope.events[i].status;
-                }
-            }
-        }
-
-        return '';
-    }
-
-    $scope.inFocus = false;
+    $scope.today();*/
 
 });
