@@ -9,6 +9,8 @@ const schema = new mongoose.Schema({
             step        : {type: Number},
             startDate   : {type: Date},
             endDate     : {type: Date}
+            headOfUnit  : {type: Boolean},
+            TBAIncrease : {type: Boolean}
         }
     ]
 
