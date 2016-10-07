@@ -7,6 +7,13 @@
         <p>ADMIN login</p>
         <p>Budget</p>
         <p>Posts</p>
-        <p>Staff</p>
+        <p ui-sref="app.staff">Staff</p>
+        <i class="fa fa-bars" aria-hidden="true" ng-click="onClickNavIcon()"></i>
+    </div>
+    <div class="nav-icon-box" ng-class="{'nav-icon-box-open':navBoxOpen}">
+        <div ui-sref="app.staff">Staff</div>
+        <div>Posts</div>
+        <div>Budget</div>
+        <div>ADMIN login</div>
     </div>
 </div>

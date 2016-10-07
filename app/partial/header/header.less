@@ -33,6 +33,50 @@
             border-bottom: solid 1px @buhrma-blue;
             margin-right: 20px;
             float: right;
+            cursor: pointer;
+        }
+
+        i{
+            display: none;
+            margin-right: 20px;
+            cursor: pointer;
+        }
+    }
+
+    .nav-icon-box{
+        width: 120px;
+        background-color: #fff;
+        box-shadow: 0 0 5px @buhrma-grey;
+        overflow: hidden;
+        margin-right: 30px;
+        text-transform: uppercase;
+        color: @buhrma-blue;
+        position: absolute;
+        right: 0;
+        top: 65px;
+        display: none;
+
+        div{
+            padding: 10px;
+            border-bottom: solid 1px #f5f5ff;
+            cursor: pointer;
+        }
+    }
+
+    .nav-icon-box-open{
+        display: block;
+    }
+
+    @media only screen and (max-width: 700px) {
+        .navigation{
+
+            p{
+                display: none;
+            }
+
+            i{
+                display: inline-block;
+            }
         }
     }
 }
