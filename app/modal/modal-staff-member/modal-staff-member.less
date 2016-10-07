@@ -1,29 +1,68 @@
-.bottom-page-navigator-container {
-    display: block;
-    padding-top: 30px;
-    text-align: center;
+.buhrma-modal{
+    .modal-header{
+        background-color: @buhrma-blue;
+        color: #fff;
 
-    .page-indicator-circles-container {
-        width: 20px;
-        height: 20px;
-        display: inline-block;
-
-        .page-indicator-circles {
-            width: 10px;
-            height: 10px;
-            -webkit-border-radius: 10px;
-            -moz-border-radius: 10px;
-            border-radius: 10px;
-            background-color: #ffffff;
-            border: solid 1px #008eb4;
+        .modal-title{
+            font-weight: 200;
         }
-
-        .page-indicator-circle-active {
-            background-color: #008eb4;
-        }
-
-        .page-indicator-circles:hover {
-            background-color: #008eb4;
+        p{
+            font-weight: 100;
+            b{
+                font-weight: 200;
+            }
         }
     }
+
+    .bottom-page-navigator-container {
+        display: block;
+        padding-top: 30px;
+        text-align: center;
+
+        .page-indicator-circles-container {
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+
+            .page-indicator-circles {
+                width: 10px;
+                height: 10px;
+                -webkit-border-radius: 10px;
+                -moz-border-radius: 10px;
+                border-radius: 10px;
+                background-color: #ffffff;
+                border: solid 1px #008eb4;
+            }
+
+            .page-indicator-circle-active {
+                background-color: #008eb4;
+            }
+
+            .page-indicator-circles:hover {
+                background-color: #008eb4;
+            }
+        }
+    }
+}
+
+.buhrma-btn-save{
+    color: @buhrma-blue;
+    border: solid 1px @buhrma-blue;
+    float:right;
+    padding: 15px;
+    text-align: center;
+    margin: 0;
+}
+
+.buhrma-btn-cancel{
+    color: @buhrma-grey;
+    border: solid 1px @buhrma-grey;
+    float: right;
+    padding: 15px;
+    text-align: center;
+    margin-right: 20px;
+}
+
+.buhrma-btn-cancel:hover{
+    color: @buhrma-grey;
 }
