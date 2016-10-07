@@ -8,7 +8,7 @@ const schema = new mongoose.Schema({
             grade       : {type: Number},
             step        : {type: Number},
             startDate   : {type: Date},
-            endDate     : {type: Date}
+            endDate     : {type: Date},
             headOfUnit  : {type: Boolean},
             TBAIncrease : {type: Boolean}
         }

@@ -40,9 +40,28 @@ const schema = new mongoose.Schema({
     parentalLeave: [
         {
             status      : {type: Boolean},
-            pensionContr: {type: Boolean},
-            extension   : {type: Boolean},
             increase    : {type: Boolean},
+            startDate   : {type: Date},
+            endDate     : {type: Date}
+        }
+    ],
+    parentalLeavePensionContr: [
+        {
+            status      : {type: Boolean},
+            startDate   : {type: Date},
+            endDate     : {type: Date}
+        }
+    ],
+    parentalLeaveExtension: [
+        {
+            status      : {type: Boolean},
+            startDate   : {type: Date},
+            endDate     : {type: Date}
+        }
+    ],
+    parentalLeaveIncrease: [
+        {
+            status      : {type: Boolean},
             startDate   : {type: Date},
             endDate     : {type: Date}
         }

@@ -8,7 +8,7 @@ exports.init = (app)=> {
 
         const query = StaffMember.find();
 
-        //query.populate('placeOfOrigin socioStatus entitlements');
+        //query.populate('socioStatus entitlements');
         query.populate('personalData stepByStep socioStatus');
 
         query.exec((err, staffMemberDoc)=> {
