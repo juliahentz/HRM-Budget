@@ -1,41 +1,41 @@
 const mongoose = require('mongoose');
 
-exports.init = function(app){
+exports.init = (app)=> {
 
-    app.get('/api/parameters/contract-grade/grades', (req, res)=>{
+    app.get('/api/parameters/contract-grade/grades', (req, res)=> {
 
         const Grade = mongoose.model('ParamContractGrade');
 
-        Grade.find( (err, gradeDoc)=> {
-            if(!err){
+        Grade.find((err, gradeDoc)=> {
+            if (!err) {
                 res.send(gradeDoc);
-            }else {
+            } else {
                 res.status(400).send(err);
             }
         });
     });
 
-    app.get('/api/parameters/contract-grade/grade/:id', (req, res)=>{
+    app.get('/api/parameters/contract-grade/grade/:id', (req, res)=> {
 
         const gradeId = req.params.id;
 
         const Grade = mongoose.model('ParamContractGrade');
 
         Grade.findById(gradeId, (err, gradeDoc)=> {
-            if(!err){
+            if (!err) {
                 res.send(gradeDoc);
-            }else {
+            } else {
                 res.status(400).send(err);
             }
         });
     });
 
-    app.post('/api/parameters/contract-grade/grade', (req, res)=>{
+    app.post('/api/parameters/contract-grade/grade', (req, res)=> {
 
         const Grade = mongoose.model('ParamContractGrade');
         const grade = new Grade(req.body);
 
-        grade.save( (err)=> {
+        grade.save((err)=> {
 
             if (!err) {
                 res.send(grade);

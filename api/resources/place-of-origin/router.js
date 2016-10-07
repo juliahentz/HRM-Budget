@@ -1,6 +1,6 @@
-exports.init = function(app){
+exports.init = (app)=> {
 
-    app.get('/api/place-of-origin', (req, res)=>{
+    app.get('/api/place-of-origin', (req, res)=> {
 
     });
 

@@ -1,26 +1,26 @@
 const mongoose = require('mongoose');
 
-exports.init = function(app){
+exports.init = (app)=> {
 
-    app.get('/api/parameters/contract-step/steps', (req, res)=>{
+    app.get('/api/parameters/contract-step/steps', (req, res)=> {
 
         const Step = mongoose.model('ParamContactStep');
 
-        Step.find( (err, stepDoc)=> {
-            if(!err){
+        Step.find((err, stepDoc)=> {
+            if (!err) {
                 res.send(stepDoc);
-            }else {
+            } else {
                 res.status(400).send(err);
             }
         });
     });
 
-    app.post('/api/parameters/contract-step/step', (req, res)=>{
+    app.post('/api/parameters/contract-step/step', (req, res)=> {
 
         const Step = mongoose.model('ParamContactStep');
         const step = new Step(req.body);
 
-        step.save( (err)=> {
+        step.save((err)=> {
 
             if (!err) {
                 res.send(step);

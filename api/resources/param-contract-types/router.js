@@ -1,13 +1,13 @@
 const mongoose = require('mongoose');
 
-exports.init = function(app){
+exports.init = (app)=> {
 
-    app.get('/api/parameters/contracts', (req, res)=>{
+    app.get('/api/parameters/contracts', (req, res)=> {
 
         const ContractType = mongoose.model('ParamContractType');
 
         let query = ContractType.find();
-        
+
         query.populate({
             path: 'grades',
             model: 'ParamContractGrade',
@@ -16,11 +16,11 @@ exports.init = function(app){
                 model: 'ParamContactStep'
             }
         });
-        
-        query.exec( (err, contractDoc)=> {
-            if(!err){
+
+        query.exec((err, contractDoc)=> {
+            if (!err) {
                 res.send(contractDoc);
-            }else {
+            } else {
                 res.status(400).send(err);
             }
         });
@@ -53,12 +53,12 @@ exports.init = function(app){
         });
     });
 
-    app.post('/api/parameters/contract', (req, res)=>{
+    app.post('/api/parameters/contract', (req, res)=> {
 
         const ContractType = mongoose.model('ParamContractType');
         const contractType = new ContractType(req.body);
 
-        contractType.save( (err)=> {
+        contractType.save((err)=> {
 
             if (!err) {
                 res.send(contractType);

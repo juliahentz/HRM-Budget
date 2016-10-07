@@ -1,15 +1,15 @@
 const mongoose = require('mongoose');
 
-exports.init = function(app){
+exports.init = (app)=> {
 
-    app.get('/api/step-by-steps', (req, res)=>{
+    app.get('/api/step-by-steps', (req, res)=> {
 
         const StepByStep = mongoose.model('StepByStep');
 
-        StepByStep.find( (err, stepByStepDoc)=> {
-            if(!err){
+        StepByStep.find((err, stepByStepDoc)=> {
+            if (!err) {
                 res.send(stepByStepDoc);
-            }else {
+            } else {
                 res.status(400).send(err);
             }
         });
@@ -31,12 +31,12 @@ exports.init = function(app){
         });
     });
 
-    app.post('/api/step-by-step', (req, res)=>{
+    app.post('/api/step-by-step', (req, res)=> {
 
         const StepByStep = mongoose.model('StepByStep');
         const stepByStep = new StepByStep(req.body);
 
-        stepByStep.save( (err)=> {
+        stepByStep.save((err)=> {
 
             if (!err) {
                 res.send(stepByStep);

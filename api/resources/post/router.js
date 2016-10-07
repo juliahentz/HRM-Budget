@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
-exports.init = function(app){
+exports.init = (app)=> {
 
-    app.get('/api/posts', (req, res)=>{
+    app.get('/api/posts', (req, res)=> {
 
         const Post = mongoose.model('Post');
 
@@ -13,10 +13,10 @@ exports.init = function(app){
             model: 'StaffMember'
         });
 
-        query.exec( (err, postDoc)=> {
-            if(!err){
+        query.exec((err, postDoc)=> {
+            if (!err) {
                 res.send(postDoc);
-            }else {
+            } else {
                 res.status(400).send(err);
             }
         });
@@ -32,7 +32,7 @@ exports.init = function(app){
 
         //query.populate('personalData placeOfOrigin stepByStep socioStatus entitlements');
 
-        query.exec( (err, postDoc)=> {
+        query.exec((err, postDoc)=> {
 
             if (!err) {
                 res.send(postDoc);
@@ -42,12 +42,12 @@ exports.init = function(app){
         });
     });
 
-    app.post('/api/post', (req, res)=>{
+    app.post('/api/post', (req, res)=> {
 
         const Post = mongoose.model('Post');
         const post = new Post(req.body);
 
-        post.save( (err)=> {
+        post.save((err)=> {
 
             if (!err) {
                 res.send(post);

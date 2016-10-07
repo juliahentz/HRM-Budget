@@ -1,6 +1,6 @@
-exports.init = function(app){
+exports.init = (app)=> {
 
-    app.get('/api/sample', (req, res)=>{
+    app.get('/api/sample', (req, res)=> {
 
     });
 

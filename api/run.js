@@ -1,21 +1,18 @@
 const server = require('./server');
-const database  = require('./database');
+const database = require('./database');
 
-function init(){
+function init() {
 
     database.connect()
         .then(server.init)
-        .then((server)=>{
+        .then((server)=> {
 
             require('./resources').init(server);
-
         })
-        .catch((err)=>{
+        .catch((err)=> {
 
             console.log('Init error: ', err);
-
         });
-
 }
 
 init();

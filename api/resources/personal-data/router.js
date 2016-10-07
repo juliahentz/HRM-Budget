@@ -1,15 +1,15 @@
 const mongoose = require('mongoose');
 
-exports.init = function(app){
+exports.init = (app)=> {
 
-    app.get('/api/personal-datas', (req, res)=>{
+    app.get('/api/personal-datas', (req, res)=> {
 
         const PersonalData = mongoose.model('PersonalData');
 
-        PersonalData.find( (err, personalDataDoc)=> {
-            if(!err){
+        PersonalData.find((err, personalDataDoc)=> {
+            if (!err) {
                 res.send(personalDataDoc);
-            }else {
+            } else {
                 res.status(400).send(err);
             }
         });
@@ -31,12 +31,12 @@ exports.init = function(app){
         });
     });
 
-    app.post('/api/personal-data', (req, res)=>{
+    app.post('/api/personal-data', (req, res)=> {
 
         const PersonalData = mongoose.model('PersonalData');
         const personalData = new PersonalData(req.body);
 
-        personalData.save( (err)=> {
+        personalData.save((err)=> {
 
             if (!err) {
                 res.send(personalData);

@@ -1,21 +1,19 @@
 const express = require('express');
-const chalk   = require('chalk');
-const server  = express();
+const chalk = require('chalk');
+const server = express();
 const bodyParser = require('body-parser');
 
 server.use(bodyParser.json());
-server.use(bodyParser.urlencoded({extended:true}));
+server.use(bodyParser.urlencoded({extended: true}));
 
-exports.init = ()=>{
+exports.init = ()=> {
 
-    server.listen(3000, ()=>{
+    server.listen(3000, ()=> {
 
         console.log(chalk.magenta('Server is running on port: 3000'));
         server.use('/', express.static('../app'));
         server.use('/admin', express.static('../admin'));
-
     });
 
     return server;
-
 };

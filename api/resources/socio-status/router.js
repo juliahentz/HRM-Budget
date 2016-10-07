@@ -1,15 +1,15 @@
 const mongoose = require('mongoose');
 
-exports.init = function(app){
+exports.init = (app)=> {
 
-    app.get('/api/socio-statuses', (req, res)=>{
+    app.get('/api/socio-statuses', (req, res)=> {
 
         const SocioStatus = mongoose.model('SocioStatus');
 
-        SocioStatus.find( (err, socioStatusDoc)=> {
-            if(!err){
+        SocioStatus.find((err, socioStatusDoc)=> {
+            if (!err) {
                 res.send(socioStatusDoc);
-            }else {
+            } else {
                 res.status(400).send(err);
             }
         });
@@ -31,12 +31,12 @@ exports.init = function(app){
         });
     });
 
-    app.post('/api/socio-status', (req, res)=>{
+    app.post('/api/socio-status', (req, res)=> {
 
         const SocioStatus = mongoose.model('SocioStatus');
         const socioStatus = new SocioStatus(req.body);
 
-        socioStatus.save( (err)=> {
+        socioStatus.save((err)=> {
 
             if (!err) {
                 res.send(socioStatus);
