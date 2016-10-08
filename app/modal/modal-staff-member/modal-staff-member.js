@@ -4,12 +4,12 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
     title,
     staffService,
     paramContractService,
+    paramPlaceOfEmploymentService,
     stepByStepService,
     publicApiService,
     personalDataService,
     socioStatusService,
-    postService,
-    $interval
+    postService
 ){
 
 // -- 1. INIT --------------------------------------
@@ -24,15 +24,10 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
     $scope.staffMembers = staffService.model.list;
     $scope.selectedStaffMember = staffService.model.item;
     $scope.allContracts = paramContractService.model.types;
+    $scope.allPlaceOfEmployment = paramPlaceOfEmploymentService.model.list;
 
     // RESOLVES RECEIVED FROM CALLING THE MODAL
     $scope.modalTitle = title;
-
-    /*$scope.selectedStaffOnPost = {
-        staff: null,
-        startDate: null,
-        endDate: null
-    };*/
 
     // INNER MODAL PAGE LOGIC
     $scope.setInnerModalPage = function(message){
@@ -59,6 +54,7 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
 
     // REFERENCING ARRAYS IN ORDER TO SAVE THE LIST OF AVAILABLE GRADES AND STEPS IN A SPECIFIC CONTRACT
     $scope.allContractNames = [];
+    $scope.allPlaceOfEmploymentNames = [];
     $scope.allGradesInContract = [];
     $scope.allGradesInContractObj = [];
     $scope.allStepsInGrade = [];
@@ -67,6 +63,10 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
 
     angular.forEach($scope.allContracts, function(contract, index){
         $scope.allContractNames.push(contract.name);
+    });
+
+    angular.forEach($scope.allPlaceOfEmployment, function(place, index){
+        $scope.allPlaceOfEmploymentNames.push(place.place);
     });
 
     // LOOPING THROUGH ALL CONTRACTS AND REFERENCING THE GRADES AVAILABLE IN THE CURRENTLY SELECTED CONTRACT
@@ -265,6 +265,8 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
                 $scope.contractInnerItem.endDate = $scope.selectedContract.endDate;
                 $scope.contractInnerItem.headOfUnit = $scope.selectedContract.headOfUnit;
                 $scope.contractInnerItem.TBAIncrease = $scope.selectedContract.TBAIncrease;
+                $scope.contractInnerItem.placeOfEmployment = $scope.selectedContract.placeOfEmployment;
+
 
                 $scope.contractItem.positionsFilled.push($scope.contractInnerItem);
 
@@ -375,7 +377,7 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
                     $uibModalInstance.close('Staff');
                 });
             }
-            
+
     // A.2 ADD NEW STAFF MEMBER
         }else if($scope.modalTitle === "Add New Staff") {
 
@@ -402,6 +404,7 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
                 $scope.contractInnerItem.endDate = $scope.selectedContract.endDate;
                 $scope.contractInnerItem.headOfUnit = $scope.selectedContract.headOfUnit;
                 $scope.contractInnerItem.TBAIncrease = $scope.selectedContract.TBAIncrease;
+                $scope.contractInnerItem.placeOfEmployment = $scope.selectedContract.placeOfEmployment;
 
                 $scope.contractItem.positionsFilled.push($scope.contractInnerItem);
 

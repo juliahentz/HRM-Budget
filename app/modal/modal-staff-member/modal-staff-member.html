@@ -37,11 +37,10 @@
             <div ng-if="innerModalPageNum === 2">
 
                 <h4 class="inner-page-title">Step by Step</h4>
-                <br/>
+                <ng-buhrma-select buhrma-select-model="selectedContract.placeOfEmployment"
+                                  buhrma-select-text="Place of Employment"
+                                  buhrma-select-options="allPlaceOfEmploymentNames"></ng-buhrma-select>
 
-                <ng-buhrma-checkbox buhrma-checkbox-model="selectedContract.headOfUnit" buhrma-checkbox-label="Head of Unit / Director"></ng-buhrma-checkbox>
-                <br/>
-                <ng-buhrma-checkbox buhrma-checkbox-model="selectedContract.TBAIncrease" buhrma-checkbox-label="TBA increase"></ng-buhrma-checkbox>
                 <br/>
                 <ng-buhrma-select buhrma-select-model="selectedContract.category"
                                   buhrma-select-text="Contract type"
@@ -67,6 +66,10 @@
                         <ng-buhrma-date-input buhrma-date-model="selectedContract.endDate" buhrma-date-text="End Date"></ng-buhrma-date-input>
                     </div>
                 </div>
+                <br/>
+                <ng-buhrma-checkbox buhrma-checkbox-model="selectedContract.headOfUnit" buhrma-checkbox-label="Head of Unit / Director"></ng-buhrma-checkbox>
+                <br/>
+                <ng-buhrma-checkbox buhrma-checkbox-model="selectedContract.TBAIncrease" buhrma-checkbox-label="TBA increase"></ng-buhrma-checkbox>
 
             </div>
 
@@ -181,6 +184,10 @@
                         <ng-buhrma-date-input buhrma-date-model="staffSocioStatus.parentalLeaveIncreaseStartDate"></ng-buhrma-date-input>
                     </div>
                 </div>
+
+            </div>
+
+            <div ng-if="innerModalPageNum === 5">
 
             </div>
 

@@ -47,4 +47,8 @@ exports.init = (server)=>{
     // Tax resource
     require('./param-tax/router').init(server);
     require('./param-tax/model');
+
+    // Place of employment
+    require('./param-place-of-employment/router').init(server);
+    require('./param-place-of-employment/model');
 };

@@ -80,13 +80,6 @@ const schema = new mongoose.Schema({
             distance        : {type: Number},
             numOfTravellers : {type: Number}
         }
-    ],
-    placeOfEmployment: [
-        {
-            startDate       : {type: Date},
-            endDate         : {type: Date},
-            location        : {type: String}
-        }
     ]
 
 });

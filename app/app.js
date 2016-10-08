@@ -33,6 +33,9 @@ angular.module('HRMBudget').config(function($stateProvider, $urlRouterProvider) 
             getContractTypes: function(paramContractService){
                 return paramContractService.getAllContractTypes();
             },
+            getAllPlaceOfEmployment: function(paramPlaceOfEmploymentService){
+                return paramPlaceOfEmploymentService.getAll();
+            },
             timeNow: function(){
                 var now = new Date();
                 return now.toISOString();
