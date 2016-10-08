@@ -45,13 +45,6 @@ const schema = new mongoose.Schema({
             endDate     : {type: Date}
         }
     ],
-    parentalLeavePensionContr: [
-        {
-            status      : {type: Boolean},
-            startDate   : {type: Date},
-            endDate     : {type: Date}
-        }
-    ],
     parentalLeaveExtension: [
         {
             status      : {type: Boolean},
@@ -69,6 +62,13 @@ const schema = new mongoose.Schema({
     fullTimePercentage: [
         {
             status      : {type: Number},
+            startDate   : {type: Date},
+            endDate     : {type: Date}
+        }
+    ],
+    parttimePensionContr: [
+        {
+            status      : {type: Boolean},
             startDate   : {type: Date},
             endDate     : {type: Date}
         }

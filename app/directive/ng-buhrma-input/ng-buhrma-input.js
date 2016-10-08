@@ -14,12 +14,12 @@ angular.module('HRMBudget').directive('ngBuhrmaInput', function() {
 
             scope.labelElement = $(element.find('label')[0]);
 
-            if(scope.model){
+            if(scope.model || scope.model === 0){
                 scope.labelElement.addClass('buhrma-label-focus');
             }
 
             scope.onBlur = function(){
-                if(scope.model === '' || scope.model == null){
+                if(scope.model === '' || scope.model === null){
                     scope.labelElement.removeClass('buhrma-label-focus');
                 }
                 scope.buhrmaInputModel = scope.model;

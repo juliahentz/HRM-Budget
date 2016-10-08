@@ -22,6 +22,8 @@
                         <th>Step</th>
                         <th>Start date</th>
                         <th>End date</th>
+                        <th>Head of Unit</th>
+                        <th>TBA increase</th>
                         <th>Gender</th>
                         <th>Nationality</th>
                         <th>Birth date</th>
@@ -45,6 +47,8 @@
                         <td>{{staffMember.stepByStep.positionsFilled[0].step}}</td>
                         <td>{{staffMember.stepByStep.positionsFilled[0].startDate | date:'dd/MM/yyyy'}}</td>
                         <td>{{staffMember.stepByStep.positionsFilled[0].endDate | date:'dd/MM/yyyy'}}</td>
+                        <td><span ng-if="staffMember.stepByStep.positionsFilled[0].headOfUnit"><i class="fa fa-check" aria-hidden="true"></i></span></td>
+                        <td><span ng-if="staffMember.stepByStep.positionsFilled[0].TBAIncrease"><i class="fa fa-check" aria-hidden="true"></i></span></td>
                         <td>{{staffMember.personalData.gender}}</td>
                         <td>{{staffMember.personalData.nationality}}</td>
                         <td>{{staffMember.personalData.birthDate | date:'dd/MM/yyyy'}}</td>

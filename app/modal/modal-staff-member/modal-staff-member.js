@@ -18,7 +18,7 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
     $scope.innerModalPageNum = 1;
 
     // todo fix modal page number array
-    $scope.innerModalPages = [1,2,3];
+    $scope.innerModalPages = [1,2,3,4];
 
     // REFERENCING MODELS RECEIVED FROM SERVER
     $scope.staffMembers = staffService.model.list;
@@ -45,9 +45,15 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
 
     $scope.staffItem = {};
     $scope.socioStatusItem = {};
-    $scope.socioStatusInnerItem = {};
+    $scope.socioStatusInnerItem1 = {};
     $scope.socioStatusInnerItem2 = {};
     $scope.socioStatusInnerItem3 = {};
+    $scope.socioStatusInnerItem4 = {};
+    $scope.socioStatusInnerItem5 = {};
+    $scope.socioStatusInnerItem6 = {};
+    $scope.socioStatusInnerItem7 = {};
+    $scope.socioStatusInnerItem8 = {};
+    $scope.socioStatusInnerItem9 = {};
 
 // -- 2. LOGIC: CONTRACT FOR STAFF MEMBER ----------
 
@@ -185,13 +191,43 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
         $scope.staffSocioStatus = {};
     }else{
         $scope.staffSocioStatus = {};
-        $scope.staffSocioStatus.maritalStatus = $scope.selectedStaffMember.socioStatus.maritalStatus[0].status;
         $scope.staffSocioStatus.numChildren = $scope.selectedStaffMember.socioStatus.numChildren[0].status;
+        $scope.staffSocioStatus.childrenUnderSix = $scope.selectedStaffMember.socioStatus.childrenUnderSix[0].status;
+        $scope.staffSocioStatus.childrenInUni = $scope.selectedStaffMember.socioStatus.childrenInUni[0].status;
+        $scope.staffSocioStatus.childrenInUniExpatAndFar = $scope.selectedStaffMember.socioStatus.childrenInUniExpatAndFar[0].status;
         $scope.staffSocioStatus.fullTimePerc = $scope.selectedStaffMember.socioStatus.fullTimePercentage[0].status;
 
-        $scope.staffSocioStatus.maritalStartDate = $scope.selectedStaffMember.socioStatus.maritalStatus[0].startDate;
+        if($scope.selectedStaffMember.socioStatus.parttimePensionContr[0].status === true){
+            $scope.staffSocioStatus.parttimePensionContr = 'Yes';
+        }else if($scope.selectedStaffMember.socioStatus.parttimePensionContr[0].status === false){
+            $scope.staffSocioStatus.parttimePensionContr = 'No';
+        }
+        if($scope.selectedStaffMember.socioStatus.parentalLeave[0].status === true){
+            $scope.staffSocioStatus.parentalLeave = 'Yes';
+        }else if($scope.selectedStaffMember.socioStatus.parentalLeave[0].status === false){
+            $scope.staffSocioStatus.parentalLeave = 'No';
+        }
+        if($scope.selectedStaffMember.socioStatus.parentalLeaveExtension[0].status === true){
+            $scope.staffSocioStatus.parentalLeaveExtension = 'Yes';
+        }else if($scope.selectedStaffMember.socioStatus.parentalLeaveExtension[0].status === false){
+            $scope.staffSocioStatus.parentalLeaveExtension = 'No';
+        }
+        if($scope.selectedStaffMember.socioStatus.parentalLeaveIncrease[0].status === true){
+            $scope.staffSocioStatus.parentalLeaveIncrease = 'Yes';
+        }else if($scope.selectedStaffMember.socioStatus.parentalLeaveIncrease[0].status === false){
+            $scope.staffSocioStatus.parentalLeaveIncrease = 'No';
+        }
+
         $scope.staffSocioStatus.numChildrenStartDate = $scope.selectedStaffMember.socioStatus.numChildren[0].startDate;
+        $scope.staffSocioStatus.childrenUnderSixStartDate = $scope.selectedStaffMember.socioStatus.childrenUnderSix[0].startDate;
+        $scope.staffSocioStatus.childrenInUniStartDate = $scope.selectedStaffMember.socioStatus.childrenInUni[0].startDate;
+        $scope.staffSocioStatus.childrenInUniExpatAndFarStartDate = $scope.selectedStaffMember.socioStatus.childrenInUniExpatAndFar[0].startDate;
         $scope.staffSocioStatus.fullTimePercStartDate = $scope.selectedStaffMember.socioStatus.fullTimePercentage[0].startDate;
+        $scope.staffSocioStatus.parttimePensionContrStartDate = $scope.selectedStaffMember.socioStatus.parttimePensionContr[0].startDate;
+        $scope.staffSocioStatus.parentalLeaveStartDate = $scope.selectedStaffMember.socioStatus.parentalLeave[0].startDate;
+        $scope.staffSocioStatus.parentalLeaveExtensionStartDate = $scope.selectedStaffMember.socioStatus.parentalLeaveExtension[0].startDate;
+        $scope.staffSocioStatus.parentalLeaveIncreaseStartDate = $scope.selectedStaffMember.socioStatus.parentalLeaveIncrease[0].startDate;
+
     }
 
     $scope.datePeriodNow = {};
@@ -227,6 +263,8 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
                 $scope.contractInnerItem.step = $scope.selectedContract.step;
                 $scope.contractInnerItem.startDate = $scope.selectedContract.startDate;
                 $scope.contractInnerItem.endDate = $scope.selectedContract.endDate;
+                $scope.contractInnerItem.headOfUnit = $scope.selectedContract.headOfUnit;
+                $scope.contractInnerItem.TBAIncrease = $scope.selectedContract.TBAIncrease;
 
                 $scope.contractItem.positionsFilled.push($scope.contractInnerItem);
 
@@ -236,28 +274,38 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
                     $scope.innerModalPageNum = 3;
                 });
             }else if($scope.innerModalPageNum === 3){
-                $scope.socioStatusItem.maritalStatus = [];
-
-                $scope.socioStatusInnerItem.status = $scope.staffSocioStatus.maritalStatus;
-                $scope.socioStatusInnerItem.startDate = $scope.staffSocioStatus.maritalStartDate.toISOString();
-
-                $scope.socioStatusItem.maritalStatus.push($scope.socioStatusInnerItem);
-
-
+                // NUM CHILDREN
                 $scope.socioStatusItem.numChildren = [];
 
-                $scope.socioStatusInnerItem2.status = $scope.staffSocioStatus.numChildren;
-                $scope.socioStatusInnerItem2.startDate = $scope.staffSocioStatus.numChildrenStartDate.toISOString();
+                $scope.socioStatusInnerItem1.status = $scope.staffSocioStatus.numChildren;
+                $scope.socioStatusInnerItem1.startDate = $scope.staffSocioStatus.numChildrenStartDate.toISOString();
 
-                $scope.socioStatusItem.numChildren.push($scope.socioStatusInnerItem2);
+                $scope.socioStatusItem.numChildren.push($scope.socioStatusInnerItem1);
 
+                // NUM CHILDREN UNDER 6
+                $scope.socioStatusItem.childrenUnderSix =[];
 
-                $scope.socioStatusItem.fullTimePercentage = [];
+                $scope.socioStatusInnerItem2.status = $scope.staffSocioStatus.childrenUnderSix;
+                $scope.socioStatusInnerItem2.startDate = $scope.staffSocioStatus.childrenUnderSixStartDate.toISOString();
 
-                $scope.socioStatusInnerItem3.status = $scope.staffSocioStatus.fullTimePerc;
-                $scope.socioStatusInnerItem3.startDate = $scope.staffSocioStatus.fullTimePercStartDate.toISOString();
+                $scope.socioStatusItem.childrenUnderSix.push($scope.socioStatusInnerItem2);
 
-                $scope.socioStatusItem.fullTimePercentage.push($scope.socioStatusInnerItem3);
+                // NUM CHILDREN IN UNI
+                $scope.socioStatusItem.childrenInUni =[];
+
+                $scope.socioStatusInnerItem3.status = $scope.staffSocioStatus.childrenInUni;
+                $scope.socioStatusInnerItem3.startDate = $scope.staffSocioStatus.childrenInUniStartDate.toISOString();
+
+                $scope.socioStatusItem.childrenInUni.push($scope.socioStatusInnerItem3);
+
+                // NUM CHILDREN IN UNI OR STUDY FAR
+                $scope.socioStatusItem.childrenInUniExpatAndFar =[];
+
+                $scope.socioStatusInnerItem4.status = $scope.staffSocioStatus.childrenInUniExpatAndFar;
+                $scope.socioStatusInnerItem4.startDate = $scope.staffSocioStatus.childrenInUniExpatAndFarStartDate.toISOString();
+
+                $scope.socioStatusItem.childrenInUniExpatAndFar.push($scope.socioStatusInnerItem4);
+
 
                 socioStatusService.update($scope.selectedStaffMember.socioStatus._id, $scope.socioStatusItem, function(socioStatusItem){
 
@@ -265,11 +313,69 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
                 })
 
             }else if($scope.innerModalPageNum === 4){
+                // FULL TIME PERCENTAGE
+                $scope.socioStatusItem.fullTimePercentage = [];
 
+                $scope.socioStatusInnerItem5.status = $scope.staffSocioStatus.fullTimePerc;
+                $scope.socioStatusInnerItem5.startDate = $scope.staffSocioStatus.fullTimePercStartDate.toISOString();
 
+                $scope.socioStatusItem.fullTimePercentage.push($scope.socioStatusInnerItem5);
+
+                // PART TIME PENSION CONTRIBUTION
+                $scope.socioStatusItem.parttimePensionContr = [];
+
+                if($scope.staffSocioStatus.parttimePensionContr === 'No'){
+                    $scope.socioStatusInnerItem6.status = false;
+                }else if($scope.staffSocioStatus.parttimePensionContr === 'Yes'){
+                    $scope.socioStatusInnerItem6.status = true;
+                }
+                $scope.socioStatusInnerItem6.startDate = $scope.staffSocioStatus.parttimePensionContrStartDate.toISOString();
+
+                $scope.socioStatusItem.parttimePensionContr.push($scope.socioStatusInnerItem6);
+
+                // PARENTAL LEAVE
+                $scope.socioStatusItem.parentalLeave = [];
+
+                if($scope.staffSocioStatus.parentalLeave === 'No'){
+                    $scope.socioStatusInnerItem7.status = false;
+                }else if($scope.staffSocioStatus.parentalLeave === 'Yes'){
+                    $scope.socioStatusInnerItem7.status = true;
+                }
+                $scope.socioStatusInnerItem7.startDate = $scope.staffSocioStatus.parentalLeaveStartDate.toISOString();
+
+                $scope.socioStatusItem.parentalLeave.push($scope.socioStatusInnerItem7);
+
+                // PARENTAL LEAVE EXTENSION
+                $scope.socioStatusItem.parentalLeaveExtension = [];
+
+                if($scope.staffSocioStatus.parentalLeaveExtension === 'No'){
+                    $scope.socioStatusInnerItem8.status = false;
+                }else if($scope.staffSocioStatus.parentalLeaveExtension === 'Yes'){
+                    $scope.socioStatusInnerItem8.status = true;
+                }
+                $scope.socioStatusInnerItem8.startDate = $scope.staffSocioStatus.parentalLeaveExtensionStartDate.toISOString();
+
+                $scope.socioStatusItem.parentalLeaveExtension.push($scope.socioStatusInnerItem8);
+
+                // PARENTAL LEAVE INCREASE
+                $scope.socioStatusItem.parentalLeaveIncrease = [];
+
+                if($scope.staffSocioStatus.parentalLeaveIncrease === 'No'){
+                    $scope.socioStatusInnerItem9.status = false;
+                }else if($scope.staffSocioStatus.parentalLeaveIncrease === 'Yes'){
+                    $scope.socioStatusInnerItem9.status = true;
+                }
+                $scope.socioStatusInnerItem9.startDate = $scope.staffSocioStatus.parentalLeaveIncreaseStartDate.toISOString();
+
+                $scope.socioStatusItem.parentalLeaveIncrease.push($scope.socioStatusInnerItem9);
+
+                // API CALL
+                socioStatusService.update($scope.selectedStaffMember.socioStatus._id, $scope.socioStatusItem, function(item){
+
+                    $uibModalInstance.close('Staff');
+                });
             }
-
-
+            
     // A.2 ADD NEW STAFF MEMBER
         }else if($scope.modalTitle === "Add New Staff") {
 
@@ -294,6 +400,8 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
                 $scope.contractInnerItem.step = $scope.selectedContract.step;
                 $scope.contractInnerItem.startDate = $scope.selectedContract.startDate;
                 $scope.contractInnerItem.endDate = $scope.selectedContract.endDate;
+                $scope.contractInnerItem.headOfUnit = $scope.selectedContract.headOfUnit;
+                $scope.contractInnerItem.TBAIncrease = $scope.selectedContract.TBAIncrease;
 
                 $scope.contractItem.positionsFilled.push($scope.contractInnerItem);
 
@@ -308,40 +416,111 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
                 })
             }else if($scope.innerModalPageNum === 3){
 
-                $scope.socioStatusItem.maritalStatus = [];
-
-                $scope.socioStatusInnerItem.status = $scope.staffSocioStatus.maritalStatus;
-                $scope.socioStatusInnerItem.startDate = $scope.staffSocioStatus.maritalStartDate.toISOString();
-
-                $scope.socioStatusItem.maritalStatus.push($scope.socioStatusInnerItem);
-
-
+                // NUM CHILDREN
                 $scope.socioStatusItem.numChildren = [];
 
-                $scope.socioStatusInnerItem2.status = $scope.staffSocioStatus.numChildren;
-                $scope.socioStatusInnerItem2.startDate = $scope.staffSocioStatus.numChildrenStartDate.toISOString();
+                $scope.socioStatusInnerItem1.status = $scope.staffSocioStatus.numChildren;
+                $scope.socioStatusInnerItem1.startDate = $scope.staffSocioStatus.numChildrenStartDate.toISOString();
 
-                $scope.socioStatusItem.numChildren.push($scope.socioStatusInnerItem2);
+                $scope.socioStatusItem.numChildren.push($scope.socioStatusInnerItem1);
 
+                // NUM CHILDREN UNDER 6
+                $scope.socioStatusItem.childrenUnderSix =[];
 
-                $scope.socioStatusItem.fullTimePercentage = [];
+                $scope.socioStatusInnerItem2.status = $scope.staffSocioStatus.childrenUnderSix;
+                $scope.socioStatusInnerItem2.startDate = $scope.staffSocioStatus.childrenUnderSixStartDate.toISOString();
 
-                $scope.socioStatusInnerItem3.status = $scope.staffSocioStatus.fullTimePerc;
-                $scope.socioStatusInnerItem3.startDate = $scope.staffSocioStatus.fullTimePercStartDate.toISOString();
+                $scope.socioStatusItem.childrenUnderSix.push($scope.socioStatusInnerItem2);
 
-                $scope.socioStatusItem.fullTimePercentage.push($scope.socioStatusInnerItem3);
+                // NUM CHILDREN IN UNI
+                $scope.socioStatusItem.childrenInUni =[];
 
+                $scope.socioStatusInnerItem3.status = $scope.staffSocioStatus.childrenInUni;
+                $scope.socioStatusInnerItem3.startDate = $scope.staffSocioStatus.childrenInUniStartDate.toISOString();
+
+                $scope.socioStatusItem.childrenInUni.push($scope.socioStatusInnerItem3);
+
+                // NUM CHILDREN IN UNI OR STUDY FAR
+                $scope.socioStatusItem.childrenInUniExpatAndFar =[];
+
+                $scope.socioStatusInnerItem4.status = $scope.staffSocioStatus.childrenInUniExpatAndFar;
+                $scope.socioStatusInnerItem4.startDate = $scope.staffSocioStatus.childrenInUniExpatAndFarStartDate.toISOString();
+
+                $scope.socioStatusItem.childrenInUniExpatAndFar.push($scope.socioStatusInnerItem4);
+
+                // API CALL
                 socioStatusService.create($scope.socioStatusItem, function(item){
                     $scope.staffItem.socioStatus = item._id;
 
                     staffService.update($scope.selectedStaffMember._id, $scope.staffItem, function(staff){
 
-                        $uibModalInstance.close('Staff');
+                        $scope.innerModalPageNum = 4;
                     });
                 });
 
             }else if($scope.innerModalPageNum === 4){
 
+                // FULL TIME PERCENTAGE
+                $scope.socioStatusItem.fullTimePercentage = [];
+
+                $scope.socioStatusInnerItem5.status = $scope.staffSocioStatus.fullTimePerc;
+                $scope.socioStatusInnerItem5.startDate = $scope.staffSocioStatus.fullTimePercStartDate.toISOString();
+
+                $scope.socioStatusItem.fullTimePercentage.push($scope.socioStatusInnerItem5);
+
+                // PART TIME PENSION CONTRIBUTION
+                $scope.socioStatusItem.parttimePensionContr = [];
+
+                if($scope.staffSocioStatus.parttimePensionContr === 'No'){
+                    $scope.socioStatusInnerItem6.status = false;
+                }else if($scope.staffSocioStatus.parttimePensionContr === 'Yes'){
+                    $scope.socioStatusInnerItem6.status = true;
+                }
+                $scope.socioStatusInnerItem6.startDate = $scope.staffSocioStatus.parttimePensionContrStartDate.toISOString();
+
+                $scope.socioStatusItem.parttimePensionContr.push($scope.socioStatusInnerItem6);
+
+                // PARENTAL LEAVE
+                $scope.socioStatusItem.parentalLeave = [];
+
+                if($scope.staffSocioStatus.parentalLeave === 'No'){
+                    $scope.socioStatusInnerItem7.status = false;
+                }else if($scope.staffSocioStatus.parentalLeave === 'Yes'){
+                    $scope.socioStatusInnerItem7.status = true;
+                }
+                $scope.socioStatusInnerItem7.startDate = $scope.staffSocioStatus.parentalLeaveStartDate.toISOString();
+
+                $scope.socioStatusItem.parentalLeave.push($scope.socioStatusInnerItem7);
+
+                // PARENTAL LEAVE EXTENSION
+                $scope.socioStatusItem.parentalLeaveExtension = [];
+
+                if($scope.staffSocioStatus.parentalLeaveExtension === 'No'){
+                    $scope.socioStatusInnerItem8.status = false;
+                }else if($scope.staffSocioStatus.parentalLeaveExtension === 'Yes'){
+                    $scope.socioStatusInnerItem8.status = true;
+                }
+                $scope.socioStatusInnerItem8.startDate = $scope.staffSocioStatus.parentalLeaveExtensionStartDate.toISOString();
+
+                $scope.socioStatusItem.parentalLeaveExtension.push($scope.socioStatusInnerItem8);
+
+                // PARENTAL LEAVE INCREASE
+                $scope.socioStatusItem.parentalLeaveIncrease = [];
+
+                if($scope.staffSocioStatus.parentalLeaveIncrease === 'No'){
+                    $scope.socioStatusInnerItem9.status = false;
+                }else if($scope.staffSocioStatus.parentalLeaveIncrease === 'Yes'){
+                    $scope.socioStatusInnerItem9.status = true;
+                }
+                $scope.socioStatusInnerItem9.startDate = $scope.staffSocioStatus.parentalLeaveIncreaseStartDate.toISOString();
+
+                $scope.socioStatusItem.parentalLeaveIncrease.push($scope.socioStatusInnerItem9);
+
+                // API CALL
+                socioStatusService.update($scope.staffItem.socioStatus, $scope.socioStatusItem, function(item){
+
+                    $uibModalInstance.close('Staff');
+                });
 
             }
 
@@ -398,21 +577,35 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
     // todo fix array element to current date filter
     if($scope.selectedStaffMember.socioStatus == null){
         $scope.today = function() {
-            $scope.staffSocioStatus.maritalStartDate = new Date();
             $scope.staffSocioStatus.numChildrenStartDate = new Date();
             $scope.staffSocioStatus.fullTimePercStartDate = new Date();
             $scope.staffPersonalData.birthDate  = new Date();
             $scope.selectedContract.startDate  = new Date();
             $scope.selectedContract.endDate  = new Date();
+            $scope.staffSocioStatus.childrenUnderSixStartDate = new Date();
+            $scope.staffSocioStatus.childrenInUniStartDate = new Date();
+            $scope.staffSocioStatus.childrenInUniExpatAndFarStartDate = new Date();
+            $scope.staffSocioStatus.parttimePensionContrStartDate = new Date();
+            $scope.staffSocioStatus.parentalLeaveStartDate = new Date();
+            $scope.staffSocioStatus.parentalLeaveExtensionStartDate = new Date();
+            $scope.staffSocioStatus.parentalLeaveIncreaseStartDate = new Date();
+
         };
     }else{
         $scope.today = function() {
-            $scope.staffSocioStatus.maritalStartDate = new Date($scope.selectedStaffMember.socioStatus.maritalStatus[0].startDate);
             $scope.staffSocioStatus.numChildrenStartDate = new Date($scope.selectedStaffMember.socioStatus.numChildren[0].startDate);
-            $scope.staffSocioStatus.fullTimePercStartDate = new Date($scope.selectedStaffMember.socioStatus.fullTimePercentage[0].startDate);
             $scope.staffPersonalData.birthDate  = new Date($scope.staffPersonalData.birthDate);
             $scope.selectedContract.startDate  = new Date($scope.selectedContract.startDate);
             $scope.selectedContract.endDate  = new Date($scope.selectedContract.endDate);
+            $scope.staffSocioStatus.childrenUnderSixStartDate = new Date($scope.selectedStaffMember.socioStatus.childrenUnderSix[0].startDate);
+            $scope.staffSocioStatus.childrenInUniStartDate = new Date($scope.selectedStaffMember.socioStatus.childrenInUni[0].startDate);
+            $scope.staffSocioStatus.childrenInUniExpatAndFarStartDate = new Date($scope.selectedStaffMember.socioStatus.childrenInUniExpatAndFar[0].startDate);
+            $scope.staffSocioStatus.fullTimePercStartDate = new Date($scope.selectedStaffMember.socioStatus.fullTimePercentage[0].startDate);
+            $scope.staffSocioStatus.parttimePensionContrStartDate = new Date($scope.selectedStaffMember.socioStatus.parttimePensionContr[0].startDate);
+            $scope.staffSocioStatus.parentalLeaveStartDate = new Date($scope.selectedStaffMember.socioStatus.parentalLeave[0].startDate);
+            $scope.staffSocioStatus.parentalLeaveExtensionStartDate = new Date($scope.selectedStaffMember.socioStatus.parentalLeaveExtension[0].startDate);
+            $scope.staffSocioStatus.parentalLeaveIncreaseStartDate = new Date($scope.selectedStaffMember.socioStatus.parentalLeaveIncrease[0].startDate);
+
         }
     }
 

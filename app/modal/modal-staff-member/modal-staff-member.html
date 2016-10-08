@@ -36,6 +36,13 @@
 
             <div ng-if="innerModalPageNum === 2">
 
+                <h4 class="inner-page-title">Step by Step</h4>
+                <br/>
+
+                <ng-buhrma-checkbox buhrma-checkbox-model="selectedContract.headOfUnit" buhrma-checkbox-label="Head of Unit / Director"></ng-buhrma-checkbox>
+                <br/>
+                <ng-buhrma-checkbox buhrma-checkbox-model="selectedContract.TBAIncrease" buhrma-checkbox-label="TBA increase"></ng-buhrma-checkbox>
+                <br/>
                 <ng-buhrma-select buhrma-select-model="selectedContract.category"
                                   buhrma-select-text="Contract type"
                                   buhrma-select-options="allContractNames"
@@ -64,22 +71,13 @@
             </div>
 
             <div ng-if="innerModalPageNum === 3">
-                <div class="row">
-                    <div class="col-xs-6">
-                        <ng-buhrma-select buhrma-select-model="staffSocioStatus.maritalStatus"
-                                          buhrma-select-text="Marital status"
-                                          buhrma-select-options="['Married','Divorced / Single']"></ng-buhrma-select>
-                    </div>
-                    <div class="col-xs-6">
-                        <ng-buhrma-date-input buhrma-date-model="staffSocioStatus.maritalStartDate"></ng-buhrma-date-input>
-                    </div>
-                </div>
-                <br/>
+
+                <h4 class="inner-page-title">Number of Children</h4>
 
                 <div class="row">
                     <div class="col-xs-6">
                         <ng-buhrma-input buhrma-input-model="staffSocioStatus.numChildren"
-                                         buhrma-input-text="Number of children"
+                                         buhrma-input-text="All children"
                                          buhrma-input-type="number"></ng-buhrma-input>
                     </div>
                     <div class="col-xs-6">
@@ -87,6 +85,47 @@
                     </div>
                 </div>
                 <br/>
+
+                <div class="row">
+                    <div class="col-xs-6">
+                        <ng-buhrma-input buhrma-input-model="staffSocioStatus.childrenUnderSix"
+                                         buhrma-input-text="Under the age of 6"
+                                         buhrma-input-type="number"></ng-buhrma-input>
+                    </div>
+                    <div class="col-xs-6">
+                        <ng-buhrma-date-input buhrma-date-model="staffSocioStatus.childrenUnderSixStartDate"></ng-buhrma-date-input>
+                    </div>
+                </div>
+                <br/>
+
+                <div class="row">
+                    <div class="col-xs-6">
+                        <ng-buhrma-input buhrma-input-model="staffSocioStatus.childrenInUni"
+                                         buhrma-input-text="In Uni or studying away"
+                                         buhrma-input-type="number"></ng-buhrma-input>
+                    </div>
+                    <div class="col-xs-6">
+                        <ng-buhrma-date-input buhrma-date-model="staffSocioStatus.childrenInUniStartDate"></ng-buhrma-date-input>
+                    </div>
+                </div>
+                <br/>
+
+                <div class="row">
+                    <div class="col-xs-6">
+                        <ng-buhrma-input buhrma-input-model="staffSocioStatus.childrenInUniExpatAndFar"
+                                         buhrma-input-text="Stuying more than 50km away (expat)"
+                                         buhrma-input-type="number"></ng-buhrma-input>
+                    </div>
+                    <div class="col-xs-6">
+                        <ng-buhrma-date-input buhrma-date-model="staffSocioStatus.childrenInUniExpatAndFarStartDate"></ng-buhrma-date-input>
+                    </div>
+                </div>
+                <br/>
+
+            </div>
+            <div ng-if="innerModalPageNum === 4">
+
+                <h4 class="inner-page-title">Engagement status</h4>
 
                 <div class="row">
                     <div class="col-xs-6">
@@ -99,7 +138,49 @@
                     </div>
                 </div>
                 <br/>
-
+                <div class="row">
+                    <div class="col-xs-6">
+                        <ng-buhrma-select buhrma-select-model="staffSocioStatus.parttimePensionContr"
+                                          buhrma-select-text="If part time, full pension contribution"
+                                          buhrma-select-options="['No','Yes']"></ng-buhrma-select>
+                    </div>
+                    <div class="col-xs-6">
+                        <ng-buhrma-date-input buhrma-date-model="staffSocioStatus.parttimePensionContrStartDate"></ng-buhrma-date-input>
+                    </div>
+                </div>
+                <br/>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <ng-buhrma-select buhrma-select-model="staffSocioStatus.parentalLeave"
+                                          buhrma-select-text="On parental leave / family leave"
+                                          buhrma-select-options="['No','Yes']"></ng-buhrma-select>
+                    </div>
+                    <div class="col-xs-6">
+                        <ng-buhrma-date-input buhrma-date-model="staffSocioStatus.parentalLeaveStartDate"></ng-buhrma-date-input>
+                    </div>
+                </div>
+                <br/>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <ng-buhrma-select buhrma-select-model="staffSocioStatus.parentalLeaveExtension"
+                                          buhrma-select-text="Extension parental leave"
+                                          buhrma-select-options="['No','Yes']"></ng-buhrma-select>
+                    </div>
+                    <div class="col-xs-6">
+                        <ng-buhrma-date-input buhrma-date-model="staffSocioStatus.parentalLeaveExtensionStartDate"></ng-buhrma-date-input>
+                    </div>
+                </div>
+                <br/>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <ng-buhrma-select buhrma-select-model="staffSocioStatus.parentalLeaveIncrease"
+                                          buhrma-select-text="Increase, if parental / family leave"
+                                          buhrma-select-options="['No','Yes']"></ng-buhrma-select>
+                    </div>
+                    <div class="col-xs-6">
+                        <ng-buhrma-date-input buhrma-date-model="staffSocioStatus.parentalLeaveIncreaseStartDate"></ng-buhrma-date-input>
+                    </div>
+                </div>
 
             </div>
 
