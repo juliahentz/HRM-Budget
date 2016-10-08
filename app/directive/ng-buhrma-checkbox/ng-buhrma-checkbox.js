@@ -8,9 +8,9 @@ angular.module('HRMBudget').directive('ngBuhrmaCheckbox', function() {
         },
         templateUrl: 'directive/ng-buhrma-checkbox/ng-buhrma-checkbox.html',
         link: function(scope, element, attrs, fn) {
-
-            scope.emptyHidden = false;
-            scope.filledHidden = true;
+            
+            scope.emptyHidden = scope.buhrmaCheckboxModel;
+            scope.filledHidden = !scope.buhrmaCheckboxModel;
 
             scope.onCheckBoxClick = function(){
                 scope.emptyHidden = !scope.emptyHidden;

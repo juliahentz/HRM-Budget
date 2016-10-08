@@ -1,0 +1,64 @@
+<div class="buhrma-modal">
+	<div class="modal-header">
+		<button type="button" class="close pull-right" ng-click="onClickCancel()" aria-hidden="true">&times;</button>
+		<h4 class="modal-title">Customise table</h4>
+	</div>
+	<div class="modal-body">
+
+        <div class="row">
+            <div class="col-xs-6">
+                <ng-buhrma-checkbox buhrma-checkbox-model="booleans.name" buhrma-checkbox-label="Name"></ng-buhrma-checkbox>
+                <br/>
+                <ng-buhrma-checkbox buhrma-checkbox-model="booleans.surname" buhrma-checkbox-label="Surname"></ng-buhrma-checkbox>
+                <br/>
+                <ng-buhrma-checkbox buhrma-checkbox-model="booleans.staffNumber" buhrma-checkbox-label="Staff Number"></ng-buhrma-checkbox>
+                <br/>
+                <ng-buhrma-checkbox buhrma-checkbox-model="booleans.contractCategory" buhrma-checkbox-label="Contract Category"></ng-buhrma-checkbox>
+                <br/>
+                <ng-buhrma-checkbox buhrma-checkbox-model="booleans.grade" buhrma-checkbox-label="Grade"></ng-buhrma-checkbox>
+                <br/>
+                <ng-buhrma-checkbox buhrma-checkbox-model="booleans.step" buhrma-checkbox-label="Step"></ng-buhrma-checkbox>
+                <br/>
+                <ng-buhrma-checkbox buhrma-checkbox-model="booleans.startDate" buhrma-checkbox-label="Start Date"></ng-buhrma-checkbox>
+                <br/>
+                <ng-buhrma-checkbox buhrma-checkbox-model="booleans.endDate" buhrma-checkbox-label="End Date"></ng-buhrma-checkbox>
+                <br/>
+                <ng-buhrma-checkbox buhrma-checkbox-model="booleans.placeOfEmployment" buhrma-checkbox-label="Place of Employment"></ng-buhrma-checkbox>
+                <br/>
+                <ng-buhrma-checkbox buhrma-checkbox-model="booleans.headOfUnit" buhrma-checkbox-label="Head of Unit / Director"></ng-buhrma-checkbox>
+                <br/>
+                <ng-buhrma-checkbox buhrma-checkbox-model="booleans.TBAincrease" buhrma-checkbox-label="TBA Increase"></ng-buhrma-checkbox>
+                <br/>
+                <ng-buhrma-checkbox buhrma-checkbox-model="booleans.gender" buhrma-checkbox-label="Gender"></ng-buhrma-checkbox>
+            </div>
+            <div class="col-xs-6">
+                <ng-buhrma-checkbox buhrma-checkbox-model="booleans.nationality" buhrma-checkbox-label="Nationality"></ng-buhrma-checkbox>
+                <br/>
+                <ng-buhrma-checkbox buhrma-checkbox-model="booleans.birthDate" buhrma-checkbox-label="BirthDate"></ng-buhrma-checkbox>
+                <br/>
+                <ng-buhrma-checkbox buhrma-checkbox-model="booleans.nrOfChildren" buhrma-checkbox-label="Number of Children"></ng-buhrma-checkbox>
+                <br/>
+                <ng-buhrma-checkbox buhrma-checkbox-model="booleans.childrenUnderSix" buhrma-checkbox-label="Children Under the Age of 6"></ng-buhrma-checkbox>
+                <br/>
+                <ng-buhrma-checkbox buhrma-checkbox-model="booleans.childrenInUni" buhrma-checkbox-label="Children studying in University"></ng-buhrma-checkbox>
+                <br/>
+                <ng-buhrma-checkbox buhrma-checkbox-model="booleans.childrenInUniExpatAndFar" buhrma-checkbox-label="Children studying away from home"></ng-buhrma-checkbox>
+                <br/>
+                <ng-buhrma-checkbox buhrma-checkbox-model="booleans.fullTimePercentage" buhrma-checkbox-label="Fulltime Percentage"></ng-buhrma-checkbox>
+                <br/>
+                <ng-buhrma-checkbox buhrma-checkbox-model="booleans.parttimePensionContr" buhrma-checkbox-label="In case of parttine, pension contribution"></ng-buhrma-checkbox>
+                <br/>
+                <ng-buhrma-checkbox buhrma-checkbox-model="booleans.parentalLeave" buhrma-checkbox-label="Parental Leave"></ng-buhrma-checkbox>
+                <br/>
+                <ng-buhrma-checkbox buhrma-checkbox-model="booleans.parentalLeaveExtension" buhrma-checkbox-label="Parental Leave Extension"></ng-buhrma-checkbox>
+                <br/>
+                <ng-buhrma-checkbox buhrma-checkbox-model="booleans.parentalLeaveIncrease" buhrma-checkbox-label="Parental Leave Increase"></ng-buhrma-checkbox>
+            </div>
+        </div>
+
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-default" ng-click="onClickCancel()">Cancel</button>
+		<button type="button" class="btn btn-primary" ng-click="onClikcSave()">Save changes</button>
+	</div>
+</div>

@@ -162,4 +162,50 @@ angular.module('HRMBudget').controller('StaffCtrl',function(
             }
         });
     };
+
+    // CUSTOMISE TABLE
+
+    $scope.customTableElements = {
+        name: true,
+        surname: true,
+        staffNumber: true,
+        contractCategory: true,
+        grade: true,
+        step: true,
+        startDate: true,
+        endDate: true,
+        placeOfEmployment: true,
+        headOfUnit: true,
+        TBAincrease: true,
+        gender: true,
+        nationality: true,
+        birthDate: true,
+        nrOfChildren: true,
+        childrenUnderSix: true,
+        childrenInUni: true,
+        childrenInUniExpatAndFar: true,
+        fullTimePercentage: true,
+        parttimePensionContr: true,
+        parentalLeave: true,
+        parentalLeaveExtension: true,
+        parentalLeaveIncrease: true
+    };
+
+    $scope.onCustomiseTableClick = function(){
+        var modalInstance = $uibModal.open({
+            animation: true,
+            templateUrl: 'modal/modal-table-checkbox/modal-table-checkbox.html',
+            controller: 'ModalTableCheckboxCtrl',
+            size: 'md',
+            backdrop  : 'static',
+            keyboard  : false,
+            resolve: {
+                booleans: function(){
+                    return $scope.customTableElements
+                }
+            }
+        }).result.then(function(customTableElements){
+            $scope.customTableElements = customTableElements;
+        });
+    }
 });
