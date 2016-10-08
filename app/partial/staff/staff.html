@@ -22,14 +22,21 @@
                         <th>Step</th>
                         <th>Start date</th>
                         <th>End date</th>
+                        <th>Place of Employment</th>
                         <th>Head of Unit</th>
                         <th>TBA increase</th>
                         <th>Gender</th>
                         <th>Nationality</th>
                         <th>Birth date</th>
-                        <th>Marital status</th>
                         <th>Nr of children</th>
+                        <th>Children under 6</th>
+                        <th>Children in Uni</th>
+                        <th>Children studying away</th>
                         <th>Fulltime %</th>
+                        <th>Pension contribution</th>
+                        <th>Parental leave</th>
+                        <th>Parental leave extension</th>
+                        <th>Parental leave increase</th>
                         <th></th>
                         <th></th>
                     </tr>
@@ -47,14 +54,21 @@
                         <td>{{staffMember.stepByStep.positionsFilled[0].step}}</td>
                         <td>{{staffMember.stepByStep.positionsFilled[0].startDate | date:'dd/MM/yyyy'}}</td>
                         <td>{{staffMember.stepByStep.positionsFilled[0].endDate | date:'dd/MM/yyyy'}}</td>
+                        <td>{{staffMember.stepByStep.positionsFilled[0].placeOfEmployment}}</td>
                         <td><span ng-if="staffMember.stepByStep.positionsFilled[0].headOfUnit"><i class="fa fa-check" aria-hidden="true"></i></span></td>
                         <td><span ng-if="staffMember.stepByStep.positionsFilled[0].TBAIncrease"><i class="fa fa-check" aria-hidden="true"></i></span></td>
                         <td>{{staffMember.personalData.gender}}</td>
                         <td>{{staffMember.personalData.nationality}}</td>
                         <td>{{staffMember.personalData.birthDate | date:'dd/MM/yyyy'}}</td>
-                        <td>{{staffMember.socioStatus.maritalStatus[0].status}}</td>
                         <td>{{staffMember.socioStatus.numChildren[0].status}}</td>
+                        <td>{{staffMember.socioStatus.childrenUnderSix[0].status}}</td>
+                        <td>{{staffMember.socioStatus.childrenInUni[0].status}}</td>
+                        <td>{{staffMember.socioStatus.childrenInUniExpatAndFar[0].status}}</td>
                         <td>{{staffMember.socioStatus.fullTimePercentage[0].status}}</td>
+                        <td><span ng-if="staffMember.socioStatus.parttimePensionContr[0].status"><i class="fa fa-check" aria-hidden="true"></i></span></td>
+                        <td><span ng-if="staffMember.socioStatus.parentalLeave[0].status"><i class="fa fa-check" aria-hidden="true"></i></span></td>
+                        <td><span ng-if="staffMember.socioStatus.parentalLeaveExtension[0].status"><i class="fa fa-check" aria-hidden="true"></i></span></td>
+                        <td><span ng-if="staffMember.socioStatus.parentalLeaveIncrease[0].status"><i class="fa fa-check" aria-hidden="true"></i></span></td>
                         <td><div class="btn btn-xs btn-default" ng-click="onClickButton('staffMember', staffMember._id)"><i class="fa fa-pencil" aria-hidden="true"></i></div></td>
                         <td><div class="btn btn-xs btn-danger" ng-click="onClickDelete('staffMember', staffMember._id)"><i class="fa fa-trash-o" aria-hidden="true"></i></div></td>
                     </tr>

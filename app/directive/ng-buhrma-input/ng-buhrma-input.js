@@ -5,10 +5,17 @@ angular.module('HRMBudget').directive('ngBuhrmaInput', function() {
         scope: {
             buhrmaInputModel: '=',
             buhrmaInputText: '@',
-            buhrmaInputType: '@'
+            buhrmaInputType: '@',
+            buhrmaInputPrefill: '='
         },
         templateUrl: 'directive/ng-buhrma-input/ng-buhrma-input.html',
         link: function(scope, element, attrs, fn) {
+
+            if(scope.buhrmaInputModel === '' || scope.buhrmaInputModel == null){
+                if(scope.buhrmaInputPrefill){
+                    scope.buhrmaInputModel = scope.buhrmaInputPrefill.data;
+                }
+            }
 
             scope.model = scope.buhrmaInputModel;
 

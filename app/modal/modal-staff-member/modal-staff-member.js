@@ -17,6 +17,9 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
     $scope.currentTime = new Date();
     $scope.innerModalPageNum = 1;
 
+    $scope.zero = 0;
+    $scope.hundred = 100;
+
     // todo fix modal page number array
     $scope.innerModalPages = [1,2,3,4];
 

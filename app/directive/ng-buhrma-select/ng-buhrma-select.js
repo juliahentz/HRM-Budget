@@ -1,23 +1,29 @@
-angular.module('HRMBudget').directive('ngBuhrmaSelect', function(
-    $compile,
-    $timeout
-) {
+angular.module('HRMBudget').directive('ngBuhrmaSelect', function() {
     return {
         restrict: 'E',
         replace: false,
         scope: {
             buhrmaSelectModel: '=',
             buhrmaSelectText: '@',
-            buhrmaSelectOptions: '=?'
+            buhrmaSelectOptions: '=?',
+            buhrmaSelectPrefill: '@'
         },
         templateUrl: 'directive/ng-buhrma-select/ng-buhrma-select.html',
         link: function(scope, element, attrs, fn) {
 
             scope.labelElement = $(element.find('label')[0]);
 
+            console.log(scope.buhrmaSelectPrefill);
+
+            if(scope.buhrmaSelectModel === '' || scope.buhrmaSelectModel == null){
+                if(scope.buhrmaSelectPrefill){
+                    scope.buhrmaSelectModel = scope.buhrmaSelectPrefill;
+                }
+            }
+
             scope.model = scope.buhrmaSelectModel;
+
             scope.selectOptions = scope.buhrmaSelectOptions;
-            //scope.selectOptions = scope[attrs.buhrmaSelectOptions];
 
             scope.selectOptions.sort();
 

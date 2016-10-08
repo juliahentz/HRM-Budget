@@ -2,18 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e334675e-fbcb-45fb-bf0d-4972e6b0528f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/resources/param-place-of-employment/model.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/resources/param-place-of-employment/router.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/service/param-place-of-employment-service-spec.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/service/param-place-of-employment-service.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/resources/index.js" afterPath="$PROJECT_DIR$/api/resources/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/resources/socio-status/model.js" afterPath="$PROJECT_DIR$/api/resources/socio-status/model.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/resources/step-by-step/model.js" afterPath="$PROJECT_DIR$/api/resources/step-by-step/model.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.js" afterPath="$PROJECT_DIR$/app/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/index.html" afterPath="$PROJECT_DIR$/app/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/directive/ng-buhrma-checkbox/ng-buhrma-checkbox.html" afterPath="$PROJECT_DIR$/app/directive/ng-buhrma-checkbox/ng-buhrma-checkbox.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/directive/ng-buhrma-checkbox/ng-buhrma-checkbox.less" afterPath="$PROJECT_DIR$/app/directive/ng-buhrma-checkbox/ng-buhrma-checkbox.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/directive/ng-buhrma-input/ng-buhrma-input.js" afterPath="$PROJECT_DIR$/app/directive/ng-buhrma-input/ng-buhrma-input.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/directive/ng-buhrma-select/ng-buhrma-select.js" afterPath="$PROJECT_DIR$/app/directive/ng-buhrma-select/ng-buhrma-select.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modal/modal-staff-member/modal-staff-member.html" afterPath="$PROJECT_DIR$/app/modal/modal-staff-member/modal-staff-member.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modal/modal-staff-member/modal-staff-member.js" afterPath="$PROJECT_DIR$/app/modal/modal-staff-member/modal-staff-member.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/partial/staff/staff.html" afterPath="$PROJECT_DIR$/app/partial/staff/staff.html" />
     </list>
     <ignored path="FinalAssigment.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -37,38 +32,48 @@
       <file leaf-file-name="modal-staff-member.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/modal/modal-staff-member/modal-staff-member.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="91">
-              <caret line="39" column="89" selection-start-line="39" selection-start-column="89" selection-end-line="39" selection-end-column="89" />
+            <state relative-caret-position="133">
+              <caret line="186" column="101" selection-start-line="186" selection-start-column="80" selection-end-line="186" selection-end-column="101" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="modal-staff-member.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ng-buhrma-select.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/directive/ng-buhrma-select/ng-buhrma-select.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="17" column="12" selection-start-line="17" selection-start-column="12" selection-end-line="21" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="staff.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/partial/staff/staff.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="70" column="151" selection-start-line="70" selection-start-column="151" selection-end-line="70" selection-end-column="151" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ng-buhrma-input.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/directive/ng-buhrma-input/ng-buhrma-input.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="15" column="74" selection-start-line="15" selection-start-column="74" selection-end-line="15" selection-end-column="74" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="modal-staff-member.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/modal/modal-staff-member/modal-staff-member.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="201">
-              <caret line="29" column="30" selection-start-line="29" selection-start-column="30" selection-end-line="29" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/app.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="186">
-              <caret line="35" column="12" selection-start-line="35" selection-start-column="12" selection-end-line="37" selection-end-column="14" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="param-place-of-employment-service.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/service/param-place-of-employment-service.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="1" column="9" selection-start-line="1" selection-start-column="9" selection-end-line="1" selection-end-column="9" />
+            <state relative-caret-position="255">
+              <caret line="20" column="5" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -90,7 +95,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/index.html" />
         <option value="$PROJECT_DIR$/app/app.less" />
         <option value="$PROJECT_DIR$/app/partial/staff/staff.less" />
         <option value="$PROJECT_DIR$/app/partial/header/header.js" />
@@ -123,14 +127,10 @@
         <option value="$PROJECT_DIR$/api/resources/entitlements/router.js" />
         <option value="$PROJECT_DIR$/api/resources/staff-member/router.js" />
         <option value="$PROJECT_DIR$/app/directive/ng-buhrma-checkbox/ng-buhrma-checkbox.js" />
-        <option value="$PROJECT_DIR$/app/directive/ng-buhrma-checkbox/ng-buhrma-checkbox.html" />
-        <option value="$PROJECT_DIR$/app/directive/ng-buhrma-checkbox/ng-buhrma-checkbox.less" />
         <option value="$PROJECT_DIR$/app/partial/staff/staff.js" />
-        <option value="$PROJECT_DIR$/app/partial/staff/staff.html" />
         <option value="$PROJECT_DIR$/app/directive/ng-buhrma-input/ng-buhrma-input.less" />
         <option value="$PROJECT_DIR$/app/directive/ng-buhrma-select/ng-buhrma-select.less" />
         <option value="$PROJECT_DIR$/app/modal/modal-staff-member/modal-staff-member.less" />
-        <option value="$PROJECT_DIR$/app/directive/ng-buhrma-input/ng-buhrma-input.js" />
         <option value="$PROJECT_DIR$/api/resources/socio-status/model.js" />
         <option value="$PROJECT_DIR$/api/resources/index.js" />
         <option value="$PROJECT_DIR$/api/resources/param-place-of-employment/model.js" />
@@ -139,8 +139,13 @@
         <option value="$PROJECT_DIR$/app/service/param-place-of-employment-service.js" />
         <option value="$PROJECT_DIR$/app/app.js" />
         <option value="$PROJECT_DIR$/api/resources/step-by-step/model.js" />
-        <option value="$PROJECT_DIR$/app/modal/modal-staff-member/modal-staff-member.html" />
+        <option value="$PROJECT_DIR$/app/directive/ng-buhrma-checkbox/ng-buhrma-checkbox.html" />
+        <option value="$PROJECT_DIR$/app/directive/ng-buhrma-checkbox/ng-buhrma-checkbox.less" />
         <option value="$PROJECT_DIR$/app/modal/modal-staff-member/modal-staff-member.js" />
+        <option value="$PROJECT_DIR$/app/modal/modal-staff-member/modal-staff-member.html" />
+        <option value="$PROJECT_DIR$/app/directive/ng-buhrma-select/ng-buhrma-select.js" />
+        <option value="$PROJECT_DIR$/app/directive/ng-buhrma-input/ng-buhrma-input.js" />
+        <option value="$PROJECT_DIR$/app/partial/staff/staff.html" />
       </list>
     </option>
   </component>
@@ -384,6 +389,28 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="directive" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ng-buhrma-checkbox" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FinalAssigment" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FinalAssigment" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="api" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -591,12 +618,12 @@
       <workItem from="1472600420327" duration="965000" />
       <workItem from="1472909002035" duration="54188000" />
       <workItem from="1451606469746" duration="32524000" />
-      <workItem from="1474547341227" duration="113370000" />
+      <workItem from="1474547341227" duration="116102000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="201047000" />
+    <option name="totallyTimeSpent" value="203779000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1271" height="753" extended-state="0" />
@@ -636,14 +663,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/api/resources/sample/router.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="2" selection-start-line="6" selection-start-column="2" selection-end-line="6" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/api/resources/sample/model.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -836,42 +855,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/directive/ng-buhrma-checkbox/ng-buhrma-checkbox.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="31" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/partial/staff/staff.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="11" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/directive/ng-buhrma-checkbox/ng-buhrma-checkbox.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" column="24" selection-start-line="25" selection-start-column="24" selection-end-line="25" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/directive/ng-buhrma-checkbox/ng-buhrma-checkbox.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="150" selection-start-line="2" selection-start-column="104" selection-end-line="2" selection-end-column="150" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/partial/staff/staff.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="50" column="142" selection-start-line="50" selection-start-column="142" selection-end-line="50" selection-end-column="142" />
           <folding />
         </state>
       </provider>
@@ -920,14 +907,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/directive/ng-buhrma-input/ng-buhrma-input.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="47" selection-start-line="16" selection-start-column="47" selection-end-line="16" selection-end-column="47" />
           <folding />
         </state>
       </provider>
@@ -996,22 +975,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/service/param-place-of-employment-service.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="9" selection-start-line="1" selection-start-column="9" selection-end-line="1" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="35" column="12" selection-start-line="35" selection-start-column="12" selection-end-line="37" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/api/resources/socio-status/model.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="250">
@@ -1028,18 +991,82 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/modal/modal-staff-member/modal-staff-member.html">
+    <entry file="file://$PROJECT_DIR$/app/directive/ng-buhrma-checkbox/ng-buhrma-checkbox.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="91">
-          <caret line="39" column="89" selection-start-line="39" selection-start-column="89" selection-end-line="39" selection-end-column="89" />
+        <state relative-caret-position="45">
+          <caret line="3" column="60" selection-start-line="3" selection-start-column="60" selection-end-line="3" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/directive/ng-buhrma-checkbox/ng-buhrma-checkbox.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="31" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/directive/ng-buhrma-checkbox/ng-buhrma-checkbox.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-30">
+          <caret line="9" column="24" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="35" column="12" selection-start-line="35" selection-start-column="12" selection-end-line="37" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/service/param-place-of-employment-service.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="9" selection-start-line="1" selection-start-column="9" selection-end-line="1" selection-end-column="9" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/modal/modal-staff-member/modal-staff-member.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="29" column="30" selection-start-line="29" selection-start-column="30" selection-end-line="29" selection-end-column="30" />
+        <state relative-caret-position="255">
+          <caret line="20" column="5" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/modal/modal-staff-member/modal-staff-member.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="186" column="101" selection-start-line="186" selection-start-column="80" selection-end-line="186" selection-end-column="101" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/directive/ng-buhrma-select/ng-buhrma-select.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="17" column="12" selection-start-line="17" selection-start-column="12" selection-end-line="21" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/directive/ng-buhrma-input/ng-buhrma-input.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="74" selection-start-line="15" selection-start-column="74" selection-end-line="15" selection-end-column="74" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/partial/staff/staff.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="70" column="151" selection-start-line="70" selection-start-column="151" selection-end-line="70" selection-end-column="151" />
           <folding />
         </state>
       </provider>
