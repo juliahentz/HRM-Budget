@@ -1,4 +1,6 @@
-angular.module('HRMBudget').directive('ngBuhrmaSelect', function() {
+angular.module('HRMBudget').directive('ngBuhrmaSelect', function(
+    $timeout
+) {
     return {
         restrict: 'E',
         replace: false,

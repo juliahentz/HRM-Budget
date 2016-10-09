@@ -56,8 +56,6 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
     $scope.allGradesInContract = [];
     $scope.allGradesInContractObj = [];
     $scope.allStepsInGrade = [];
-    $scope.contractSelectClicked = false;
-    $scope.gradeSelectClicked = false;
 
     angular.forEach($scope.allContracts, function(contract, index){
         $scope.allContractNames.push(contract.name);
@@ -70,54 +68,44 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
     // LOOPING THROUGH ALL CONTRACTS AND REFERENCING THE GRADES AVAILABLE IN THE CURRENTLY SELECTED CONTRACT
     $scope.getAllGrades = function(){
 
-        if($scope.contractSelectClicked == false){
-            $scope.contractSelectClicked = true;
-        }else {
-            angular.forEach($scope.allContracts, function(contract, index){
-                if(contract.name === $scope.selectedContract.category){
+        angular.forEach($scope.allContracts, function(contract, index){
+            if(contract.name === $scope.selectedContract.category){
 
-                    if($scope.allGradesInContract.length == 0){
-                        angular.forEach(contract.grades, function(grade, j){
-                            $scope.allGradesInContract.push(grade.gradeNumber);
-                            $scope.allGradesInContractObj.push(grade);
-                        });
-                    }else{
-                        $scope.allGradesInContract = [];
-                        angular.forEach(contract.grades, function(grade, j){
-                            $scope.allGradesInContract.push(grade.gradeNumber);
-                            $scope.allGradesInContractObj.push(grade);
-                        });
-                    }
+                if($scope.allGradesInContract.length == 0){
+                    angular.forEach(contract.grades, function(grade, j){
+                        $scope.allGradesInContract.push(grade.gradeNumber);
+                        $scope.allGradesInContractObj.push(grade);
+                    });
+                }else{
+                    $scope.allGradesInContract = [];
+                    angular.forEach(contract.grades, function(grade, j){
+                        $scope.allGradesInContract.push(grade.gradeNumber);
+                        $scope.allGradesInContractObj.push(grade);
+                    });
                 }
-            });
-            $scope.contractSelectClicked = false;
-        }
+            }
+        });
     };
 
     // LOOPING THROUGH ALL GRADES AND REFERENCING THE STEPS AVAILABLE IN THE CURRENTLY SELECTED CONTRACT
     $scope.getAllSteps = function(){
 
-        if($scope.gradeSelectClicked == false){
-            $scope.gradeSelectClicked = true;
-        }else {
-            angular.forEach($scope.allGradesInContractObj, function(grade, index){
+        angular.forEach($scope.allGradesInContractObj, function(grade, index){
 
-                if(grade.gradeNumber == $scope.selectedContract.grade){
+            if(grade.gradeNumber == $scope.selectedContract.grade){
 
-                    if($scope.allStepsInGrade.length == 0){
-                        angular.forEach(grade.steps, function(step, j){
-                            $scope.allStepsInGrade.push(step.stepNumber);
-                        });
-                    }else{
-                        $scope.allStepsInGrade = [];
-                        angular.forEach(grade.steps, function(step, j){
-                            $scope.allStepsInGrade.push(step.stepNumber);
-                        });
-                    }
+                if($scope.allStepsInGrade.length == 0){
+                    angular.forEach(grade.steps, function(step, j){
+                        $scope.allStepsInGrade.push(step.stepNumber);
+                    });
+                }else{
+                    $scope.allStepsInGrade = [];
+                    angular.forEach(grade.steps, function(step, j){
+                        $scope.allStepsInGrade.push(step.stepNumber);
+                    });
                 }
-            });
-            $scope.gradeSelectClicked = false;
-        }
+            }
+        });
     };
 
     $scope.datePeriodStart = {
@@ -136,6 +124,8 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
     if(Object.keys($scope.selectedStaffMember).length == 0){
 
         $scope.selectedContract = {};
+        $scope.selectedContract.headOfUnit = false;
+        $scope.selectedContract.TBAIncrease = false;
 
     }else if($scope.selectedStaffMember.stepByStep.length != 0){
 
@@ -158,6 +148,8 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
         $scope.getAllSteps();
     }else{
         $scope.selectedContract = {};
+        $scope.selectedContract.headOfUnit = false;
+        $scope.selectedContract.TBAIncrease = false;
     }
 
     // ENTITLEMENTS
@@ -167,27 +159,28 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
         $scope.entitlements = {};
 
     }else if($scope.selectedStaffMember.entitlements.length != 0){
+
         $scope.entitlements = $scope.selectedStaffMember.entitlements.entitlements[0];
 
         if($scope.selectedStaffMember.entitlements.entitlements[0].householdAllowance === true){
             $scope.entitlements.householdAllowance = 'Yes';
-        }else{
+        }else if($scope.selectedStaffMember.entitlements.entitlements[0].householdAllowance === false){
             $scope.entitlements.householdAllowance = 'No';
         }
+
         if($scope.selectedStaffMember.entitlements.entitlements[0].flatRateOvertime === true){
             $scope.entitlements.flatRateOvertime = 'Yes';
-        }else{
+        }else if($scope.selectedStaffMember.entitlements.entitlements[0].flatRateOvertime === false){
             $scope.entitlements.flatRateOvertime = 'No';
         }
+
         if($scope.selectedStaffMember.entitlements.entitlements[0].nonFlatrateSchoolAllowance === true){
             $scope.entitlements.nonFlatrateSchoolAllowance = 'Yes';
-        }else{
+        }else if($scope.selectedStaffMember.entitlements.entitlements[0].nonFlatrateSchoolAllowance === false){
             $scope.entitlements.nonFlatrateSchoolAllowance = 'No';
         }
 
     }else{
-
-        $scope.selectedContract = {};
         $scope.entitlements = {};
     }
 
@@ -228,6 +221,7 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
         $scope.staffSocioStatus.childrenUnderSix = $scope.selectedStaffMember.socioStatus.statuses[0].childrenUnderSix;
         $scope.staffSocioStatus.childrenInUni = $scope.selectedStaffMember.socioStatus.statuses[0].childrenInUni;
         $scope.staffSocioStatus.childrenInUniExpatAndFar = $scope.selectedStaffMember.socioStatus.statuses[0].childrenInUniExpatAndFar;
+
         $scope.staffSocioStatus.fullTimePerc = $scope.selectedStaffMember.socioStatus.statuses[0].fullTimePercentage;
 
         if($scope.selectedStaffMember.socioStatus.statuses[0].parttimePensionContr === true){
@@ -346,7 +340,7 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
                 $scope.socioStatusInnerItem.childrenInUni = $scope.staffSocioStatus.childrenInUni;
                 $scope.socioStatusInnerItem.childrenInUniExpatAndFar = $scope.staffSocioStatus.childrenInUniExpatAndFar;
 
-                $scope.socioStatusInnerItem.fullTimePerc = $scope.staffSocioStatus.fullTimePerc;
+                $scope.socioStatusInnerItem.fullTimePercentage = $scope.staffSocioStatus.fullTimePerc;
 
                 if($scope.staffSocioStatus.parttimePensionContr === 'No'){
                     $scope.socioStatusInnerItem.parttimePensionContr = false;
@@ -470,7 +464,7 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
                 $scope.socioStatusInnerItem.childrenInUni = $scope.staffSocioStatus.childrenInUni;
                 $scope.socioStatusInnerItem.childrenInUniExpatAndFar = $scope.staffSocioStatus.childrenInUniExpatAndFar;
 
-                $scope.socioStatusInnerItem.fullTimePerc = $scope.staffSocioStatus.fullTimePerc;
+                $scope.socioStatusInnerItem.fullTimePercentage = $scope.staffSocioStatus.fullTimePerc;
 
                 if($scope.staffSocioStatus.parttimePensionContr === 'No'){
                     $scope.socioStatusInnerItem.parttimePensionContr = false;
@@ -551,6 +545,7 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
         $scope.allStepsInGrade = [];
         $scope.selectedContract = {};
 
+
         $scope.staffPersonalData = {};
 
         $uibModalInstance.close();
@@ -562,7 +557,8 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
     // todo fix array element to current date filter
     if($scope.selectedStaffMember.socioStatus == null){
         $scope.today = function() {
-            $scope.staffSocioStatus.StartDate = new Date();
+            $scope.staffSocioStatus.startDate = new Date();
+            $scope.staffSocioStatus.endDate = new Date();
             $scope.staffPersonalData.birthDate  = new Date();
             $scope.selectedContract.startDate  = new Date();
             $scope.selectedContract.endDate  = new Date();
@@ -572,7 +568,8 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
         };
     }else{
         $scope.today = function() {
-            $scope.staffSocioStatus.StartDate = new Date($scope.selectedStaffMember.socioStatus.statuses[0].startDate);
+            $scope.staffSocioStatus.startDate = new Date($scope.selectedStaffMember.socioStatus.statuses[0].startDate);
+            $scope.staffSocioStatus.endDate = new Date($scope.selectedStaffMember.socioStatus.statuses[0].endDate);
             $scope.staffPersonalData.birthDate  = new Date($scope.staffPersonalData.birthDate);
             $scope.selectedContract.startDate  = new Date($scope.selectedContract.startDate);
             $scope.selectedContract.endDate  = new Date($scope.selectedContract.endDate);

@@ -6,14 +6,18 @@
         <div class="icon-container" ng-click="onClickButton('newStaff')"><i class="fa fa-plus" aria-hidden="true"></i></div>
         <div class="btn btn-sm buhrma-btn" ng-click="onClickButton('newStaff')">Add New Staff</div>
 
-        <div class="icon-container" ng-click="onClickButton('newStaff')"><i class="fa fa-check-square-o" aria-hidden="true"></i></div>
+        <div class="icon-container" ng-click="onCustomiseTableClick()"><i class="fa fa-check-square-o" aria-hidden="true"></i></div>
         <div class="btn btn-sm buhrma-btn" ng-click="onCustomiseTableClick()">Customise table</div>
+
+        <div class="icon-container" ng-click="exportToExcel('#table-to-export')"><i class="fa fa-cloud-download" aria-hidden="true"></i></div>
+        <div class="btn btn-sm buhrma-btn" ng-click="exportToExcel('#table-to-export')">Export table to excel</div>
+
     </div>
     <hr/>
     <br/>
     <div>
         <div class="buhrma-table-container">
-            <table class="table buhrma-table">
+            <table class="table buhrma-table" id="table-to-export">
                 <thead>
                     <tr>
                         <th ng-if="customTableElements.name">Name</th>
@@ -52,6 +56,7 @@
                 </thead>
                 <tbody>
                     <tr ng-repeat="staffMember in staffMembers">
+
                         <td ng-if="customTableElements.name">{{staffMember.name}}</td>
                         <td ng-if="customTableElements.surname">{{staffMember.surname}}</td>
                         <td ng-if="customTableElements.staffNumber">{{staffMember.staffNumber}}</td>
@@ -67,12 +72,12 @@
                         <td ng-if="customTableElements.startDate">{{staffMember.stepByStep.positionsFilled[0].startDate | date:'dd/MM/yyyy'}}</td>
                         <td ng-if="customTableElements.endDate">{{staffMember.stepByStep.positionsFilled[0].endDate | date:'dd/MM/yyyy'}}</td>
                         <td ng-if="customTableElements.placeOfEmployment">{{staffMember.stepByStep.positionsFilled[0].placeOfEmployment}}</td>
-                        <td ng-if="customTableElements.headOfUnit"><span ng-if="staffMember.stepByStep.positionsFilled[0].headOfUnit"><i class="fa fa-check" aria-hidden="true"></i></span></td>
-                        <td ng-if="customTableElements.TBAincrease"><span ng-if="staffMember.stepByStep.positionsFilled[0].TBAIncrease"><i class="fa fa-check" aria-hidden="true"></i></span></td>
-                        <td ng-if="customTableElements.householdAllowance"><span ng-if="staffMember.entitlements.entitlements[0].householdAllowance"><i class="fa fa-check" aria-hidden="true"></i></span></td>
+                        <td ng-if="customTableElements.headOfUnit"><span ng-if="staffMember.stepByStep.positionsFilled[0].headOfUnit"><i class="fa fa-check" aria-hidden="true"></i></span><span style="display:none">{{staffMember.stepByStep.positionsFilled[0].headOfUnit}}</span></td>
+                        <td ng-if="customTableElements.TBAincrease"><span ng-if="staffMember.stepByStep.positionsFilled[0].TBAIncrease"><i class="fa fa-check" aria-hidden="true"></i></span><span style="display:none">{{staffMember.stepByStep.positionsFilled[0].TBAIncrease}}</span></td>
+                        <td ng-if="customTableElements.householdAllowance"><span ng-if="staffMember.entitlements.entitlements[0].householdAllowance"><i class="fa fa-check" aria-hidden="true"></i></span><span style="display:none">{{staffMember.entitlements.entitlements[0].householdAllowance}}</span></td>
                         <td ng-if="customTableElements.expatriationAllowance">{{staffMember.entitlements.entitlements[0].expatriationAllowance}}</td>
-                        <td ng-if="customTableElements.flatRateOvertime"><span ng-if="staffMember.entitlements.entitlements[0].flatRateOvertime"><i class="fa fa-check" aria-hidden="true"></i></span></td>
-                        <td ng-if="customTableElements.nonFlatrateSchoolAllowance"><span ng-if="staffMember.entitlements.entitlements[0].nonFlatrateSchoolAllowance"><i class="fa fa-check" aria-hidden="true"></i></span></td>
+                        <td ng-if="customTableElements.flatRateOvertime"><span ng-if="staffMember.entitlements.entitlements[0].flatRateOvertime"><i class="fa fa-check" aria-hidden="true"></i></span><span style="display:none">{{staffMember.entitlements.entitlements[0].flatRateOvertime}}</span></td>
+                        <td ng-if="customTableElements.nonFlatrateSchoolAllowance"><span ng-if="staffMember.entitlements.entitlements[0].nonFlatrateSchoolAllowance"><i class="fa fa-check" aria-hidden="true"></i></span><span style="display:none">{{staffMember.entitlements.entitlements[0].nonFlatrateSchoolAllowance}}</span></td>
                         <td ng-if="customTableElements.placeOfOriginDistance">{{staffMember.entitlements.entitlements[0].placeOfOriginDistance}}</td>
                         <td ng-if="customTableElements.placeOfOriginTravellers">{{staffMember.entitlements.entitlements[0].placeOfOriginNumOfTravellers}}</td>
                         <td ng-if="customTableElements.deductions">{{staffMember.entitlements.entitlements[0].deductions}}</td>
@@ -81,10 +86,10 @@
                         <td ng-if="customTableElements.childrenInUni">{{staffMember.socioStatus.statuses[0].childrenInUni}}</td>
                         <td ng-if="customTableElements.childrenInUniExpatAndFar">{{staffMember.socioStatus.statuses[0].childrenInUniExpatAndFar}}</td>
                         <td ng-if="customTableElements.fullTimePercentage">{{staffMember.socioStatus.statuses[0].fullTimePercentage}}</td>
-                        <td ng-if="customTableElements.parttimePensionContr"><span ng-if="staffMember.socioStatus.statuses[0].parttimePensionContr"><i class="fa fa-check" aria-hidden="true"></i></span></td>
-                        <td ng-if="customTableElements.parentalLeave"><span ng-if="staffMember.socioStatus.statuses[0].parentalLeave"><i class="fa fa-check" aria-hidden="true"></i></span></td>
-                        <td ng-if="customTableElements.parentalLeaveExtension"><span ng-if="staffMember.socioStatus.statuses[0].parentalLeaveExtension"><i class="fa fa-check" aria-hidden="true"></i></span></td>
-                        <td ng-if="customTableElements.parentalLeaveIncrease"><span ng-if="staffMember.socioStatus.statuses[0].parentalLeaveIncrease"><i class="fa fa-check" aria-hidden="true"></i></span></td>
+                        <td ng-if="customTableElements.parttimePensionContr"><span ng-if="staffMember.socioStatus.statuses[0].parttimePensionContr"><i class="fa fa-check" aria-hidden="true"></i></span><span style="display:none">{{staffMember.socioStatus.statuses[0].parttimePensionContr}}</span></td>
+                        <td ng-if="customTableElements.parentalLeave"><span ng-if="staffMember.socioStatus.statuses[0].parentalLeave"><i class="fa fa-check" aria-hidden="true"></i></span><span style="display:none">{{staffMember.socioStatus.statuses[0].parentalLeave}}</span></td>
+                        <td ng-if="customTableElements.parentalLeaveExtension"><span ng-if="staffMember.socioStatus.statuses[0].parentalLeaveExtension"><i class="fa fa-check" aria-hidden="true"></i></span><span style="display:none">{{staffMember.socioStatus.statuses[0].parentalLeaveExtension}}</span></td>
+                        <td ng-if="customTableElements.parentalLeaveIncrease"><span ng-if="staffMember.socioStatus.statuses[0].parentalLeaveIncrease"><i class="fa fa-check" aria-hidden="true"></i></span><span style="display:none">{{staffMember.socioStatus.statuses[0].parentalLeaveIncrease}}</span></td>
                         <td><div class="btn btn-xs btn-default" ng-click="onClickButton('staffMember', staffMember._id)"><i class="fa fa-pencil" aria-hidden="true"></i></div></td>
                         <td><div class="btn btn-xs btn-danger" ng-click="onClickDelete('staffMember', staffMember._id)"><i class="fa fa-trash-o" aria-hidden="true"></i></div></td>
                     </tr>
