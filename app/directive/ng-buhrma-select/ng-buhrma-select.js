@@ -13,8 +13,6 @@ angular.module('HRMBudget').directive('ngBuhrmaSelect', function() {
 
             scope.labelElement = $(element.find('label')[0]);
 
-            console.log(scope.buhrmaSelectPrefill);
-
             if(scope.buhrmaSelectModel === '' || scope.buhrmaSelectModel == null){
                 if(scope.buhrmaSelectPrefill){
                     scope.buhrmaSelectModel = scope.buhrmaSelectPrefill;

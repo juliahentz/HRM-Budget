@@ -9,7 +9,8 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
     publicApiService,
     personalDataService,
     socioStatusService,
-    postService
+    postService,
+    entitlementsService
 ){
 
 // -- 1. INIT --------------------------------------
@@ -17,11 +18,8 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
     $scope.currentTime = new Date();
     $scope.innerModalPageNum = 1;
 
-    $scope.zero = 0;
-    $scope.hundred = 100;
-
     // todo fix modal page number array
-    $scope.innerModalPages = [1,2,3,4];
+    $scope.innerModalPages = [1,2,3,4,5];
 
     // REFERENCING MODELS RECEIVED FROM SERVER
     $scope.staffMembers = staffService.model.list;
@@ -52,6 +50,9 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
     $scope.socioStatusInnerItem7 = {};
     $scope.socioStatusInnerItem8 = {};
     $scope.socioStatusInnerItem9 = {};
+
+    $scope.entitlementsItem = {};
+    $scope.entitlementsInnerItem = {};
 
 // -- 2. LOGIC: CONTRACT FOR STAFF MEMBER ----------
 
@@ -141,6 +142,7 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
     if(Object.keys($scope.selectedStaffMember).length == 0){
 
         $scope.selectedContract = {};
+
     }else if($scope.selectedStaffMember.stepByStep.length != 0){
 
         // todo fix first element to time selection
@@ -164,6 +166,37 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
         $scope.selectedContract = {};
     }
 
+    // ENTITLEMENTS
+
+    if(Object.keys($scope.selectedStaffMember).length == 0){
+
+        $scope.entitlements = {};
+
+    }else if($scope.selectedStaffMember.entitlements.length != 0){
+        $scope.entitlements = $scope.selectedStaffMember.entitlements.entitlements[0];
+
+        if($scope.selectedStaffMember.entitlements.entitlements[0].householdAllowance === true){
+            $scope.entitlements.householdAllowance = 'Yes';
+        }else{
+            $scope.entitlements.householdAllowance = 'No';
+        }
+        if($scope.selectedStaffMember.entitlements.entitlements[0].flatRateOvertime === true){
+            $scope.entitlements.flatRateOvertime = 'Yes';
+        }else{
+            $scope.entitlements.flatRateOvertime = 'No';
+        }
+        if($scope.selectedStaffMember.entitlements.entitlements[0].nonFlatrateSchoolAllowance === true){
+            $scope.entitlements.nonFlatrateSchoolAllowance = 'Yes';
+        }else{
+            $scope.entitlements.nonFlatrateSchoolAllowance = 'No';
+        }
+
+    }else{
+
+        $scope.selectedContract = {};
+        $scope.entitlements = {};
+    }
+
 // -- 3. LOGIC: PERSONAL DATA FOR STAFF MEMBER -----
     if($scope.selectedStaffMember.personalData == null){
         $scope.staffPersonalData = {};
@@ -184,6 +217,9 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
             $scope.countryList.push(country.alpha2Code);
         });
     });
+
+
+
 
 
 // -- 4. LOGIC: SOCIO-STATUS FOR STAFF MEMBER ------
@@ -279,6 +315,43 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
                     $scope.innerModalPageNum = 3;
                 });
             }else if($scope.innerModalPageNum === 3){
+
+                $scope.entitlementsItem.entitlements = [];
+
+                $scope.entitlementsInnerItem.startDate = $scope.entitlements.startDate;
+                $scope.entitlementsInnerItem.endDate = $scope.entitlements.endDate;
+
+                if($scope.entitlements.householdAllowance === 'No'){
+                    $scope.entitlementsInnerItem.householdAllowance = false;
+                }else if($scope.entitlements.householdAllowance === 'Yes'){
+                    $scope.entitlementsInnerItem.householdAllowance = true;
+                }
+
+                $scope.entitlementsInnerItem.expatriationAllowance = $scope.entitlements.expatriationAllowance;
+
+                if($scope.entitlements.flatRateOvertime === 'No'){
+                    $scope.entitlementsInnerItem.flatRateOvertime = false;
+                }else if($scope.entitlements.flatRateOvertime === 'Yes'){
+                    $scope.entitlementsInnerItem.flatRateOvertime = true;
+                }
+
+                if($scope.entitlements.nonFlatrateSchoolAllowance === 'No'){
+                    $scope.entitlementsInnerItem.nonFlatrateSchoolAllowance = false;
+                }else if($scope.entitlements.nonFlatrateSchoolAllowance === 'Yes'){
+                    $scope.entitlementsInnerItem.nonFlatrateSchoolAllowance = true;
+                }
+                $scope.entitlementsInnerItem.deductions = $scope.entitlements.deductions;
+                $scope.entitlementsInnerItem.placeOfOriginDistance = $scope.entitlements.placeOfOriginDistance;
+                $scope.entitlementsInnerItem.placeOfOriginNumOfTravellers = $scope.entitlements.placeOfOriginNumOfTravellers;
+
+                $scope.entitlementsItem.entitlements.push($scope.entitlementsInnerItem);
+
+                entitlementsService.update($scope.selectedStaffMember.entitlements._id, $scope.entitlementsItem, function(item){
+
+                    $scope.innerModalPageNum = 4;
+                });
+
+            }else if($scope.innerModalPageNum === 4){
                 // NUM CHILDREN
                 $scope.socioStatusItem.numChildren = [];
 
@@ -314,10 +387,9 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
 
                 socioStatusService.update($scope.selectedStaffMember.socioStatus._id, $scope.socioStatusItem, function(socioStatusItem){
 
-                    $uibModalInstance.close('Staff');
+                    $scope.innerModalPageNum = 5;
                 })
-
-            }else if($scope.innerModalPageNum === 4){
+            }else if($scope.innerModalPageNum === 5){
                 // FULL TIME PERCENTAGE
                 $scope.socioStatusItem.fullTimePercentage = [];
 
@@ -422,6 +494,48 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
                 })
             }else if($scope.innerModalPageNum === 3){
 
+                $scope.entitlementsItem.entitlements = [];
+
+                $scope.entitlementsInnerItem.startDate = $scope.entitlements.startDate;
+                $scope.entitlementsInnerItem.endDate = $scope.entitlements.endDate;
+
+                if($scope.entitlements.householdAllowance === 'No'){
+                    $scope.entitlementsInnerItem.householdAllowance = false;
+                }else if($scope.entitlements.householdAllowance === 'Yes'){
+                    $scope.entitlementsInnerItem.householdAllowance = true;
+                }
+
+                $scope.entitlementsInnerItem.expatriationAllowance = $scope.entitlements.expatriationAllowance;
+
+                if($scope.entitlements.flatRateOvertime === 'No'){
+                    $scope.entitlementsInnerItem.flatRateOvertime = false;
+                }else if($scope.entitlements.flatRateOvertime === 'Yes'){
+                    $scope.entitlementsInnerItem.flatRateOvertime = true;
+                }
+
+                if($scope.entitlements.nonFlatrateSchoolAllowance === 'No'){
+                    $scope.entitlementsInnerItem.nonFlatrateSchoolAllowance = false;
+                }else if($scope.entitlements.nonFlatrateSchoolAllowance === 'Yes'){
+                    $scope.entitlementsInnerItem.nonFlatrateSchoolAllowance = true;
+                }
+                $scope.entitlementsInnerItem.deductions = $scope.entitlements.deductions;
+                $scope.entitlementsInnerItem.placeOfOriginDistance = $scope.entitlements.placeOfOriginDistance;
+                $scope.entitlementsInnerItem.placeOfOriginNumOfTravellers = $scope.entitlements.placeOfOriginNumOfTravellers;
+
+                $scope.entitlementsItem.entitlements.push($scope.entitlementsInnerItem);
+
+                console.log($scope.entitlementsItem.entitlements);
+                entitlementsService.create($scope.entitlementsItem, function(item){
+                    $scope.selectedStaffMember.entitlements = item._id;
+
+                    staffService.update($scope.selectedStaffMember._id, $scope.selectedStaffMember, function(item){
+
+                        $scope.innerModalPageNum = 4;
+                    });
+                });
+
+            }else if($scope.innerModalPageNum === 4){
+
                 // NUM CHILDREN
                 $scope.socioStatusItem.numChildren = [];
 
@@ -460,12 +574,12 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
 
                     staffService.update($scope.selectedStaffMember._id, $scope.staffItem, function(staff){
 
-                        $scope.innerModalPageNum = 4;
+                        $scope.innerModalPageNum = 5;
                     });
                 });
 
-            }else if($scope.innerModalPageNum === 4){
 
+            }else if($scope.innerModalPageNum === 5) {
                 // FULL TIME PERCENTAGE
                 $scope.socioStatusItem.fullTimePercentage = [];
 
@@ -527,7 +641,6 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
 
                     $uibModalInstance.close('Staff');
                 });
-
             }
 
 
@@ -595,6 +708,8 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
             $scope.staffSocioStatus.parentalLeaveStartDate = new Date();
             $scope.staffSocioStatus.parentalLeaveExtensionStartDate = new Date();
             $scope.staffSocioStatus.parentalLeaveIncreaseStartDate = new Date();
+            $scope.entitlements.startDate = new Date();
+            $scope.entitlements.endDate = new Date();
 
         };
     }else{
@@ -611,7 +726,8 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
             $scope.staffSocioStatus.parentalLeaveStartDate = new Date($scope.selectedStaffMember.socioStatus.parentalLeave[0].startDate);
             $scope.staffSocioStatus.parentalLeaveExtensionStartDate = new Date($scope.selectedStaffMember.socioStatus.parentalLeaveExtension[0].startDate);
             $scope.staffSocioStatus.parentalLeaveIncreaseStartDate = new Date($scope.selectedStaffMember.socioStatus.parentalLeaveIncrease[0].startDate);
-
+            $scope.entitlements.startDate = new Date($scope.selectedStaffMember.entitlements.entitlements[0].startDate);
+            $scope.entitlements.endDate = new Date($scope.selectedStaffMember.entitlements.entitlements[0].endDate);
         }
     }
 

@@ -19,6 +19,9 @@
                         <th ng-if="customTableElements.name">Name</th>
                         <th ng-if="customTableElements.surname">Surname</th>
                         <th ng-if="customTableElements.staffNumber">Staff Number</th>
+                        <th ng-if="customTableElements.gender">Gender</th>
+                        <th ng-if="customTableElements.nationality">Nationality</th>
+                        <th ng-if="customTableElements.birthDate">Birth date</th>
                         <th ng-if="customTableElements.contractCategory">Category</th>
                         <th ng-if="customTableElements.grade">Grade</th>
                         <th ng-if="customTableElements.step">Step</th>
@@ -27,9 +30,13 @@
                         <th ng-if="customTableElements.placeOfEmployment">Place of Employment</th>
                         <th ng-if="customTableElements.headOfUnit">Head of Unit</th>
                         <th ng-if="customTableElements.TBAincrease">TBA increase</th>
-                        <th ng-if="customTableElements.gender">Gender</th>
-                        <th ng-if="customTableElements.nationality">Nationality</th>
-                        <th ng-if="customTableElements.birthDate">Birth date</th>
+                        <th ng-if="customTableElements.householdAllowance">Household Allowance</th>
+                        <th ng-if="customTableElements.expatriationAllowance">Expatriation allowance</th>
+                        <th ng-if="customTableElements.flatRateOvertime">Flat rate overtime</th>
+                        <th ng-if="customTableElements.nonFlatrateSchoolAllowance">Non flat rate school allowance</th>
+                        <th ng-if="customTableElements.placeOfOriginDistance">Distance from Place of Origin</th>
+                        <th ng-if="customTableElements.placeOfOriginTravellers">Number of Travellers</th>
+                        <th ng-if="customTableElements.deductions">Deductions</th>
                         <th ng-if="customTableElements.nrOfChildren">Nr of children</th>
                         <th ng-if="customTableElements.childrenUnderSix">Children under 6</th>
                         <th ng-if="customTableElements.childrenInUni">Children in Uni</th>
@@ -48,6 +55,9 @@
                         <td ng-if="customTableElements.name">{{staffMember.name}}</td>
                         <td ng-if="customTableElements.surname">{{staffMember.surname}}</td>
                         <td ng-if="customTableElements.staffNumber">{{staffMember.staffNumber}}</td>
+                        <td ng-if="customTableElements.gender">{{staffMember.personalData.gender}}</td>
+                        <td ng-if="customTableElements.nationality">{{staffMember.personalData.nationality}}</td>
+                        <td ng-if="customTableElements.birthDate">{{staffMember.personalData.birthDate | date:'dd/MM/yyyy'}}</td>
 
                         <!--todo fix the display of right element based on selected date-->
 
@@ -59,9 +69,13 @@
                         <td ng-if="customTableElements.placeOfEmployment">{{staffMember.stepByStep.positionsFilled[0].placeOfEmployment}}</td>
                         <td ng-if="customTableElements.headOfUnit"><span ng-if="staffMember.stepByStep.positionsFilled[0].headOfUnit"><i class="fa fa-check" aria-hidden="true"></i></span></td>
                         <td ng-if="customTableElements.TBAincrease"><span ng-if="staffMember.stepByStep.positionsFilled[0].TBAIncrease"><i class="fa fa-check" aria-hidden="true"></i></span></td>
-                        <td ng-if="customTableElements.gender">{{staffMember.personalData.gender}}</td>
-                        <td ng-if="customTableElements.nationality">{{staffMember.personalData.nationality}}</td>
-                        <td ng-if="customTableElements.birthDate">{{staffMember.personalData.birthDate | date:'dd/MM/yyyy'}}</td>
+                        <td ng-if="customTableElements.householdAllowance"><span ng-if="staffMember.entitlements.entitlements[0].householdAllowance"><i class="fa fa-check" aria-hidden="true"></i></span></td>
+                        <td ng-if="customTableElements.expatriationAllowance">{{staffMember.entitlements.entitlements[0].expatriationAllowance}}</td>
+                        <td ng-if="customTableElements.flatRateOvertime"><span ng-if="staffMember.entitlements.entitlements[0].flatRateOvertime"><i class="fa fa-check" aria-hidden="true"></i></span></td>
+                        <td ng-if="customTableElements.nonFlatrateSchoolAllowance"><span ng-if="staffMember.entitlements.entitlements[0].nonFlatrateSchoolAllowance"><i class="fa fa-check" aria-hidden="true"></i></span></td>
+                        <td ng-if="customTableElements.placeOfOriginDistance">{{staffMember.entitlements.entitlements[0].placeOfOriginDistance}}</td>
+                        <td ng-if="customTableElements.placeOfOriginTravellers">{{staffMember.entitlements.entitlements[0].placeOfOriginTravellers}}</td>
+                        <td ng-if="customTableElements.deductions">{{staffMember.entitlements.entitlements[0].deductions}}</td>
                         <td ng-if="customTableElements.nrOfChildren">{{staffMember.socioStatus.numChildren[0].status}}</td>
                         <td ng-if="customTableElements.childrenUnderSix">{{staffMember.socioStatus.childrenUnderSix[0].status}}</td>
                         <td ng-if="customTableElements.childrenInUni">{{staffMember.socioStatus.childrenInUni[0].status}}</td>

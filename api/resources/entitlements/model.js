@@ -2,42 +2,19 @@ const mongoose = require('mongoose');
 
 const schema = new mongoose.Schema({
 
-    householdAllowance: [
+    entitlements: [
         {
-            status      : {type: Boolean},
-            startDate   : {type: Date},
-            endDate     : {type: Date}
-        }
-    ],
-    expatriationAllowance: [
-        {
-            status      : {type: Number},
-            startDate   : {type: Date},
-            endDate     : {type: Date}
-        }
-    ],
-    flatRateOvertime: [
-        {
-            status      : {type: Boolean},
-            startDate   : {type: Date},
-            endDate     : {type: Date}
-        }
-    ],
-    nonFlatrateSchoolAllowance: [
-        {
-            status      : {type: Number},
-            startDate   : {type: Date},
-            endDate     : {type: Date}
-        }
-    ],
-    deductions: [
-        {
-            status      : {type: Number},
-            startDate   : {type: Date},
-            endDate     : {type: Date}
+            startDate                   : {type: Date},
+            endDate                     : {type: Date},
+            householdAllowance          : {type: Boolean},
+            expatriationAllowance       : {type: Number},
+            flatRateOvertime            : {type: Boolean},
+            nonFlatrateSchoolAllowance  : {type: Boolean},
+            deductions                  : {type: Number},
+            placeOfOriginDistance       : {type: Number},
+            placeOfOriginNumOfTravellers: {type: Number}
         }
     ]
-
 });
 
 mongoose.model('Entitlements', schema);

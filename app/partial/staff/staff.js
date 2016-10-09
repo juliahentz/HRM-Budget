@@ -188,7 +188,14 @@ angular.module('HRMBudget').controller('StaffCtrl',function(
         parttimePensionContr: true,
         parentalLeave: true,
         parentalLeaveExtension: true,
-        parentalLeaveIncrease: true
+        parentalLeaveIncrease: true,
+        householdAllowance: true,
+        expatriationAllowance: true,
+        flatRateOvertime: true,
+        nonFlatrateSchoolAllowance: true,
+        placeOfOriginDistance: true,
+        placeOfOriginTravellers: true,
+        deductions: true
     };
 
     $scope.onCustomiseTableClick = function(){

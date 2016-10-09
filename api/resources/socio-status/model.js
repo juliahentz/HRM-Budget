@@ -72,14 +72,6 @@ const schema = new mongoose.Schema({
             startDate   : {type: Date},
             endDate     : {type: Date}
         }
-    ],
-    placeOfOrigin: [
-        {
-            startDate       : {type: Date},
-            endDate         : {type: Date},
-            distance        : {type: Number},
-            numOfTravellers : {type: Number}
-        }
     ]
 
 });
