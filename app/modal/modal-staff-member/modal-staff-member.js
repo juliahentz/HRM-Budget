@@ -144,7 +144,7 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
         $scope.datePeriodEnd.year = endDate.getFullYear();
         $scope.datePeriodEnd.month = endDate.getMonth() + 1;
         $scope.datePeriodEnd.day = endDate.getDay();*/
-        
+
         $scope.getAllGrades();
         $scope.getAllSteps();
     }else{
@@ -218,7 +218,7 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
         $scope.staffSocioStatus = {};
     }else{
         $scope.staffSocioStatus = {};
-        $scope.staffSocioStatus.numChildren = $scope.selectedStaffMember.socioStatus.statuses;
+        $scope.staffSocioStatus.numChildren = $scope.selectedStaffMember.socioStatus.statuses[0].numChildren;
         $scope.staffSocioStatus.childrenUnderSix = $scope.selectedStaffMember.socioStatus.statuses[0].childrenUnderSix;
         $scope.staffSocioStatus.childrenInUni = $scope.selectedStaffMember.socioStatus.statuses[0].childrenInUni;
         $scope.staffSocioStatus.childrenInUniExpatAndFar = $scope.selectedStaffMember.socioStatus.statuses[0].childrenInUniExpatAndFar;
@@ -341,6 +341,7 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
                 $scope.socioStatusItem.statuses = [];
 
                 $scope.socioStatusInnerItem.startDate = $scope.staffSocioStatus.startDate.toISOString();
+                $scope.socioStatusInnerItem.endDate = $scope.staffSocioStatus.endDate.toISOString();
                 $scope.socioStatusInnerItem.numChildren = $scope.staffSocioStatus.numChildren;
                 $scope.socioStatusInnerItem.childrenUnderSix = $scope.staffSocioStatus.childrenUnderSix;
                 $scope.socioStatusInnerItem.childrenInUni = $scope.staffSocioStatus.childrenInUni;
@@ -471,6 +472,7 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
                 $scope.socioStatusItem.statuses = [];
 
                 $scope.socioStatusInnerItem.startDate = $scope.staffSocioStatus.startDate.toISOString();
+                $scope.socioStatusInnerItem.endDate = $scope.staffSocioStatus.endDate.toISOString();
                 $scope.socioStatusInnerItem.numChildren = $scope.staffSocioStatus.numChildren;
                 $scope.socioStatusInnerItem.childrenUnderSix = $scope.staffSocioStatus.childrenUnderSix;
                 $scope.socioStatusInnerItem.childrenInUni = $scope.staffSocioStatus.childrenInUni;

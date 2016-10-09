@@ -12,7 +12,7 @@
         <div class="btn btn-sm buhrma-btn" ng-click="onCustomiseTableClick()" angular-ripple>Customise table</div>
 
         <div class="icon-container" ng-click="exportToExcel('#table-to-export')" angular-ripple><i class="fa fa-cloud-download" aria-hidden="true"></i></div>
-        <div class="btn btn-sm buhrma-btn" ng-click="exportToExcel('#table-to-export')" angular-ripple>Export table to excel</div>
+        <div class="btn btn-sm buhrma-btn" ng-click="exportToExcel('#table-to-export')" angular-ripple>Export to excel</div>
 
     </div>
     <hr/>
@@ -70,32 +70,199 @@
 
                         <td ng-if="customTableElements.contractCategory">
                             <span ng-repeat="positionFilled in staffMember.stepByStep.positionsFilled">
-                                {{positionFilled.category}}
+                                <span ng-if="positionFilled.startDate <= filterTableDate && filterTableDate <= positionFilled.endDate">
+                                    {{positionFilled.category}}
+                                </span>
                             </span>
                         </td>
-                        <td ng-if="customTableElements.grade">{{staffMember.stepByStep.positionsFilled[0].grade}}</td>
-                        <td ng-if="customTableElements.step">{{staffMember.stepByStep.positionsFilled[0].step}}</td>
-                        <td ng-if="customTableElements.startDate">{{staffMember.stepByStep.positionsFilled[0].startDate | date:'dd/MM/yyyy'}}</td>
-                        <td ng-if="customTableElements.endDate">{{staffMember.stepByStep.positionsFilled[0].endDate | date:'dd/MM/yyyy'}}</td>
-                        <td ng-if="customTableElements.placeOfEmployment">{{staffMember.stepByStep.positionsFilled[0].placeOfEmployment}}</td>
-                        <td ng-if="customTableElements.headOfUnit"><span ng-if="staffMember.stepByStep.positionsFilled[0].headOfUnit"><i class="fa fa-check" aria-hidden="true"></i></span><span style="display:none">{{staffMember.stepByStep.positionsFilled[0].headOfUnit}}</span></td>
-                        <td ng-if="customTableElements.TBAincrease"><span ng-if="staffMember.stepByStep.positionsFilled[0].TBAIncrease"><i class="fa fa-check" aria-hidden="true"></i></span><span style="display:none">{{staffMember.stepByStep.positionsFilled[0].TBAIncrease}}</span></td>
-                        <td ng-if="customTableElements.householdAllowance"><span ng-if="staffMember.entitlements.entitlements[0].householdAllowance"><i class="fa fa-check" aria-hidden="true"></i></span><span style="display:none">{{staffMember.entitlements.entitlements[0].householdAllowance}}</span></td>
-                        <td ng-if="customTableElements.expatriationAllowance">{{staffMember.entitlements.entitlements[0].expatriationAllowance}}</td>
-                        <td ng-if="customTableElements.flatRateOvertime"><span ng-if="staffMember.entitlements.entitlements[0].flatRateOvertime"><i class="fa fa-check" aria-hidden="true"></i></span><span style="display:none">{{staffMember.entitlements.entitlements[0].flatRateOvertime}}</span></td>
-                        <td ng-if="customTableElements.nonFlatrateSchoolAllowance"><span ng-if="staffMember.entitlements.entitlements[0].nonFlatrateSchoolAllowance"><i class="fa fa-check" aria-hidden="true"></i></span><span style="display:none">{{staffMember.entitlements.entitlements[0].nonFlatrateSchoolAllowance}}</span></td>
-                        <td ng-if="customTableElements.placeOfOriginDistance">{{staffMember.entitlements.entitlements[0].placeOfOriginDistance}}</td>
-                        <td ng-if="customTableElements.placeOfOriginTravellers">{{staffMember.entitlements.entitlements[0].placeOfOriginNumOfTravellers}}</td>
-                        <td ng-if="customTableElements.deductions">{{staffMember.entitlements.entitlements[0].deductions}}</td>
-                        <td ng-if="customTableElements.nrOfChildren">{{staffMember.socioStatus.statuses[0].numChildren}}</td>
-                        <td ng-if="customTableElements.childrenUnderSix">{{staffMember.socioStatus.statuses[0].childrenUnderSix}}</td>
-                        <td ng-if="customTableElements.childrenInUni">{{staffMember.socioStatus.statuses[0].childrenInUni}}</td>
-                        <td ng-if="customTableElements.childrenInUniExpatAndFar">{{staffMember.socioStatus.statuses[0].childrenInUniExpatAndFar}}</td>
-                        <td ng-if="customTableElements.fullTimePercentage">{{staffMember.socioStatus.statuses[0].fullTimePercentage}}</td>
-                        <td ng-if="customTableElements.parttimePensionContr"><span ng-if="staffMember.socioStatus.statuses[0].parttimePensionContr"><i class="fa fa-check" aria-hidden="true"></i></span><span style="display:none">{{staffMember.socioStatus.statuses[0].parttimePensionContr}}</span></td>
-                        <td ng-if="customTableElements.parentalLeave"><span ng-if="staffMember.socioStatus.statuses[0].parentalLeave"><i class="fa fa-check" aria-hidden="true"></i></span><span style="display:none">{{staffMember.socioStatus.statuses[0].parentalLeave}}</span></td>
-                        <td ng-if="customTableElements.parentalLeaveExtension"><span ng-if="staffMember.socioStatus.statuses[0].parentalLeaveExtension"><i class="fa fa-check" aria-hidden="true"></i></span><span style="display:none">{{staffMember.socioStatus.statuses[0].parentalLeaveExtension}}</span></td>
-                        <td ng-if="customTableElements.parentalLeaveIncrease"><span ng-if="staffMember.socioStatus.statuses[0].parentalLeaveIncrease"><i class="fa fa-check" aria-hidden="true"></i></span><span style="display:none">{{staffMember.socioStatus.statuses[0].parentalLeaveIncrease}}</span></td>
+                        <td ng-if="customTableElements.grade">
+                            <span ng-repeat="positionFilled in staffMember.stepByStep.positionsFilled">
+                                <span ng-if="positionFilled.startDate <= filterTableDate && filterTableDate <= positionFilled.endDate">
+                                    {{positionFilled.grade}}
+                                </span>
+                            </span>
+                        </td>
+                        <td ng-if="customTableElements.step">
+                            <span ng-repeat="positionFilled in staffMember.stepByStep.positionsFilled">
+                                <span ng-if="positionFilled.startDate <= filterTableDate && filterTableDate <= positionFilled.endDate">
+                                    {{positionFilled.step}}
+                                </span>
+                            </span>
+                        </td>
+                        <td ng-if="customTableElements.startDate">
+                            <span ng-repeat="positionFilled in staffMember.stepByStep.positionsFilled">
+                                <span ng-if="positionFilled.startDate <= filterTableDate && filterTableDate <= positionFilled.endDate">
+                                    {{positionFilled.startDate | date:'dd/MM/yyyy'}}
+                                </span>
+                            </span>
+                        </td>
+                        <td ng-if="customTableElements.endDate">
+                            <span ng-repeat="positionFilled in staffMember.stepByStep.positionsFilled">
+                                <span ng-if="positionFilled.startDate <= filterTableDate && filterTableDate <= positionFilled.endDate">
+                                    {{positionFilled.endDate | date:'dd/MM/yyyy'}}
+                                </span>
+                            </span>
+                        </td>
+                        <td ng-if="customTableElements.placeOfEmployment">
+                            <span ng-repeat="positionFilled in staffMember.stepByStep.positionsFilled">
+                                <span ng-if="positionFilled.startDate <= filterTableDate && filterTableDate <= positionFilled.endDate">
+                                    {{positionFilled.placeOfEmployment}}
+                                </span>
+                            </span>
+                        </td>
+                        <td ng-if="customTableElements.headOfUnit">
+                            <span ng-repeat="positionFilled in staffMember.stepByStep.positionsFilled">
+                                <span ng-if="positionFilled.startDate <= filterTableDate && filterTableDate <= positionFilled.endDate">
+                                    <span ng-if="positionFilled.headOfUnit">
+                                        <i class="fa fa-check" aria-hidden="true"></i>
+                                    </span>
+                                    <span style="display:none">{{positionFilled.headOfUnit}}</span>
+                                </span>
+                            </span>
+                        </td>
+                        <td ng-if="customTableElements.TBAincrease">
+                            <span ng-repeat="positionFilled in staffMember.stepByStep.positionsFilled">
+                                <span ng-if="positionFilled.startDate <= filterTableDate && filterTableDate <= positionFilled.endDate">
+                                    <span ng-if="positionFilled.TBAIncrease">
+                                        <i class="fa fa-check" aria-hidden="true"></i>
+                                    </span>
+                                    <span style="display:none">{{positionFilled.TBAIncrease}}</span>
+                                </span>
+                            </span>
+                        </td>
+                        <td ng-if="customTableElements.householdAllowance">
+                            <span ng-repeat="entitlements in staffMember.entitlements.entitlements">
+                                <span ng-if="entitlements.startDate <= filterTableDate && filterTableDate <= entitlements.endDate">
+                                    <span ng-if="entitlements.householdAllowance">
+                                        <i class="fa fa-check" aria-hidden="true"></i>
+                                    </span>
+                                    <span style="display:none">{{entitlements.householdAllowance}}</span>
+                                </span>
+                            </span>
+                        </td>
+                        <td ng-if="customTableElements.expatriationAllowance">
+                            <span ng-repeat="entitlements in staffMember.entitlements.entitlements">
+                                <span ng-if="entitlements.startDate <= filterTableDate && filterTableDate <= entitlements.endDate">
+                                    {{entitlements.expatriationAllowance}}
+                                </span>
+                            </span>
+                        </td>
+                        <td ng-if="customTableElements.flatRateOvertime">
+                            <span ng-repeat="entitlements in staffMember.entitlements.entitlements">
+                                <span ng-if="entitlements.startDate <= filterTableDate && filterTableDate <= entitlements.endDate">
+                                    <span ng-if="entitlements.flatRateOvertime">
+                                        <i class="fa fa-check" aria-hidden="true"></i>
+                                    </span>
+                                    <span style="display:none">{{entitlements.flatRateOvertime}}</span>
+                                </span>
+                            </span>
+                        </td>
+                        <td ng-if="customTableElements.nonFlatrateSchoolAllowance">
+                            <span ng-repeat="entitlements in staffMember.entitlements.entitlements">
+                                <span ng-if="entitlements.startDate <= filterTableDate && filterTableDate <= entitlements.endDate">
+                                    <span ng-if="entitlements.nonFlatrateSchoolAllowance">
+                                        <i class="fa fa-check" aria-hidden="true"></i>
+                                    </span>
+                                    <span style="display:none">{{entitlements.nonFlatrateSchoolAllowance}}</span>
+                                </span>
+                            </span>
+                        </td>
+                        <td ng-if="customTableElements.placeOfOriginDistance">
+                            <span ng-repeat="entitlements in staffMember.entitlements.entitlements">
+                                <span ng-if="entitlements.startDate <= filterTableDate && filterTableDate <= entitlements.endDate">
+                                    {{entitlements.placeOfOriginDistance}}
+                                </span>
+                            </span>
+                        </td>
+                        <td ng-if="customTableElements.placeOfOriginTravellers">
+                            <span ng-repeat="entitlements in staffMember.entitlements.entitlements">
+                                <span ng-if="entitlements.startDate <= filterTableDate && filterTableDate <= entitlements.endDate">
+                                    {{entitlements.placeOfOriginNumOfTravellers}}
+                                </span>
+                            </span>
+                        </td>
+                        <td ng-if="customTableElements.deductions">
+                            <span ng-repeat="entitlements in staffMember.entitlements.entitlements">
+                                <span ng-if="entitlements.startDate <= filterTableDate && filterTableDate <= entitlements.endDate">
+                                    {{entitlements.deductions}}
+                                </span>
+                            </span>
+                        </td>
+                        <td ng-if="customTableElements.nrOfChildren">
+                            <span ng-repeat="statuses in staffMember.socioStatus.statuses">
+                                <span ng-if="statuses.startDate <= filterTableDate && filterTableDate <= statuses.endDate">
+                                    {{statuses.numChildren}}
+                                </span>
+                            </span>
+                        </td>
+                        <td ng-if="customTableElements.childrenUnderSix">
+                            <span ng-repeat="statuses in staffMember.socioStatus.statuses">
+                                <span ng-if="statuses.startDate <= filterTableDate && filterTableDate <= statuses.endDate">
+                                    {{statuses.childrenUnderSix}}
+                                </span>
+                            </span>
+                        </td>
+                        <td ng-if="customTableElements.childrenInUni">
+                            <span ng-repeat="statuses in staffMember.socioStatus.statuses">
+                                <span ng-if="statuses.startDate <= filterTableDate && filterTableDate <= statuses.endDate">
+                                    {{statuses.childrenInUni}}
+                                </span>
+                            </span>
+                        </td>
+                        <td ng-if="customTableElements.childrenInUniExpatAndFar">
+                            <span ng-repeat="statuses in staffMember.socioStatus.statuses">
+                                <span ng-if="statuses.startDate <= filterTableDate && filterTableDate <= statuses.endDate">
+                                    {{statuses.childrenInUniExpatAndFar}}
+                                </span>
+                            </span>
+                        </td>
+                        <td ng-if="customTableElements.fullTimePercentage">
+                            <span ng-repeat="statuses in staffMember.socioStatus.statuses">
+                                <span ng-if="statuses.startDate <= filterTableDate && filterTableDate <= statuses.endDate">
+                                    {{statuses.fullTimePercentage}}
+                                </span>
+                            </span>
+                        </td>
+                        <td ng-if="customTableElements.parttimePensionContr">
+                            <span ng-repeat="statuses in staffMember.socioStatus.statuses">
+                                <span ng-if="statuses.startDate <= filterTableDate && filterTableDate <= statuses.endDate">
+                                    <span ng-if="statuses.parttimePensionContr">
+                                        <i class="fa fa-check" aria-hidden="true"></i>
+                                    </span>
+                                    <span style="display:none">{{statuses.parttimePensionContr}}</span>
+                                </span>
+                            </span>
+                        </td>
+                        <td ng-if="customTableElements.parentalLeave">
+                            <span ng-repeat="statuses in staffMember.socioStatus.statuses">
+                                <span ng-if="statuses.startDate <= filterTableDate && filterTableDate <= statuses.endDate">
+                                    <span ng-if="statuses.parentalLeave">
+                                        <i class="fa fa-check" aria-hidden="true"></i>
+                                    </span>
+                                    <span style="display:none">{{statuses.parentalLeave}}</span>
+                                </span>
+                            </span>
+                        </td>
+                        <td ng-if="customTableElements.parentalLeaveExtension">
+                            <span ng-repeat="statuses in staffMember.socioStatus.statuses">
+                                <span ng-if="statuses.startDate <= filterTableDate && filterTableDate <= statuses.endDate">
+                                    <span ng-if="statuses.parentalLeaveExtension">
+                                        <i class="fa fa-check" aria-hidden="true"></i>
+                                    </span>
+                                    <span style="display:none">{{statuses.parentalLeaveExtension}}</span>
+                                </span>
+                            </span>
+                        </td>
+                        <td ng-if="customTableElements.parentalLeaveIncrease">
+                            <span ng-repeat="statuses in staffMember.socioStatus.statuses">
+                                <span ng-if="statuses.startDate <= filterTableDate && filterTableDate <= statuses.endDate">
+                                    <span ng-if="statuses.parentalLeaveIncrease">
+                                        <i class="fa fa-check" aria-hidden="true"></i>
+                                    </span>
+                                    <span style="display:none">{{statuses.parentalLeaveIncrease}}</span>
+                                </span>
+                            </span>
+                        </td>
                         <td><div class="btn btn-xs btn-default" ng-click="onClickButton('staffMember', staffMember._id)"><i class="fa fa-pencil" aria-hidden="true"></i></div></td>
                         <td><div class="btn btn-xs btn-danger" ng-click="onClickDelete('staffMember', staffMember._id)"><i class="fa fa-trash-o" aria-hidden="true"></i></div></td>
                     </tr>
