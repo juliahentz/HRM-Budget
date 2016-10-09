@@ -2,14 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e334675e-fbcb-45fb-bf0d-4972e6b0528f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/directive/ng-buhrma-checkbox/ng-buhrma-checkbox.js" afterPath="$PROJECT_DIR$/app/directive/ng-buhrma-checkbox/ng-buhrma-checkbox.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/directive/ng-buhrma-select/ng-buhrma-select.js" afterPath="$PROJECT_DIR$/app/directive/ng-buhrma-select/ng-buhrma-select.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modal/modal-staff-member/modal-staff-member.html" afterPath="$PROJECT_DIR$/app/modal/modal-staff-member/modal-staff-member.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modal/modal-staff-member/modal-staff-member.js" afterPath="$PROJECT_DIR$/app/modal/modal-staff-member/modal-staff-member.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/partial/header/header.html" afterPath="$PROJECT_DIR$/app/partial/header/header.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/partial/staff/staff.html" afterPath="$PROJECT_DIR$/app/partial/staff/staff.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/partial/staff/staff.js" afterPath="$PROJECT_DIR$/app/partial/staff/staff.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modal/modal-warning-sm/modal-warning-sm.html" afterPath="$PROJECT_DIR$/app/modal/modal-warning-sm/modal-warning-sm.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modal/modal-warning-sm/modal-warning-sm.js" afterPath="$PROJECT_DIR$/app/modal/modal-warning-sm/modal-warning-sm.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modal/modal-warning-sm/modal-warning-sm.less" afterPath="$PROJECT_DIR$/app/modal/modal-warning-sm/modal-warning-sm.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/partial/staff/staff.less" afterPath="$PROJECT_DIR$/app/partial/staff/staff.less" />
     </list>
     <ignored path="FinalAssigment.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -30,10 +27,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="staff.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="staff.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/partial/staff/staff.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
+            <state relative-caret-position="630">
               <caret line="89" column="265" selection-start-line="89" selection-start-column="265" selection-end-line="89" selection-end-column="265" />
               <folding>
                 <element signature="n#style#0;n#span#1;n#td#12;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
@@ -50,11 +47,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="staff.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="staff.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/partial/staff/staff.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="174">
-              <caret line="14" column="35" selection-start-line="14" selection-start-column="35" selection-end-line="14" selection-end-column="35" />
+            <state relative-caret-position="-291">
+              <caret line="124" column="38" selection-start-line="124" selection-start-column="38" selection-end-line="124" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -73,8 +70,8 @@
       <file leaf-file-name="modal-staff-member.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/modal/modal-staff-member/modal-staff-member.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="211">
-              <caret line="68" column="64" selection-start-line="68" selection-start-column="52" selection-end-line="68" selection-end-column="64" />
+            <state relative-caret-position="4260">
+              <caret line="284" column="8" selection-start-line="284" selection-start-column="8" selection-end-line="285" selection-end-column="92" />
               <folding />
             </state>
           </provider>
@@ -83,8 +80,8 @@
       <file leaf-file-name="modal-staff-member.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/modal/modal-staff-member/modal-staff-member.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="107" column="11" selection-start-line="107" selection-start-column="11" selection-end-line="107" selection-end-column="11" />
+            <state relative-caret-position="219">
+              <caret line="548" column="38" selection-start-line="548" selection-start-column="38" selection-end-line="548" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -106,9 +103,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/api/resources/sample/router.js" />
-        <option value="$PROJECT_DIR$/api/resources/sample/model.js" />
-        <option value="$PROJECT_DIR$/api/resources/post/model.js" />
         <option value="$PROJECT_DIR$/api/resources/post/router.js" />
         <option value="$PROJECT_DIR$/api/resources/personal-data/model.js" />
         <option value="$PROJECT_DIR$/api/resources/personal-data/router.js" />
@@ -145,7 +139,6 @@
         <option value="$PROJECT_DIR$/api/resources/entitlements/model.js" />
         <option value="$PROJECT_DIR$/app/directive/ng-buhrma-input/ng-buhrma-input.js" />
         <option value="$PROJECT_DIR$/app/modal/modal-table-checkbox/modal-table-checkbox.html" />
-        <option value="$PROJECT_DIR$/app/partial/staff/staff.less" />
         <option value="$PROJECT_DIR$/api/resources/socio-status/model.js" />
         <option value="$PROJECT_DIR$/app/partial/header/header.html" />
         <option value="$PROJECT_DIR$/app/directive/ng-export-table/ng-export-table.js" />
@@ -154,9 +147,13 @@
         <option value="$PROJECT_DIR$/app/directive/ng-buhrma-select/ng-buhrma-select.js" />
         <option value="$PROJECT_DIR$/app/directive/ng-buhrma-checkbox/ng-buhrma-checkbox.js" />
         <option value="$PROJECT_DIR$/app/modal/modal-staff-member/modal-staff-member.html" />
-        <option value="$PROJECT_DIR$/app/modal/modal-staff-member/modal-staff-member.js" />
         <option value="$PROJECT_DIR$/app/partial/staff/staff.js" />
         <option value="$PROJECT_DIR$/app/partial/staff/staff.html" />
+        <option value="$PROJECT_DIR$/app/modal/modal-warning-sm/modal-warning-sm.less" />
+        <option value="$PROJECT_DIR$/app/modal/modal-warning-sm/modal-warning-sm.html" />
+        <option value="$PROJECT_DIR$/app/modal/modal-warning-sm/modal-warning-sm.js" />
+        <option value="$PROJECT_DIR$/app/modal/modal-staff-member/modal-staff-member.js" />
+        <option value="$PROJECT_DIR$/app/partial/staff/staff.less" />
       </list>
     </option>
   </component>
@@ -309,6 +306,10 @@
               <option name="myItemId" value="modal" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="modal-warning-sm" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -351,6 +352,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="modal-staff-member" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FinalAssigment" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FinalAssigment" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="modal" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -701,12 +720,12 @@
       <workItem from="1472600420327" duration="965000" />
       <workItem from="1472909002035" duration="54188000" />
       <workItem from="1451606469746" duration="32524000" />
-      <workItem from="1474547341227" duration="133579000" />
+      <workItem from="1474547341227" duration="134702000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="221256000" />
+    <option name="totallyTimeSpent" value="222379000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1271" height="753" extended-state="0" />
@@ -746,30 +765,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/api/resources/param-contract-grade/router.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="22" selection-start-line="0" selection-start-column="0" selection-end-line="78" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/resources/param-allowances/router.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="2" selection-start-line="6" selection-start-column="2" selection-end-line="6" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/database.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="14" column="24" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/api/run.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -1010,14 +1005,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/partial/staff/staff.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="12" column="21" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/modal/modal-table-checkbox/modal-table-checkbox.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="256">
@@ -1098,22 +1085,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/modal/modal-staff-member/modal-staff-member.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="107" column="11" selection-start-line="107" selection-start-column="11" selection-end-line="107" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/modal/modal-staff-member/modal-staff-member.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="68" column="64" selection-start-line="68" selection-start-column="52" selection-end-line="68" selection-end-column="64" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/api/resources/socio-status/model.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
@@ -1138,17 +1109,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/partial/staff/staff.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="14" column="35" selection-start-line="14" selection-start-column="35" selection-end-line="14" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/partial/staff/staff.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
+        <state relative-caret-position="630">
           <caret line="89" column="265" selection-start-line="89" selection-start-column="265" selection-end-line="89" selection-end-column="265" />
           <folding>
             <element signature="n#style#0;n#span#1;n#td#12;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
@@ -1161,6 +1124,62 @@
             <element signature="n#style#0;n#span#1;n#td#28;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#1;n#td#29;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/modal/modal-warning-sm/modal-warning-sm.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/modal/modal-warning-sm/modal-warning-sm.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="85" selection-start-line="10" selection-start-column="85" selection-end-line="10" selection-end-column="85" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/modal/modal-warning-sm/modal-warning-sm.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="145">
+          <caret line="31" column="88" selection-start-line="31" selection-start-column="88" selection-end-line="31" selection-end-column="88" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/modal/modal-staff-member/modal-staff-member.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4260">
+          <caret line="284" column="8" selection-start-line="284" selection-start-column="8" selection-end-line="285" selection-end-column="92" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/modal/modal-staff-member/modal-staff-member.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="219">
+          <caret line="548" column="38" selection-start-line="548" selection-start-column="38" selection-end-line="548" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/partial/staff/staff.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="27" selection-start-line="15" selection-start-column="27" selection-end-line="15" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/partial/staff/staff.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-291">
+          <caret line="124" column="38" selection-start-line="124" selection-start-column="38" selection-end-line="124" selection-end-column="38" />
+          <folding />
         </state>
       </provider>
     </entry>

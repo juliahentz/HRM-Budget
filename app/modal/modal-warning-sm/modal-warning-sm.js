@@ -5,6 +5,7 @@ angular.module('HRMBudget').controller('ModalWarningSmCtrl',function(
     stepByStepService,
     personalDataService,
     socioStatusService,
+    entitlementsService,
     $uibModalInstance,
     message
 ){
@@ -18,9 +19,18 @@ angular.module('HRMBudget').controller('ModalWarningSmCtrl',function(
     // A) STAFF MEMBER
         if($scope.message === 'staff'){
 
-            stepByStepService.remove($scope.selectedStaffMember.stepByStep._id);
-            personalDataService.remove($scope.selectedStaffMember.personalData._id);
-            socioStatusService.remove($scope.selectedStaffMember.socioStatus._id);
+            if($scope.selectedStaffMember.stepByStep){
+                stepByStepService.remove($scope.selectedStaffMember.stepByStep._id);
+            }
+            if($scope.selectedStaffMember.personalData){
+                personalDataService.remove($scope.selectedStaffMember.personalData._id);
+            }
+            if($scope.selectedStaffMember.socioStatus){
+                socioStatusService.remove($scope.selectedStaffMember.socioStatus._id);
+            }
+            if($scope.selectedStaffMember.entitlements){
+                entitlementsService.remove($scope.selectedStaffMember.entitlements._id);
+            }
             staffService.remove($scope.selectedStaffMember._id);
 
     // B) POST

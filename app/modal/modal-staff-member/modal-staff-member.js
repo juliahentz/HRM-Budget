@@ -520,8 +520,6 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
 
     $scope.onClickClose = function(){
 
-        // todo on dismiss from html call onClickClose
-
     // A) STAFF MEMBER
         if($scope.modalTitle === "Edit Staff Member" || $scope.modalTitle === "Add New Staff"){
 
@@ -548,7 +546,7 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
 
         $scope.staffPersonalData = {};
 
-        $uibModalInstance.close();
+        $uibModalInstance.close('Staff');
     };
 
 

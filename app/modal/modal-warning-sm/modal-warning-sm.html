@@ -1,14 +1,14 @@
-<div>
+<div class="buhrma-modal">
 	<div class="modal-header">
 		<button type="button" class="close pull-right" ng-click="$dismiss()" aria-hidden="true">&times;</button>
-		<h4 class="modal-title" id="delete-modal-title">Are you sure you would like to delete the following Staff Member?</h4>
+		<h4 class="modal-title" >Are you sure you would like to delete the following Staff Member?</h4>
 	</div>
 	<div class="modal-body">
 		<p ng-if="message === 'staff'">{{selectedStaffMember.name}} <b>{{selectedStaffMember.surname}}</b></p>
 		<p ng-if="message === 'post'">{{selectedPost.postTitle}} <b>{{selectedPost.contractType}}</b></p>
 	</div>
 	<div class="modal-footer">
-		<button class="btn btn-default" ng-click="$dismiss()">Cancel</button>
-		<button type="button" class="btn btn-danger" ng-click="onClickDelete()">Delete</button>
+        <div class="btn buhrma-btn buhrma-btn-save" ng-click="onClickDelete()">Delete</div>
+        <div class="btn buhrma-btn buhrma-btn-cancel" ng-click="$dismiss()">Cancel</div>
 	</div>
 </div>
