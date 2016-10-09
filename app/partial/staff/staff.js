@@ -10,9 +10,14 @@ angular.module('HRMBudget').controller('StaffCtrl',function(
 
     $scope.posts = postService.model.list;
     $scope.staffMembers = staffService.model.list;
-    $scope.timeNow = timeNow;
 
-    console.log($scope.staffMembers);
+    $scope.filterTableDate = timeNow;
+
+    $scope.clickedTableHead = '';
+
+    $scope.onClickTableHead = function(clickedHead){
+        $scope.clickedTableHead = clickedHead;
+    };
 
 // 1. ADD AND EDIT FUNCTIONALITIES
     $scope.onClickButton = function(message, id) {
@@ -164,6 +169,24 @@ angular.module('HRMBudget').controller('StaffCtrl',function(
                    $scope.posts = list;
                 });
             }
+        });
+    };
+
+    $scope.onClickFilterDate = function(){
+        var modalInstance = $uibModal.open({
+            animation: true,
+            templateUrl: 'modal/modal-sm-date-filter/modal-sm-date-filter.html',
+            controller: 'ModalSmDateFilterCtrl',
+            size: 'md',
+            backdrop  : 'static',
+            keyboard  : false,
+            resolve: {
+                filterTableDate: function(){
+                    return $scope.filterTableDate;
+                }
+            }
+        }).result.then(function(date){
+            $scope.filterTableDate = date.toISOString();
         });
     };
 

@@ -1,16 +1,18 @@
 <div class="hrm-budget-staffmember-container">
 
     <div>
-        <!--<div class="icon-container" ng-click="onClickButton('newPost')"><i class="fa fa-plus" aria-hidden="true"></i></div>
-        <div class="btn btn-sm buhrma-btn" ng-click="onClickButton('newPost')">Add New Post</div>-->
-        <div class="icon-container" ng-click="onClickButton('newStaff')"><i class="fa fa-plus" aria-hidden="true"></i></div>
-        <div class="btn btn-sm buhrma-btn" ng-click="onClickButton('newStaff')">Add New Staff</div>
 
-        <div class="icon-container" ng-click="onCustomiseTableClick()"><i class="fa fa-check-square-o" aria-hidden="true"></i></div>
-        <div class="btn btn-sm buhrma-btn" ng-click="onCustomiseTableClick()">Customise table</div>
+        <div class="icon-container" ng-click="onClickButton('newStaff')" angular-ripple><i class="fa fa-plus" aria-hidden="true"></i></div>
+        <div class="btn btn-sm buhrma-btn" ng-click="onClickButton('newStaff')" angular-ripple>Add New Staff</div>
 
-        <div class="icon-container" ng-click="exportToExcel('#table-to-export')"><i class="fa fa-cloud-download" aria-hidden="true"></i></div>
-        <div class="btn btn-sm buhrma-btn" ng-click="exportToExcel('#table-to-export')">Export table to excel</div>
+        <div class="icon-container" ng-click="onClickFilterDate()" angular-ripple><i class="fa fa-filter" aria-hidden="true"></i></i></div>
+        <div class="btn btn-sm buhrma-btn" ng-click="onClickFilterDate()" angular-ripple>State: <em>{{filterTableDate | date:'dd.MM.yyyy'}}</em></div>
+
+        <div class="icon-container" ng-click="onCustomiseTableClick()" angular-ripple><i class="fa fa-check-square-o" aria-hidden="true"></i></div>
+        <div class="btn btn-sm buhrma-btn" ng-click="onCustomiseTableClick()" angular-ripple>Customise table</div>
+
+        <div class="icon-container" ng-click="exportToExcel('#table-to-export')" angular-ripple><i class="fa fa-cloud-download" aria-hidden="true"></i></div>
+        <div class="btn btn-sm buhrma-btn" ng-click="exportToExcel('#table-to-export')" angular-ripple>Export table to excel</div>
 
     </div>
     <hr/>
@@ -20,12 +22,12 @@
             <table class="table buhrma-table" id="table-to-export">
                 <thead>
                     <tr>
-                        <th ng-if="customTableElements.name">Name</th>
-                        <th ng-if="customTableElements.surname">Surname</th>
-                        <th ng-if="customTableElements.staffNumber">Staff Number</th>
-                        <th ng-if="customTableElements.gender">Gender</th>
-                        <th ng-if="customTableElements.nationality">Nationality</th>
-                        <th ng-if="customTableElements.birthDate">Birth date</th>
+                        <th ng-if="customTableElements.name" ng-click="onClickTableHead('name')">Name <span ng-if="clickedTableHead == 'name'"><i class="fa fa-sort-desc" aria-hidden="true"></i></span></th>
+                        <th ng-if="customTableElements.surname" ng-click="onClickTableHead('surname')">Surname <span ng-if="clickedTableHead == 'surname'"><i class="fa fa-sort-desc" aria-hidden="true"></i></span></th>
+                        <th ng-if="customTableElements.staffNumber" ng-click="onClickTableHead('staffNumber')">Staff Number <span ng-if="clickedTableHead == 'staffNumber'"><i class="fa fa-sort-desc" aria-hidden="true"></i></span></th>
+                        <th ng-if="customTableElements.gender" ng-click="onClickTableHead('personalData.gender')">Gender <span ng-if="clickedTableHead == 'personalData.gender'"><i class="fa fa-sort-desc" aria-hidden="true"></i></span></th>
+                        <th ng-if="customTableElements.nationality" ng-click="onClickTableHead('personalData.nationality')">Nationality <span ng-if="clickedTableHead == 'personalData.nationality'"><i class="fa fa-sort-desc" aria-hidden="true"></i></span></th>
+                        <th ng-if="customTableElements.birthDate" ng-click="onClickTableHead('personalData.birthDate')">Birth date <span ng-if="clickedTableHead == 'personalData.birthDate'"><i class="fa fa-sort-desc" aria-hidden="true"></i></span></th>
                         <th ng-if="customTableElements.contractCategory">Category</th>
                         <th ng-if="customTableElements.grade">Grade</th>
                         <th ng-if="customTableElements.step">Step</th>
@@ -55,7 +57,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="staffMember in staffMembers">
+                    <tr ng-repeat="staffMember in staffMembers | orderBy:clickedTableHead" ng-if="staffMember.startDate <= filterTableDate && filterTableDate <= staffMember.endDate">
 
                         <td ng-if="customTableElements.name">{{staffMember.name}}</td>
                         <td ng-if="customTableElements.surname">{{staffMember.surname}}</td>
@@ -66,7 +68,11 @@
 
                         <!--todo fix the display of right element based on selected date-->
 
-                        <td ng-if="customTableElements.contractCategory">{{staffMember.stepByStep.positionsFilled[0].category}}</td>
+                        <td ng-if="customTableElements.contractCategory">
+                            <span ng-repeat="positionFilled in staffMember.stepByStep.positionsFilled">
+                                {{positionFilled.category}}
+                            </span>
+                        </td>
                         <td ng-if="customTableElements.grade">{{staffMember.stepByStep.positionsFilled[0].grade}}</td>
                         <td ng-if="customTableElements.step">{{staffMember.stepByStep.positionsFilled[0].step}}</td>
                         <td ng-if="customTableElements.startDate">{{staffMember.stepByStep.positionsFilled[0].startDate | date:'dd/MM/yyyy'}}</td>

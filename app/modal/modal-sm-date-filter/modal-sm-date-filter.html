@@ -1,0 +1,14 @@
+<div class="buhrma-modal">
+	<div class="modal-header">
+		<button type="button" class="close pull-right" ng-click="$dismiss()" aria-hidden="true">&times;</button>
+		<h4 class="modal-title">Select a time-stamp to filter table data</h4>
+	</div>
+	<div class="modal-body">
+        <ng-buhrma-date-input buhrma-date-model="filterTableDate"
+                              buhrma-date-text="Choose a date"></ng-buhrma-date-input>
+	</div>
+	<div class="modal-footer">
+        <div class="btn buhrma-btn buhrma-btn-save" ng-click="onClickSave()">Save date</div>
+        <div class="btn buhrma-btn buhrma-btn-cancel" ng-click="$dismiss()">Cancel</div>
+	</div>
+</div>

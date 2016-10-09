@@ -3,6 +3,8 @@ const mongoose = require('mongoose');
 const schema = new mongoose.Schema({
 
     dateCreated     : {type: Date, default: Date.now},
+    startDate       : {type: Date},
+    endDate         : {type: Date},
     name            : {type: String},
     surname         : {type: String},
     staffNumber     : {type: Number},

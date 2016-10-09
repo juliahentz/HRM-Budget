@@ -132,7 +132,8 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
         // todo fix first element to time selection
         $scope.selectedContract = $scope.selectedStaffMember.stepByStep.positionsFilled[0];
 
-        var startDate = new Date($scope.selectedStaffMember.stepByStep.positionsFilled[0].startDate);
+        // todo do I need this???
+        /*var startDate = new Date($scope.selectedStaffMember.stepByStep.positionsFilled[0].startDate);
 
         $scope.datePeriodStart.year = startDate.getFullYear();
         $scope.datePeriodStart.month = startDate.getMonth() + 1;
@@ -142,8 +143,8 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
 
         $scope.datePeriodEnd.year = endDate.getFullYear();
         $scope.datePeriodEnd.month = endDate.getMonth() + 1;
-        $scope.datePeriodEnd.day = endDate.getDay();
-
+        $scope.datePeriodEnd.day = endDate.getDay();*/
+        
         $scope.getAllGrades();
         $scope.getAllSteps();
     }else{
@@ -253,6 +254,11 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
     $scope.datePeriodNow.year = $scope.currentTime.getFullYear();
     $scope.datePeriodNow.month = $scope.currentTime.getMonth() +1;
     $scope.datePeriodNow.day = $scope.currentTime.getDay();
+
+
+
+
+
 
 // -- . LOGIC: SAVE MODAL -------------------------
 
@@ -385,6 +391,12 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
 
                     staffService.create($scope.selectedStaffMember, function(staff){
 
+                        $scope.staffSocioStatus.startDate = $scope.selectedStaffMember.startDate;
+                        $scope.staffSocioStatus.endDate = $scope.selectedStaffMember.endDate;
+                        $scope.selectedContract.startDate  = $scope.selectedStaffMember.startDate;
+                        $scope.selectedContract.endDate  = $scope.selectedStaffMember.endDate;
+                        $scope.entitlements.startDate = $scope.selectedStaffMember.startDate;
+                        $scope.entitlements.endDate = $scope.selectedStaffMember.endDate;
                         $scope.selectedStaffMember = staff;
                         $scope.innerModalPageNum = 2;
                     });
@@ -553,15 +565,14 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
 // DATEPICKER
 
     // todo fix array element to current date filter
+
+    // todo fix sociostatus, it is currently wrong
     if($scope.selectedStaffMember.socioStatus == null){
         $scope.today = function() {
-            $scope.staffSocioStatus.startDate = new Date();
-            $scope.staffSocioStatus.endDate = new Date();
+            $scope.selectedStaffMember.startDate = new Date();
+            $scope.selectedStaffMember.endDate = new Date();
             $scope.staffPersonalData.birthDate  = new Date();
-            $scope.selectedContract.startDate  = new Date();
-            $scope.selectedContract.endDate  = new Date();
-            $scope.entitlements.startDate = new Date();
-            $scope.entitlements.endDate = new Date();
+
 
         };
     }else{
@@ -573,6 +584,8 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
             $scope.selectedContract.endDate  = new Date($scope.selectedContract.endDate);
             $scope.entitlements.startDate = new Date($scope.selectedStaffMember.entitlements.entitlements[0].startDate);
             $scope.entitlements.endDate = new Date($scope.selectedStaffMember.entitlements.entitlements[0].endDate);
+            $scope.selectedStaffMember.startDate = new Date($scope.selectedStaffMember.startDate);
+            $scope.selectedStaffMember.endDate = new Date($scope.selectedStaffMember.endDate);
         }
     }
 

@@ -1,4 +1,4 @@
-angular.module('HRMBudget', ['ui.bootstrap','ui.router','ngAnimate']);
+angular.module('HRMBudget', ['ui.bootstrap','ui.router','ngAnimate','angularRipple']);
 
 angular.module('HRMBudget').config(function($stateProvider, $urlRouterProvider) {
 
