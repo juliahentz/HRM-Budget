@@ -1,0 +1,227 @@
+<div class="buhrma-modal">
+    <div class="modal-header">
+        <button type="button" class="close pull-right" aria-hidden="true" ng-click="onClickClose()">&times;</button>
+        <h4 class="modal-title">{{modalTitle}}</h4>
+        <p>{{selectedStaffMember.name}} <b>{{selectedStaffMember.surname}}</b></p>
+    </div>
+    <div class="modal-body">
+        <div>
+            <div ng-if="innerModalPageNum === 1">
+
+                <h4 class="inner-page-title">Step by Step</h4>
+
+                <div class="row">
+                    <div class="col-xs-6">
+                        <ng-buhrma-date-input buhrma-date-model="selectedContract.startDate" buhrma-date-text="Start Date"></ng-buhrma-date-input>
+                    </div>
+                    <div class="col-xs-6">
+                        <ng-buhrma-date-input buhrma-date-model="selectedContract.endDate" buhrma-date-text="End Date"></ng-buhrma-date-input>
+                    </div>
+                </div>
+                <br/>
+
+                <ng-buhrma-select buhrma-select-model="selectedContract.placeOfEmployment"
+                                  buhrma-select-text="Place of Employment"
+                                  buhrma-select-options="allPlaceOfEmploymentNames"
+                                  buhrma-select-prefill="Slovenia"></ng-buhrma-select>
+
+                <br/>
+                <div class="row">
+                    <div class="col-xs-4">
+                        <ng-buhrma-select buhrma-select-model="selectedContract.category"
+                                          buhrma-select-text="Contract type"
+                                          buhrma-select-options="allContractNames"
+                                          ng-click="getAllGrades()"></ng-buhrma-select>
+                    </div>
+                    <div class="col-xs-4">
+                        <ng-buhrma-select buhrma-select-model="selectedContract.grade"
+                                          buhrma-select-text="Grade"
+                                          buhrma-select-options="allGradesInContract"
+                                          ng-click="getAllSteps()"></ng-buhrma-select>
+                    </div>
+                    <div class="col-xs-4">
+                        <ng-buhrma-select buhrma-select-model="selectedContract.step"
+                                          buhrma-select-text="Step"
+                                          buhrma-select-options="allStepsInGrade"></ng-buhrma-select>
+                    </div>
+
+                </div>
+                <br/>
+                <ng-buhrma-checkbox buhrma-checkbox-model="selectedContract.headOfUnit" buhrma-checkbox-label="Head of Unit / Director"></ng-buhrma-checkbox>
+                <br/>
+                <ng-buhrma-checkbox buhrma-checkbox-model="selectedContract.TBAIncrease" buhrma-checkbox-label="TBA increase"></ng-buhrma-checkbox>
+
+            </div>
+
+            <div ng-if="innerModalPageNum === 2">
+
+                <h4 class="inner-page-title">Entitlements</h4>
+
+                <div class="row">
+                    <div class="col-xs-6">
+                        <ng-buhrma-date-input buhrma-date-model="entitlements.startDate" buhrma-date-text="Start Date"></ng-buhrma-date-input>
+                    </div>
+                    <div class="col-xs-6">
+                        <ng-buhrma-date-input buhrma-date-model="entitlements.endDate" buhrma-date-text="End Date"></ng-buhrma-date-input>
+                    </div>
+                </div>
+                <br/>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <ng-buhrma-select buhrma-select-model="entitlements.householdAllowance"
+                                          buhrma-select-text="Household Allowance"
+                                          buhrma-select-options="['No','Yes']"
+                                          buhrma-select-prefill="No"></ng-buhrma-select>
+                    </div>
+                    <div class="col-xs-6">
+                        <!--todo fix resource for allowances and load from there-->
+                        <ng-buhrma-select buhrma-select-model="entitlements.expatriationAllowance"
+                                          buhrma-select-text="Expatriation Allowance"
+                                          buhrma-select-options="['0','4','16']"
+                                          buhrma-select-prefill="0"></ng-buhrma-select>
+                    </div>
+                </div>
+                <hr/>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <ng-buhrma-select buhrma-select-model="entitlements.flatRateOvertime"
+                                          buhrma-select-text="Flat Rate Overtime"
+                                          buhrma-select-options="['No','Yes']"
+                                          buhrma-select-prefill="No"></ng-buhrma-select>
+                    </div>
+                    <div class="col-xs-6">
+                        <ng-buhrma-select buhrma-select-model="entitlements.nonFlatrateSchoolAllowance"
+                                          buhrma-select-text="Non Flat Rate School Allowance"
+                                          buhrma-select-options="['No','Yes']"
+                                          buhrma-select-prefill="No"></ng-buhrma-select>
+                    </div>
+                </div>
+                <hr/>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <ng-buhrma-input buhrma-input-model="entitlements.placeOfOriginDistance"
+                                         buhrma-input-text="Distance from Place of Origin"
+                                         buhrma-input-type="number"
+                                         buhrma-input-prefill="{data:0}"></ng-buhrma-input>
+                    </div>
+                    <div class="col-xs-6">
+                        <ng-buhrma-input buhrma-input-model="entitlements.placeOfOriginNumOfTravellers"
+                                         buhrma-input-text="Number of Travellers"
+                                         buhrma-input-type="number"
+                                         buhrma-input-prefill="{data:0}"></ng-buhrma-input>
+                    </div>
+                </div>
+                <hr/>
+                <ng-buhrma-input buhrma-input-model="entitlements.deductions"
+                                 buhrma-input-text="Decuctions"
+                                 buhrma-input-type="number"
+                                 buhrma-input-prefill="{data:0}"></ng-buhrma-input>
+                <br/>
+
+            </div>
+            <div ng-if="innerModalPageNum === 3">
+
+                <h4 class="inner-page-title">Socioeconomic Status</h4>
+
+                <div class="row">
+                    <div class="col-xs-6">
+                        <ng-buhrma-date-input buhrma-date-model="staffSocioStatus.startDate" buhrma-date-text="Start Date"></ng-buhrma-date-input>
+                    </div>
+                    <div class="col-xs-6">
+                        <ng-buhrma-date-input buhrma-date-model="staffSocioStatus.endDate" buhrma-date-text="End Date"></ng-buhrma-date-input>
+                    </div>
+                </div>
+                <hr/>
+                <ng-buhrma-input buhrma-input-model="staffSocioStatus.numChildren"
+                                 buhrma-input-text="Number of children"
+                                 buhrma-input-type="number"
+                                 buhrma-input-prefill="{data:0}"></ng-buhrma-input>
+                <br/>
+                <div class="row">
+                    <div class="col-xs-4">
+                        <ng-buhrma-input buhrma-input-model="staffSocioStatus.childrenUnderSix"
+                                         buhrma-input-text="Under the age of 6"
+                                         buhrma-input-type="number"
+                                         buhrma-input-prefill="{data:0}"></ng-buhrma-input>
+                    </div>
+                    <div class="col-xs-4">
+                        <ng-buhrma-input buhrma-input-model="staffSocioStatus.childrenInUni"
+                                         buhrma-input-text="In Uni or studying away"
+                                         buhrma-input-type="number"
+                                         buhrma-input-prefill="{data:0}"></ng-buhrma-input>
+                    </div>
+                    <div class="col-xs-4">
+                        <ng-buhrma-input buhrma-input-model="staffSocioStatus.childrenInUniExpatAndFar"
+                                         buhrma-input-text="Stuying away (expat)"
+                                         buhrma-input-type="number"
+                                         buhrma-input-prefill="{data:0}"></ng-buhrma-input>
+                    </div>
+                </div>
+                <br/>
+                <hr/>
+
+                <div class="row">
+                    <div class="col-xs-6">
+                        <ng-buhrma-input buhrma-input-model="staffSocioStatus.fullTimePercentage"
+                                         buhrma-input-text="Fulltime percentage"
+                                         buhrma-input-type="number"
+                                         buhrma-input-prefill="{data:100}"></ng-buhrma-input>
+                    </div>
+                    <div class="col-xs-6">
+
+                        <ng-buhrma-select buhrma-select-model="staffSocioStatus.parttimePensionContr"
+                                          buhrma-select-text="If part time, full pension contribution"
+                                          buhrma-select-options="['No','Yes']"
+                                          buhrma-select-prefill="No"></ng-buhrma-select>
+                    </div>
+                </div>
+                <br/>
+                <hr/>
+                <div class="row">
+                    <div class="col-xs-4">
+                        <ng-buhrma-select buhrma-select-model="staffSocioStatus.parentalLeave"
+                                          buhrma-select-text="On parental leave"
+                                          buhrma-select-options="['No','Yes']"
+                                          buhrma-select-prefill="No"></ng-buhrma-select>
+                    </div>
+                    <div class="col-xs-4">
+
+                        <ng-buhrma-select buhrma-select-model="staffSocioStatus.parentalLeaveExtension"
+                                          buhrma-select-text="Extension parental leave"
+                                          buhrma-select-options="['No','Yes']"
+                                          buhrma-select-prefill="No"></ng-buhrma-select>
+                    </div>
+                    <div class="col-xs-4">
+                        <ng-buhrma-select buhrma-select-model="staffSocioStatus.parentalLeaveIncrease"
+                                          buhrma-select-text="Increase, if parental leave"
+                                          buhrma-select-options="['No','Yes']"
+                                          buhrma-select-prefill="No"></ng-buhrma-select>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="bottom-page-navigator-container">
+                <div class="page-indicator-arrows">
+                    <div class="arrow-box" ng-click="goToBeginning()"><i ng-if="innerModalPageNum != 1" class="fa fa-angle-double-left" aria-hidden="true"></i></div>
+                    <div class="arrow-box" ng-click="innerModalPageNavLeft()"><i ng-if="innerModalPageNum != 1" class="fa fa-angle-left" aria-hidden="true"></i></div>
+                </div>
+                <div class="page-indicator-circles-container"
+                     ng-click="setInnerModalPage(page)" ng-repeat="page in innerModalPages">
+                    <div class="page-indicator-circles"
+                         ng-class="{'page-indicator-circle-active':innerModalPageNum==page}">
+                    </div>
+                </div>
+                <div class="page-indicator-arrows">
+                    <div class="arrow-box" ng-click="innerModalPageNavRight()"><i ng-if="innerModalPageNum != 4" class="fa fa-angle-right" aria-hidden="true"></i></div>
+                    <div class="arrow-box" ng-click="goToEnd()"><i ng-if="innerModalPageNum != 4" class="fa fa-angle-double-right" aria-hidden="true"></i></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <div class="btn buhrma-btn buhrma-btn-save" ng-click="onClickSave()">Save changes</div>
+        <div class="btn buhrma-btn buhrma-btn-cancel" ng-click="onClickClose()">Cancel</div>
+    </div>
+</div>

@@ -22,7 +22,7 @@ angular.module('HRMBudget').controller('StaffCtrl',function(
 // 1. ADD AND EDIT FUNCTIONALITIES
     $scope.onClickButton = function(message, id) {
 
-        if(message === "EditState" || message === "newStaff" || message === 'AddNewState'){
+        if(message === "EditState" || message === "newStaff"){
             var modalInstanceStaff = $uibModal.open({
                 animation: true,
                 templateUrl: 'modal/modal-staff-member/modal-staff-member.html',
@@ -56,12 +56,49 @@ angular.module('HRMBudget').controller('StaffCtrl',function(
                 }
             }).result.then(function(message){
 
-                // A) STAFF MEMBER - two way binding update
                 if(message === 'Staff'){
                     staffService.model.item = {};
 
                     staffService.getAll(function(list){
                         $scope.staffMembers = list;
+                        console.log($scope.staffMembers);
+
+                    });
+                }
+
+            });
+        }else if(message === 'AddNewState'){
+            var modalInstanceStaff = $uibModal.open({
+                animation: true,
+                templateUrl: 'modal/modal-staff-member-new-status/modal-staff-member-new-status.html',
+                controller: 'ModalStaffMemberNewStatusCtrl',
+                size: 'md',
+                backdrop  : 'static',
+                keyboard  : false,
+                resolve: {
+                    staffMember: function(staffService){
+                        if(message === "AddNewState" && id){
+                            return staffService.getOne(id);
+                        }
+                    },
+                    filterDate: function(){
+                        return $scope.filterTableDate;
+                    },
+                    title: function(){
+                        if(message === "AddNewState"){
+                            return "Add New State"
+                        }
+                    }
+                }
+            }).result.then(function(message){
+
+                if(message === 'Staff'){
+                    staffService.model.item = {};
+
+                    staffService.getAll(function(list){
+                        $scope.staffMembers = list;
+                        console.log($scope.staffMembers);
+
                     });
                 }
             });
@@ -96,12 +133,13 @@ angular.module('HRMBudget').controller('StaffCtrl',function(
             }
         }).result.then(function(message){
 
-        // A) STAFF MEMBER - two way binding update
-            if(message === 'staff'){
+            if(message === 'Staff'){
                 staffService.model.item = {};
 
                 staffService.getAll(function(list){
                     $scope.staffMembers = list;
+                    console.log($scope.staffMembers);
+
                 });
             }
         });
