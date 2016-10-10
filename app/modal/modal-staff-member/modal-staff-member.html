@@ -8,7 +8,7 @@
 
 <!-- 3. STAFF -->
 
-        <div ng-if="modalTitle === 'Edit Staff Member' || modalTitle === 'Add New Staff'">
+        <div ng-if="modalTitle === 'Edit Staff Member' || modalTitle === 'Add New Staff' || modalTitle === 'Add New State'">
             <div ng-if="innerModalPageNum === 1">
 
                 <ng-buhrma-input buhrma-input-model="selectedStaffMember.name"
@@ -205,7 +205,7 @@
 
                 <div class="row">
                     <div class="col-xs-6">
-                        <ng-buhrma-input buhrma-input-model="staffSocioStatus.fullTimePerc"
+                        <ng-buhrma-input buhrma-input-model="staffSocioStatus.fullTimePercentage"
                                          buhrma-input-text="Fulltime percentage"
                                          buhrma-input-type="number"
                                          buhrma-input-prefill="{data:100}"></ng-buhrma-input>
@@ -245,47 +245,21 @@
             </div>
 
             <div class="bottom-page-navigator-container">
+                <div class="page-indicator-arrows">
+                    <div class="arrow-box" ng-click="goToBeginning()"><i ng-if="innerModalPageNum != 1" class="fa fa-angle-double-left" aria-hidden="true"></i></div>
+                    <div class="arrow-box" ng-click="innerModalPageNavLeft()"><i ng-if="innerModalPageNum != 1" class="fa fa-angle-left" aria-hidden="true"></i></div>
+                </div>
                 <div class="page-indicator-circles-container"
                      ng-click="setInnerModalPage(page)" ng-repeat="page in innerModalPages">
                     <div class="page-indicator-circles"
                          ng-class="{'page-indicator-circle-active':innerModalPageNum==page}">
                     </div>
                 </div>
+                <div class="page-indicator-arrows">
+                    <div class="arrow-box" ng-click="innerModalPageNavRight()"><i ng-if="innerModalPageNum != 4" class="fa fa-angle-right" aria-hidden="true"></i></div>
+                    <div class="arrow-box" ng-click="goToEnd()"><i ng-if="innerModalPageNum != 4" class="fa fa-angle-double-right" aria-hidden="true"></i></div>
+                </div>
             </div>
-        </div>
-
-<!-- Adding staff Member-->
-
-        <div ng-if="modalTitle === 'Assign Staff Member to Post'">
-            <h3>Post Details</h3>
-            <p>{{selectedPost.postTitle}}</p>
-            <p>{{selectedPost.contractType}}</p>
-            <p>{{selectedPost.postCategory}} {{selectedPost.postGrade}}</p>
-
-            <label>Assign Staff Member</label>
-            <select class="form-control" ng-options="staffMember.name + ' ' + staffMember.surname + ' (' + staffMember.staffNumber + ')' for staffMember in staffMembers" ng-model="selectedStaffOnPost.staff"></select>
-
-            <!--<label>Contract Type</label>
-            <select class="form-control" ng-options="contract.name for contract in allContracts" ng-model="selectedStaffOnPost.contractType"></select>
-
-            <label>Grade</label>
-            <select class="form-control" ng-options="grade.gradeNumber for grade in selectedPost.contractType.grades" ng-model="selectedStaffOnPost.postGrade"></select>
-
-            <label>Step</label>
-            <select class="form-control" ng-options="step.stepNumber for step in selectedPost.postGrade.steps" ng-model="selectedStaffOnPost.postStep"></select>
--->
-            <label>Start Date on post</label>
-            <input type="date"
-                   class="form-control"
-                   id="bootstrap-override-input"
-                   ng-model="selectedStaffOnPost.startDate">
-
-            <label>End Date on post</label>
-            <input type="date"
-                   class="form-control"
-                   id="bootstrap-override-input"
-                   ng-model="selectedStaffOnPost.endDate">
-
         </div>
 
 	</div>

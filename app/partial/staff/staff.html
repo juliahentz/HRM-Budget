@@ -1,27 +1,33 @@
 <div class="hrm-budget-staffmember-container">
 
-    <div>
+    <div class="row top-bar-buttons">
 
-        <div class="icon-container" ng-click="onClickButton('newStaff')" angular-ripple><i class="fa fa-plus" aria-hidden="true"></i></div>
-        <div class="btn btn-sm buhrma-btn" ng-click="onClickButton('newStaff')" angular-ripple>Add New Staff</div>
-
-        <div class="icon-container" ng-click="onClickFilterDate()" angular-ripple><i class="fa fa-filter" aria-hidden="true"></i></i></div>
-        <div class="btn btn-sm buhrma-btn" ng-click="onClickFilterDate()" angular-ripple>State: <em>{{filterTableDate | date:'dd.MM.yyyy'}}</em></div>
-
-        <div class="icon-container" ng-click="onCustomiseTableClick()" angular-ripple><i class="fa fa-check-square-o" aria-hidden="true"></i></div>
-        <div class="btn btn-sm buhrma-btn" ng-click="onCustomiseTableClick()" angular-ripple>Customise table</div>
-
-        <div class="icon-container" ng-click="exportToExcel('#table-to-export')" angular-ripple><i class="fa fa-cloud-download" aria-hidden="true"></i></div>
-        <div class="btn btn-sm buhrma-btn" ng-click="exportToExcel('#table-to-export')" angular-ripple>Export to excel</div>
-
+        <div class="col-xl-3">
+            <div class="icon-container" ng-click="onClickButton('newStaff')" angular-ripple><i class="fa fa-plus" aria-hidden="true"></i></div>
+            <div class="btn btn-sm buhrma-btn" ng-click="onClickButton('newStaff')" angular-ripple>Add New Staff</div>
+        </div>
+        <div class="col-xl-3">
+            <div class="icon-container" ng-click="onClickFilterDate()" angular-ripple><i class="fa fa-filter" aria-hidden="true"></i></i></div>
+            <div class="btn btn-sm buhrma-btn" ng-click="onClickFilterDate()" angular-ripple>State: <em>{{filterTableDate | date:'dd.MM.yyyy'}}</em></div>
+        </div>
+        <div class="col-xl-3">
+            <div class="icon-container" ng-click="onCustomiseTableClick()" angular-ripple><i class="fa fa-check-square-o" aria-hidden="true"></i></div>
+            <div class="btn btn-sm buhrma-btn" ng-click="onCustomiseTableClick()" angular-ripple>Customise table</div>
+        </div>
+        <div class="col-xl-3">
+            <div class="icon-container" ng-click="exportToExcel('#table-to-export')" angular-ripple><i class="fa fa-cloud-download" aria-hidden="true"></i></div>
+            <div class="btn btn-sm buhrma-btn" ng-click="exportToExcel('#table-to-export')" angular-ripple>Export to excel</div>
+        </div>
     </div>
     <hr/>
-    <br/>
     <div>
         <div class="buhrma-table-container">
             <table class="table buhrma-table" id="table-to-export">
                 <thead>
                     <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
                         <th ng-if="customTableElements.name" ng-click="onClickTableHead('name')">Name <span ng-if="clickedTableHead == 'name'"><i class="fa fa-sort-desc" aria-hidden="true"></i></span></th>
                         <th ng-if="customTableElements.surname" ng-click="onClickTableHead('surname')">Surname <span ng-if="clickedTableHead == 'surname'"><i class="fa fa-sort-desc" aria-hidden="true"></i></span></th>
                         <th ng-if="customTableElements.staffNumber" ng-click="onClickTableHead('staffNumber')">Staff Number <span ng-if="clickedTableHead == 'staffNumber'"><i class="fa fa-sort-desc" aria-hidden="true"></i></span></th>
@@ -52,12 +58,26 @@
                         <th ng-if="customTableElements.parentalLeave">Parental leave</th>
                         <th ng-if="customTableElements.parentalLeaveExtension">Parental leave extension</th>
                         <th ng-if="customTableElements.parentalLeaveIncrease">Parental leave increase</th>
-                        <th></th>
-                        <th></th>
+
                     </tr>
                 </thead>
                 <tbody>
                     <tr ng-repeat="staffMember in staffMembers | orderBy:clickedTableHead" ng-if="staffMember.startDate <= filterTableDate && filterTableDate <= staffMember.endDate">
+                        <td>
+                            <div class="btn btn-xs btn-default" ng-click="onClickButton('EditState', staffMember._id)">
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="btn btn-xs btn-default" ng-click="onClickButton('AddNewState', staffMember._id)">
+                                <i class="fa fa-file-o" aria-hidden="true"></i>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="btn btn-xs btn-danger" ng-click="onClickDelete('staffMember', staffMember._id)">
+                                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                            </div>
+                        </td>
 
                         <td ng-if="customTableElements.name">{{staffMember.name}}</td>
                         <td ng-if="customTableElements.surname">{{staffMember.surname}}</td>
@@ -263,54 +283,9 @@
                                 </span>
                             </span>
                         </td>
-                        <td><div class="btn btn-xs btn-default" ng-click="onClickButton('staffMember', staffMember._id)"><i class="fa fa-pencil" aria-hidden="true"></i></div></td>
-                        <td><div class="btn btn-xs btn-danger" ng-click="onClickDelete('staffMember', staffMember._id)"><i class="fa fa-trash-o" aria-hidden="true"></i></div></td>
-                    </tr>
+                        </tr>
                 </tbody>
             </table>
         </div>
-
-        <!--<div>
-            <table class="table table-striped">
-                <tr>
-                    <th>Post Title</th>
-                    <th>Contract Type</th>
-                    <th>Grade</th>
-                    <th>Occupied</th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th>Staff on post</th>
-                    <th>Contract Type</th>
-                    <th>Grade</th>
-                    <th>Step</th>
-                    <th>Basic Salary</th>
-                </tr>
-                <tr ng-repeat="post in posts">
-                    <td>{{post.postTitle}}</td>
-                    <td>{{post.contractType}}</td>
-                    <td>{{post.postGrade}}</td>
-                    <td ng-if="post.occupied">Occupied</td>
-                    <td ng-if="!post.occupied">Vacant</td>
-                    <td><div class="btn btn-xs btn-primary" ng-click="onClickButton('post', post._id)">Edit Post</div></td>
-                    <td><div class="btn btn-xs btn-danger" ng-click="onClickDelete('post', post._id)">Delete Post</div></td>
-                    <td ng-if="!post.occupied"><div class="btn btn-xs btn-success" ng-click="onClickButton('fillPost', post._id)">Manage Staff Member</div></td>
-                    <td>
-                        <div ng-repeat="staffOnPost in post.staffOnPost">
-                            <span ng-if="staffOnPost.startDate <= timeNow && staffOnPost.endDate != null && staffOnPost.endDate >= timeNow">{{staffOnPost.staff.name}} <b>{{staffOnPost.staff.surname}}</b> ({{staffOnPost.staff.staffNumber}})</span>
-                            <span ng-if="staffOnPost.startDate <= timeNow && staffOnPost.endDate == null">{{staffOnPost.staff.name}} <b>{{staffOnPost.staff.surname}}</b> ({{staffOnPost.staff.staffNumber}})</span>
-                        </div>
-                    </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </table>
-        </div>-->
     </div>
-
-
-
-
 </div>

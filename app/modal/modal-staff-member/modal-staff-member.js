@@ -2,6 +2,7 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
     $scope,
     $uibModalInstance,
     title,
+    filterDate,
     staffService,
     paramContractService,
     paramPlaceOfEmploymentService,
@@ -9,17 +10,12 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
     publicApiService,
     personalDataService,
     socioStatusService,
-    postService,
     entitlementsService
 ){
 
 // -- 1. INIT --------------------------------------
 
-    $scope.currentTime = new Date();
-    $scope.innerModalPageNum = 1;
-
-    // todo fix modal page number array
-    $scope.innerModalPages = [1,2,3,4];
+    $scope.filterDate = filterDate;
 
     // REFERENCING MODELS RECEIVED FROM SERVER
     $scope.staffMembers = staffService.model.list;
@@ -29,6 +25,33 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
 
     // RESOLVES RECEIVED FROM CALLING THE MODAL
     $scope.modalTitle = title;
+
+    if($scope.modalTitle === 'Add New State'){
+        $scope.innerModalPageNum = 2;
+    }else{
+        $scope.innerModalPageNum = 1;
+    }
+    $scope.innerModalPages = [1,2,3,4];
+
+    $scope.innerModalPageNavRight = function(){
+        if($scope.innerModalPageNum < 4){
+            $scope.innerModalPageNum = $scope.innerModalPageNum+1;
+        }
+    };
+
+    $scope.innerModalPageNavLeft = function(){
+        if($scope.innerModalPageNum > 1){
+            $scope.innerModalPageNum = $scope.innerModalPageNum-1;
+        }
+    };
+
+    $scope.goToBeginning = function(){
+        $scope.innerModalPageNum = 1;
+    };
+
+    $scope.goToEnd = function(){
+        $scope.innerModalPageNum = 4;
+    };
 
     // INNER MODAL PAGE LOGIC
     $scope.setInnerModalPage = function(message){
@@ -108,18 +131,6 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
         });
     };
 
-    $scope.datePeriodStart = {
-        year:2016,
-        month:1,
-        day:1
-    };
-
-    $scope.datePeriodEnd = {
-        year:2020,
-        month:12,
-        day:31
-    };
-
     // SEPARATING LOGIC FOR VARIOUS CASES IF DATABASE ELEMENT HAS BEEN ALREADY CREATED
     if(Object.keys($scope.selectedStaffMember).length == 0){
 
@@ -129,22 +140,11 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
 
     }else if($scope.selectedStaffMember.stepByStep.length != 0){
 
-        // todo fix first element to time selection
-        $scope.selectedContract = $scope.selectedStaffMember.stepByStep.positionsFilled[0];
-
-        // todo do I need this???
-        /*var startDate = new Date($scope.selectedStaffMember.stepByStep.positionsFilled[0].startDate);
-
-        $scope.datePeriodStart.year = startDate.getFullYear();
-        $scope.datePeriodStart.month = startDate.getMonth() + 1;
-        $scope.datePeriodStart.day = startDate.getDay();
-
-        var endDate = new Date($scope.selectedStaffMember.stepByStep.positionsFilled[0].endDate);
-
-        $scope.datePeriodEnd.year = endDate.getFullYear();
-        $scope.datePeriodEnd.month = endDate.getMonth() + 1;
-        $scope.datePeriodEnd.day = endDate.getDay();*/
-
+        angular.forEach($scope.selectedStaffMember.stepByStep.positionsFilled, function(positions, index) {
+            if (positions.startDate <= $scope.filterDate && $scope.filterDate <= positions.endDate) {
+                $scope.selectedContract = positions;
+            }
+        });
         $scope.getAllGrades();
         $scope.getAllSteps();
     }else{
@@ -161,26 +161,30 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
 
     }else if($scope.selectedStaffMember.entitlements.length != 0){
 
-        $scope.entitlements = $scope.selectedStaffMember.entitlements.entitlements[0];
+        angular.forEach($scope.selectedStaffMember.entitlements.entitlements, function(entitlements, index){
+            if(entitlements.startDate <= $scope.filterDate && $scope.filterDate <= entitlements.endDate){
 
-        if($scope.selectedStaffMember.entitlements.entitlements[0].householdAllowance === true){
-            $scope.entitlements.householdAllowance = 'Yes';
-        }else if($scope.selectedStaffMember.entitlements.entitlements[0].householdAllowance === false){
-            $scope.entitlements.householdAllowance = 'No';
-        }
+                $scope.entitlements = entitlements;
 
-        if($scope.selectedStaffMember.entitlements.entitlements[0].flatRateOvertime === true){
-            $scope.entitlements.flatRateOvertime = 'Yes';
-        }else if($scope.selectedStaffMember.entitlements.entitlements[0].flatRateOvertime === false){
-            $scope.entitlements.flatRateOvertime = 'No';
-        }
+                if($scope.entitlements.householdAllowance === true){
+                    $scope.entitlements.householdAllowance = 'Yes';
+                }else if($scope.entitlements.householdAllowance === false){
+                    $scope.entitlements.householdAllowance = 'No';
+                }
 
-        if($scope.selectedStaffMember.entitlements.entitlements[0].nonFlatrateSchoolAllowance === true){
-            $scope.entitlements.nonFlatrateSchoolAllowance = 'Yes';
-        }else if($scope.selectedStaffMember.entitlements.entitlements[0].nonFlatrateSchoolAllowance === false){
-            $scope.entitlements.nonFlatrateSchoolAllowance = 'No';
-        }
+                if($scope.entitlements.flatRateOvertime === true){
+                    $scope.entitlements.flatRateOvertime = 'Yes';
+                }else if($scope.entitlements.flatRateOvertime === false){
+                    $scope.entitlements.flatRateOvertime = 'No';
+                }
 
+                if($scope.entitlements.nonFlatrateSchoolAllowance === true){
+                    $scope.entitlements.nonFlatrateSchoolAllowance = 'Yes';
+                }else if($scope.entitlements.nonFlatrateSchoolAllowance === false){
+                    $scope.entitlements.nonFlatrateSchoolAllowance = 'No';
+                }
+            }
+        });
     }else{
         $scope.entitlements = {};
     }
@@ -194,70 +198,45 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
 
     $scope.countryList = [];
 
-    $scope.datePeriodBirth = {
-        year: 1990,
-        month:1,
-        day:1
-    };
-
     publicApiService.getAllCountries(function(){
         angular.forEach(publicApiService.model.list, function(country, index){
             $scope.countryList.push(country.alpha2Code);
         });
     });
 
-
-
-
-
 // -- 4. LOGIC: SOCIO-STATUS FOR STAFF MEMBER ------
-    // todo: fix array element to current date filter
-    // todo: fix end date to the array elements!!!
-
     if($scope.selectedStaffMember.socioStatus == null){
         $scope.staffSocioStatus = {};
     }else{
-        $scope.staffSocioStatus = {};
-        $scope.staffSocioStatus.numChildren = $scope.selectedStaffMember.socioStatus.statuses[0].numChildren;
-        $scope.staffSocioStatus.childrenUnderSix = $scope.selectedStaffMember.socioStatus.statuses[0].childrenUnderSix;
-        $scope.staffSocioStatus.childrenInUni = $scope.selectedStaffMember.socioStatus.statuses[0].childrenInUni;
-        $scope.staffSocioStatus.childrenInUniExpatAndFar = $scope.selectedStaffMember.socioStatus.statuses[0].childrenInUniExpatAndFar;
 
-        $scope.staffSocioStatus.fullTimePerc = $scope.selectedStaffMember.socioStatus.statuses[0].fullTimePercentage;
+        angular.forEach($scope.selectedStaffMember.socioStatus.statuses, function(statuses, index) {
+            if (statuses.startDate <= $scope.filterDate && $scope.filterDate <= statuses.endDate) {
 
-        if($scope.selectedStaffMember.socioStatus.statuses[0].parttimePensionContr === true){
-            $scope.staffSocioStatus.parttimePensionContr = 'Yes';
-        }else if($scope.selectedStaffMember.socioStatus.statuses[0].parttimePensionContr === false){
-            $scope.staffSocioStatus.parttimePensionContr = 'No';
-        }
-        if($scope.selectedStaffMember.socioStatus.statuses[0].parentalLeave === true){
-            $scope.staffSocioStatus.parentalLeave = 'Yes';
-        }else if($scope.selectedStaffMember.socioStatus.statuses[0].parentalLeave === false){
-            $scope.staffSocioStatus.parentalLeave = 'No';
-        }
-        if($scope.selectedStaffMember.socioStatus.statuses[0].parentalLeaveExtension === true){
-            $scope.staffSocioStatus.parentalLeaveExtension = 'Yes';
-        }else if($scope.selectedStaffMember.socioStatus.statuses[0].parentalLeaveExtension === false){
-            $scope.staffSocioStatus.parentalLeaveExtension = 'No';
-        }
-        if($scope.selectedStaffMember.socioStatus.statuses[0].parentalLeaveIncrease === true){
-            $scope.staffSocioStatus.parentalLeaveIncrease = 'Yes';
-        }else if($scope.selectedStaffMember.socioStatus.statuses[0].parentalLeaveIncrease === false){
-            $scope.staffSocioStatus.parentalLeaveIncrease = 'No';
-        }
+                $scope.staffSocioStatus = statuses;
 
-        $scope.staffSocioStatus.startDate = $scope.selectedStaffMember.socioStatus.statuses[0].startDate;
+                if($scope.staffSocioStatus.parttimePensionContr === true){
+                    $scope.staffSocioStatus.parttimePensionContr = 'Yes';
+                }else if($scope.staffSocioStatus.parttimePensionContr === false){
+                    $scope.staffSocioStatus.parttimePensionContr = 'No';
+                }
+                if($scope.staffSocioStatus.parentalLeave === true){
+                    $scope.staffSocioStatus.parentalLeave = 'Yes';
+                }else if($scope.staffSocioStatus.parentalLeave === false){
+                    $scope.staffSocioStatus.parentalLeave = 'No';
+                }
+                if($scope.staffSocioStatus.parentalLeaveExtension === true){
+                    $scope.staffSocioStatus.parentalLeaveExtension = 'Yes';
+                }else if($scope.staffSocioStatus.parentalLeaveExtension === false){
+                    $scope.staffSocioStatus.parentalLeaveExtension = 'No';
+                }
+                if($scope.staffSocioStatus.parentalLeaveIncrease === true){
+                    $scope.staffSocioStatus.parentalLeaveIncrease = 'Yes';
+                }else if($scope.staffSocioStatus.parentalLeaveIncrease === false){
+                    $scope.staffSocioStatus.parentalLeaveIncrease = 'No';
+                }
+            }
+        });
     }
-
-    $scope.datePeriodNow = {};
-
-    $scope.datePeriodNow.year = $scope.currentTime.getFullYear();
-    $scope.datePeriodNow.month = $scope.currentTime.getMonth() +1;
-    $scope.datePeriodNow.day = $scope.currentTime.getDay();
-
-
-
-
 
 
 // -- . LOGIC: SAVE MODAL -------------------------
@@ -347,7 +326,7 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
                 $scope.socioStatusInnerItem.childrenInUni = $scope.staffSocioStatus.childrenInUni;
                 $scope.socioStatusInnerItem.childrenInUniExpatAndFar = $scope.staffSocioStatus.childrenInUniExpatAndFar;
 
-                $scope.socioStatusInnerItem.fullTimePercentage = $scope.staffSocioStatus.fullTimePerc;
+                $scope.socioStatusInnerItem.fullTimePercentage = $scope.staffSocioStatus.fullTimePercentage;
 
                 if($scope.staffSocioStatus.parttimePensionContr === 'No'){
                     $scope.socioStatusInnerItem.parttimePensionContr = false;
@@ -478,7 +457,7 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
                 $scope.socioStatusInnerItem.childrenInUni = $scope.staffSocioStatus.childrenInUni;
                 $scope.socioStatusInnerItem.childrenInUniExpatAndFar = $scope.staffSocioStatus.childrenInUniExpatAndFar;
 
-                $scope.socioStatusInnerItem.fullTimePercentage = $scope.staffSocioStatus.fullTimePerc;
+                $scope.socioStatusInnerItem.fullTimePercentage = $scope.staffSocioStatus.fullTimePercentage;
 
                 if($scope.staffSocioStatus.parttimePensionContr === 'No'){
                     $scope.socioStatusInnerItem.parttimePensionContr = false;
@@ -516,17 +495,6 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
                     });
                 });
             }
-
-
-    // C) MANAGE STAFF ON POST
-        }else if($scope.modalTitle === "Assign Staff Member to Post"){
-
-            $scope.selectedPost.staffOnPost.push($scope.selectedStaffOnPost);
-
-            postService.update($scope.selectedPost._id, $scope.selectedPost, function(item){
-
-                $uibModalInstance.close('Post');
-            });
         }
     };
 
@@ -536,16 +504,9 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
 
     // A) STAFF MEMBER
         if($scope.modalTitle === "Edit Staff Member" || $scope.modalTitle === "Add New Staff"){
-
             staffService.model.item = {};
-
-    // B) POST
-        }else if($scope.modalTitle === 'Edit Post' || $scope.modalTitle === "Add New Post"){
-
-            postService.model.item = {};
         }
 
-        $scope.selectedPost = {};
         $scope.selectedStaffMember = {};
         $scope.modalTitle = null;
 
@@ -574,18 +535,32 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
             $scope.selectedStaffMember.startDate = new Date();
             $scope.selectedStaffMember.endDate = new Date();
             $scope.staffPersonalData.birthDate  = new Date();
-
-
         };
     }else{
         $scope.today = function() {
-            $scope.staffSocioStatus.startDate = new Date($scope.selectedStaffMember.socioStatus.statuses[0].startDate);
-            $scope.staffSocioStatus.endDate = new Date($scope.selectedStaffMember.socioStatus.statuses[0].endDate);
+
+            angular.forEach($scope.selectedStaffMember.socioStatus.statuses, function(statuses, index){
+                if(statuses.startDate <= $scope.filterDate && $scope.filterDate <= statuses.endDate){
+                    $scope.staffSocioStatus.startDate = new Date(statuses.startDate);
+                    $scope.staffSocioStatus.endDate = new Date(statuses.endDate);
+                }
+            });
+
             $scope.staffPersonalData.birthDate  = new Date($scope.staffPersonalData.birthDate);
+
+            angular.forEach($scope.selectedStaffMember.stepByStep.positionsFilled, function(positions, index){
+
+            });
             $scope.selectedContract.startDate  = new Date($scope.selectedContract.startDate);
             $scope.selectedContract.endDate  = new Date($scope.selectedContract.endDate);
-            $scope.entitlements.startDate = new Date($scope.selectedStaffMember.entitlements.entitlements[0].startDate);
-            $scope.entitlements.endDate = new Date($scope.selectedStaffMember.entitlements.entitlements[0].endDate);
+
+            angular.forEach($scope.selectedStaffMember.entitlements.entitlements, function(entitlements, index){
+                if(entitlements.startDate <= $scope.filterDate && $scope.filterDate <= entitlements.endDate){
+                    $scope.entitlements.startDate = new Date(entitlements.startDate);
+                    $scope.entitlements.endDate = new Date(entitlements.endDate);
+                }
+            });
+
             $scope.selectedStaffMember.startDate = new Date($scope.selectedStaffMember.startDate);
             $scope.selectedStaffMember.endDate = new Date($scope.selectedStaffMember.endDate);
         }
