@@ -13,6 +13,8 @@ angular.module('HRMBudget').controller('ModalStaffMemberNewStatusCtrl',function(
     $scope.filterDate = filterDate;
 
     $scope.selectedStaffMember = staffService.model.item;
+    $scope.refSelectedStaffMember = {};
+    angular.copy($scope.selectedStaffMember, $scope.refSelectedStaffMember);
     $scope.allContracts = paramContractService.model.types;
     $scope.allPlaceOfEmployment = paramPlaceOfEmploymentService.model.list;
 
@@ -21,7 +23,7 @@ angular.module('HRMBudget').controller('ModalStaffMemberNewStatusCtrl',function(
 
 // REFERENCING VARIABLES FOR API COMMUNICATION
 
-    $scope.perviousContract = {};
+    $scope.previousContract = {};
 
 
     //TODO ALL needed?
@@ -96,9 +98,9 @@ angular.module('HRMBudget').controller('ModalStaffMemberNewStatusCtrl',function(
     angular.forEach($scope.selectedStaffMember.stepByStep.positionsFilled, function(positions, index) {
         if (positions.startDate <= $scope.filterDate && $scope.filterDate <= positions.endDate) {
             $scope.selectedContract = positions;
-            angular.copy(positions, $scope.perviousContract);
-            $scope.perviousContract.startDate = new Date($scope.perviousContract.startDate);
-            $scope.perviousContract.endDate = new Date($scope.perviousContract.endDate);
+            angular.copy(positions, $scope.previousContract);
+            $scope.previousContract.startDate = new Date($scope.previousContract.startDate);
+            $scope.previousContract.endDate = new Date($scope.previousContract.endDate);
         }
     });
     $scope.getAllGrades();
@@ -166,14 +168,58 @@ angular.module('HRMBudget').controller('ModalStaffMemberNewStatusCtrl',function(
 // LOGIC: SAVE MODAL ------------------------------
     $scope.onClickSave = function(){
         if($scope.innerModalPageNum === 1){
-            
-            // EDIT PREVIOUS STATE
-            $scope.perviousContract.endDate = new Date ($scope.selectedContract.startDate);
-            $scope.perviousContract.endDate.setDate($scope.selectedContract.startDate.getDate() -1);
+
+            angular.forEach($scope.refSelectedStaffMember.stepByStep.positionsFilled, function(position, index){
+                if(position.startDate <= $scope.selectedContract.endDate.toISOString() && position.endDate >= $scope.selectedContract.endDate.toISOString()){
+
+                    console.log('case A');
+                    console.log('before edit: ');
+                    console.log(position);
+
+                    position.startDate = $scope.selectedContract.endDate;
+                    position.startDate.setDate($scope.selectedContract.endDate.getDate()+1);
+
+                    console.log('after edit: ');
+                    console.log(position);
+                }else if(position.startDate <= $scope.selectedContract.startDate.toISOString() && position.endDate >= $scope.selectedContract.startDate.toISOString()){
+
+                    console.log('case B');
+                    console.log('before edit: ');
+                    console.log(position);
+
+                    position.endDate = new Date($scope.selectedContract.startDate);
+                    position.endDate.setDate(new Date($scope.selectedContract.startDate).getDate()-1);
+
+                    console.log('after edit: ');
+                    console.log(position);
+                }else if(position.startDate <= $scope.selectedContract.startDate.toISOString() && position.endDate >= $scope.selectedContract.endDate.toISOString()){
+
+                    console.log('case C');
+                    console.log('before edit: ');
+                    console.log(position);
+
+                    var positionCopy = {};
+                    angular.copy(position, positionCopy);
+
+                    positionCopy.startDate = $scope.selectedContract.endDate;
+                    positionCopy.startDate.setDate($scope.selectedContract.endDate.getDate()+1);
+
+                    position.endDate = $scope.selectedContract.startDate;
+                    position.endDate.setDate($scope.selectedContract.startDate.getDate()-1);
+
+
+                    console.log('after edit: ');
+                    console.log(position);
+                    console.log(positionCopy);
+                }
+            });
+            /*// EDIT PREVIOUS STATE
+            $scope.previousContract.endDate = new Date ($scope.selectedContract.startDate);
+            $scope.previousContract.endDate.setDate($scope.selectedContract.startDate.getDate() -1);
 
             angular.forEach($scope.selectedStaffMember.stepByStep.positionsFilled, function(positions, index, array){
-                if(positions._id === $scope.perviousContract._id){
-                    array[index] = $scope.perviousContract;
+                if(positions._id === $scope.previousContract._id){
+                    array[index] = $scope.previousContract;
                 }
             });
 
@@ -184,8 +230,8 @@ angular.module('HRMBudget').controller('ModalStaffMemberNewStatusCtrl',function(
             // API CALL
             stepByStepService.update($scope.selectedStaffMember.stepByStep._id, $scope.selectedStaffMember.stepByStep, function(item){
                 console.log(item);
-            });
-            
+            });*/
+
         }else if($scope.innerModalPageNum === 2){
 
         }else if($scope.innerModalPageNum === 3){
@@ -198,7 +244,7 @@ angular.module('HRMBudget').controller('ModalStaffMemberNewStatusCtrl',function(
 // LOGIC: CLOSE MODAL -----------------------------
     $scope.onClickClose = function(){
 
-        $scope.perviousContract = {};
+        $scope.previousContract = {};
         $uibModalInstance.close();
     };
 

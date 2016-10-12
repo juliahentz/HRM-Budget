@@ -20,7 +20,7 @@ angular.module('HRMBudget').config(function($stateProvider, $urlRouterProvider) 
         views: {
             'main@':{
                 templateUrl: 'partial/staff/staff.html',
-                controller: 'StaffCtrl',
+                controller: 'StaffCtrl'
             }
         },
         resolve:{
@@ -44,6 +44,15 @@ angular.module('HRMBudget').config(function($stateProvider, $urlRouterProvider) 
         }
     });
 
+    $stateProvider.state('app.budget', {
+        url: 'budget',
+        views: {
+            'main@':{
+                templateUrl: 'partial/budget/budget.html',
+                controller: 'BudgetCtrl'
+            }
+        }
+    });
     /* Add New States Above */
     $urlRouterProvider.otherwise('/staff');
 

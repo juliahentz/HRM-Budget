@@ -8,8 +8,46 @@
         <div>
             <div ng-if="innerModalPageNum === 1">
 
-                <h4 class="inner-page-title">Step by Step</h4>
+                <h4 class="inner-page-title">All positions filled by {{selectedStaffMember.name}} <b>{{selectedStaffMember.surname}}</h4>
+                <div class="buhrma-table-container">
+                    <table class="table buhrma-table">
+                        <thead>
+                            <tr>
+                                <th>Category</th>
+                                <th>Grade</th>
+                                <th>Step</th>
+                                <th>Start date</th>
+                                <th>End date</th>
+                                <th>Place of Employment</th>
+                                <th>Head of Unit</th>
+                                <th>TBA increase</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="positions in refSelectedStaffMember.stepByStep.positionsFilled | orderBy:positions.startDate">
+                                <td>{{positions.category}}</td>
+                                <td>{{positions.grade}}</td>
+                                <td>{{positions.step}}</td>
+                                <td>{{positions.startDate | date:'dd.MM.yyyy'}}</td>
+                                <td>{{positions.endDate  | date:'dd.MM.yyyy'}}</td>
+                                <td>
+                                    <span ng-if="positions.headOfUnit">
+                                        <i class="fa fa-check" aria-hidden="true"></i>
+                                    </span>
+                                </td>
+                                <td>
+                                    <span ng-if="positions.TBAIncrease">
+                                        <i class="fa fa-check" aria-hidden="true"></i>
+                                    </span>
+                                </td>
+                                <td>{{positions.placeOfEmployment}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
 
+                <hr/>
+                <h4>Add new position</h4>
                 <div class="row">
                     <div class="col-xs-6">
                         <ng-buhrma-date-input buhrma-date-model="selectedContract.startDate" buhrma-date-text="Start Date"></ng-buhrma-date-input>

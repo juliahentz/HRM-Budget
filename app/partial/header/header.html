@@ -5,13 +5,13 @@
 
     <div class="navigation">
         <p angular-ripple>ADMIN login</p>
-        <p angular-ripple>Budget</pangular-ripple>
+        <p angular-ripple ui-sref="app.budget">Budget</pangular-ripple>
         <p angular-ripple ui-sref="app.staff">Staff</p>
         <i class="fa fa-bars" aria-hidden="true" ng-click="onClickNavIcon()"></i>
     </div>
     <div class="nav-icon-box" ng-class="{'nav-icon-box-open':navBoxOpen}">
-        <div angular-ripple ui-sref="app.staff">Staff</div>
-        <div angular-ripple>Budget</div>
-        <div angular-ripple>ADMIN login</div>
+        <div angular-ripple ui-sref="app.staff" ng-click="onClickNavIcon()">Staff</div>
+        <div angular-ripple ui-sref="app.budget" ng-click="onClickNavIcon()">Budget</div>
+        <div angular-ripple ng-click="onClickNavIcon()">ADMIN login</div>
     </div>
 </div>
