@@ -3,6 +3,7 @@
 const mongoose = require('mongoose');
 const _ = require('lodash');
 
+/*
 exports.budgetCalc = ()=> {
 
     const BudgetFile = mongoose.model('BudgetFile');
@@ -232,4 +233,4 @@ exports.budgetSave = ()=> {
             console.log(err);
         }
     });
-};
+};*/

@@ -53,8 +53,8 @@ angular.module('HRMBudget').config(function($stateProvider, $urlRouterProvider) 
             }
         },
         resolve:{
-            getAnnualBudget: function(budgetService){
-                return budgetService.getAll();
+            getAllStaffMembers: function(staffService){
+                return staffService.getAll();
             }
         }
     });

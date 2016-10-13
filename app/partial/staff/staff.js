@@ -4,12 +4,16 @@ angular.module('HRMBudget').controller('StaffCtrl',function(
     postService,
     $uibModal,
     Excel,
-    timeNow,
-    $timeout
+    timeNow
 ){
 
     $scope.posts = postService.model.list;
     $scope.staffMembers = staffService.model.list;
+    $scope.$watch('$scope.staffMembers', function() {
+        staffService.getAll(function(list){
+            $scope.staffMembers = list;
+        });
+    });
 
     $scope.filterTableDate = timeNow;
 
@@ -54,9 +58,9 @@ angular.module('HRMBudget').controller('StaffCtrl',function(
                         }
                     }
                 }
-            }).result.then(function(message){
+            }).result.then(function(staff){
 
-                if(message === 'Staff'){
+                if(staff){
                     staffService.model.item = {};
 
                     staffService.getAll(function(list){
@@ -65,7 +69,7 @@ angular.module('HRMBudget').controller('StaffCtrl',function(
                 }
 
             });
-        }else if(message === 'AddNewState'){
+        }/*else if(message === 'AddNewState'){
             var modalInstanceStaff = $uibModal.open({
                 animation: true,
                 templateUrl: 'modal/modal-staff-member-new-status/modal-staff-member-new-status.html',
@@ -88,17 +92,15 @@ angular.module('HRMBudget').controller('StaffCtrl',function(
                         }
                     }
                 }
-            }).result.then(function(message){
+            }).result.then(function(staffList){
 
-                if(message === 'Staff'){
-                    staffService.model.item = {};
+                staffService.model.item = {};
 
-                    staffService.getAll(function(list){
-                        $scope.staffMembers = list;
-                    });
+                if(staffList){
+                    $scope.staffMembers = staffList;
                 }
             });
-        }
+        }*/
     };
 
 // 2. DELETE FUNCTIONALITY
@@ -129,7 +131,7 @@ angular.module('HRMBudget').controller('StaffCtrl',function(
             }
         }).result.then(function(message){
 
-            if(message === 'staff'){
+            if(message){
                 staffService.model.item = {};
 
                 staffService.getAll(function(list){

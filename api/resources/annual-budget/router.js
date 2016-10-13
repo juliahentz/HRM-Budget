@@ -6,9 +6,9 @@ exports.init = (app)=> {
 
     app.get('/api/annual-budgets', (req, res)=> {
 
-        const BudgetFile = mongoose.model('BudgetFile');
+        //const BudgetFile = mongoose.model('BudgetFile');
 
-        BudgetFile.remove({}, function(err) {
+        /*BudgetFile.remove({}, function(err) {
             console.log('collection removed');
 
         }).then(function(){
@@ -21,7 +21,7 @@ exports.init = (app)=> {
                 console.log('budget calc');
             }, 3000);
 
-        });
+        });*/
 
         const AnnualBudget = mongoose.model('AnnualBudget');
 

@@ -1,11 +1,7 @@
-<div class="hrm-budget-staffmember-container">
+<div class="hrm-budget-staffmember-container budget-view">
 
     <div class="row top-bar-buttons">
 
-        <div class="col-xl-3">
-            <div class="icon-container" ng-click="" angular-ripple><i class="fa fa-plus" aria-hidden="true"></i></div>
-            <div class="btn btn-sm buhrma-btn" ng-click="" angular-ripple>Add New Staff</div>
-        </div>
         <div class="col-xl-3">
             <div class="icon-container" ng-click="exportToExcel('#table-to-export')" angular-ripple><i class="fa fa-cloud-download" aria-hidden="true"></i></div>
             <div class="btn btn-sm buhrma-btn" ng-click="exportToExcel('#table-to-export')" angular-ripple>Export to excel</div>
@@ -17,7 +13,7 @@
             <table class="table buhrma-table" id="table-to-export">
                 <thead>
                     <tr>
-                        <th>{{currentBudget.year}}</th>
+                        <th class="title">{{currentBudget.year}}</th>
                         <th>Jan</th>
                         <th>Feb</th>
                         <th>Mar</th>
@@ -34,34 +30,84 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Adjusted Salary Sum</td>
-                        <td>{{jan.salarySum}}</td>
-                        <td>{{feb.salarySum}}</td>
-                        <td>{{mar.salarySum}}</td>
-                        <td>{{apr.salarySum}}</td>
-                        <td>{{may.salarySum}}</td>
-                        <td>{{jun.salarySum}}</td>
-                        <td>{{jul.salarySum}}</td>
-                        <td>{{aug.salarySum}}</td>
-                        <td>{{sep.salarySum}}</td>
-                        <td>{{oct.salarySum}}</td>
-                        <td>{{nov.salarySum}}</td>
-                        <td>{{dec.salarySum}}</td>
+                        <td class="title">Basic Salary Sum</td>
+                        <td>{{budget.basicSalarySum}}</td>
+                        <td>{{budget.basicSalarySum}}</td>
+                        <td>{{budget.basicSalarySum}}</td>
+                        <td>{{budget.basicSalarySum}}</td>
+                        <td>{{budget.basicSalarySum}}</td>
+                        <td>{{budget.basicSalarySum}}</td>
+                        <td>{{budget.basicSalarySum}}</td>
+                        <td>{{budget.basicSalarySum}}</td>
+                        <td>{{budget.basicSalarySum}}</td>
+                        <td>{{budget.basicSalarySum}}</td>
+                        <td>{{budget.basicSalarySum}}</td>
+                        <td>{{budget.basicSalarySum}}</td>
                     </tr>
                     <tr>
-                        <td>Head of Unit Sum</td>
-                        <td>{{jan.headOfUnitSum}}</td>
-                        <td>{{feb.headOfUnitSum}}</td>
-                        <td>{{mar.headOfUnitSum}}</td>
-                        <td>{{apr.headOfUnitSum}}</td>
-                        <td>{{may.headOfUnitSum}}</td>
-                        <td>{{jun.headOfUnitSum}}</td>
-                        <td>{{jul.headOfUnitSum}}</td>
-                        <td>{{aug.headOfUnitSum}}</td>
-                        <td>{{sep.headOfUnitSum}}</td>
-                        <td>{{oct.headOfUnitSum}}</td>
-                        <td>{{nov.headOfUnitSum}}</td>
-                        <td>{{dec.headOfUnitSum}}</td>
+                        <td class="title">Adjusted Salary Sum</td>
+                        <td>{{budget.adjustedSalarySum}}</td>
+                        <td>{{budget.adjustedSalarySum}}</td>
+                        <td>{{budget.adjustedSalarySum}}</td>
+                        <td>{{budget.adjustedSalarySum}}</td>
+                        <td>{{budget.adjustedSalarySum}}</td>
+                        <td>{{budget.adjustedSalarySum}}</td>
+                        <td>{{budget.adjustedSalarySum}}</td>
+                        <td>{{budget.adjustedSalarySum}}</td>
+                        <td>{{budget.adjustedSalarySum}}</td>
+                        <td>{{budget.adjustedSalarySum}}</td>
+                        <td>{{budget.adjustedSalarySum}}</td>
+                        <td>{{budget.adjustedSalarySum}}</td>
+
+                    </tr>
+                    <tr>
+                        <td class="title">Head of Unit Sum</td>
+                        <td>{{budget.headOfUnitSum}}</td>
+                        <td>{{budget.headOfUnitSum}}</td>
+                        <td>{{budget.headOfUnitSum}}</td>
+                        <td>{{budget.headOfUnitSum}}</td>
+                        <td>{{budget.headOfUnitSum}}</td>
+                        <td>{{budget.headOfUnitSum}}</td>
+                        <td>{{budget.headOfUnitSum}}</td>
+                        <td>{{budget.headOfUnitSum}}</td>
+                        <td>{{budget.headOfUnitSum}}</td>
+                        <td>{{budget.headOfUnitSum}}</td>
+                        <td>{{budget.headOfUnitSum}}</td>
+                        <td>{{budget.headOfUnitSum}}</td>
+                    </tr>
+                    <tr>
+                        <td class="title">Household Allowance Sum</td>
+                        <td>{{budget.householdAllowanceSum}}</td>
+                        <td>{{budget.householdAllowanceSum}}</td>
+                        <td>{{budget.householdAllowanceSum}}</td>
+                        <td>{{budget.householdAllowanceSum}}</td>
+                        <td>{{budget.householdAllowanceSum}}</td>
+                        <td>{{budget.householdAllowanceSum}}</td>
+                        <td>{{budget.householdAllowanceSum}}</td>
+                        <td>{{budget.householdAllowanceSum}}</td>
+                        <td>{{budget.householdAllowanceSum}}</td>
+                        <td>{{budget.householdAllowanceSum}}</td>
+                        <td>{{budget.householdAllowanceSum}}</td>
+                        <td>{{budget.householdAllowanceSum}}</td>
+                    </tr>
+                    <tr>
+                        <td class="title">Expatriation Allowance Sum</td>
+                        <td>{{budget.expatriationAllowanceSum}}</td>
+                        <td>{{budget.expatriationAllowanceSum}}</td>
+                        <td>{{budget.expatriationAllowanceSum}}</td>
+                        <td>{{budget.expatriationAllowanceSum}}</td>
+                        <td>{{budget.expatriationAllowanceSum}}</td>
+                        <td>{{budget.expatriationAllowanceSum}}</td>
+                        <td>{{budget.expatriationAllowanceSum}}</td>
+                        <td>{{budget.expatriationAllowanceSum}}</td>
+                        <td>{{budget.expatriationAllowanceSum}}</td>
+                        <td>{{budget.expatriationAllowanceSum}}</td>
+                        <td>{{budget.expatriationAllowanceSum}}</td>
+                        <td>{{budget.expatriationAllowanceSum}}</td>
+                    </tr>
+                    <tr>
+                        <td class="title">Dependent Child Allowance Sum</td>
+                        <td>{{budget.expatriationAllowanceSum}}</td>
                     </tr>
                 </tbody>
             </table>

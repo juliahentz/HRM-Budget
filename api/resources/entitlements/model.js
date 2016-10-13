@@ -12,7 +12,9 @@ const schema = new mongoose.Schema({
             nonFlatrateSchoolAllowance  : {type: Boolean},
             deductions                  : {type: Number},
             placeOfOriginDistance       : {type: Number},
-            placeOfOriginNumOfTravellers: {type: Number}
+            placeOfOriginNumOfTravellers: {type: Number},
+            householdAllowanceSum       : {type: Number},
+            expatriationAllowanceSum    : {type: Number}
         }
     ]
 });

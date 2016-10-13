@@ -65,19 +65,19 @@ gulp.task('js', ['clean'], function() {
         .pipe(gulp.dest('dist/'));
 
 
-    /* 
-        Should be able to add to an existing stream easier, like:
-        gulp.src([... partials html ...])
-          .pipe(htmlmin())
-          .pipe(ngHtml2js())
-          .pipe(domSrc(... js from script tags ...))  <-- add new files to existing stream
-          .pipe(concat())
-          .pipe(ngmin())
-          .pipe(uglify())
-          .pipe(gulp.dest());
+    /*
+     Should be able to add to an existing stream easier, like:
+     gulp.src([... partials html ...])
+     .pipe(htmlmin())
+     .pipe(ngHtml2js())
+     .pipe(domSrc(... js from script tags ...))  <-- add new files to existing stream
+     .pipe(concat())
+     .pipe(ngmin())
+     .pipe(uglify())
+     .pipe(gulp.dest());
 
-        https://github.com/wearefractal/vinyl-fs/issues/9
-    */
+     https://github.com/wearefractal/vinyl-fs/issues/9
+     */
 });
 
 gulp.task('indexHtml', ['clean'], function() {
@@ -111,32 +111,32 @@ gulp.task('jshint', function(){
 
 gulp.task('build', ['clean', 'css', 'js', 'indexHtml', 'images', 'fonts']);
 
-/* 
+/*
 
--specifying clean dependency on each task is ugly
-https://github.com/robrich/orchestrator/issues/26
+ -specifying clean dependency on each task is ugly
+ https://github.com/robrich/orchestrator/issues/26
 
--gulp-jasmine needs a phantomjs option
-https://github.com/sindresorhus/gulp-jasmine/issues/2
+ -gulp-jasmine needs a phantomjs option
+ https://github.com/sindresorhus/gulp-jasmine/issues/2
 
-*/
+ */
 
 /*
-    "gulp-dom-src": "~0.1.0",
-    "gulp-concat": "~2.1.7",
-    "gulp-uglify": "~0.2.1",
-    "gulp-cssmin": "~0.1.3",
-    "gulp-imagemin": "~0.1.5",
-    "gulp-less": "~1.2.2",
-    "gulp-cheerio": "~0.2.0",
-    "gulp-rename": "~1.2.0",
-    "gulp-ng-html2js": "~0.1.6",
-    "gulp-ngmin": "~0.1.2",
-    "gulp-htmlmin": "~0.1.2",
-    "gulp-jshint": "~1.5.0",
-    "gulp-jasmine": "~0.2.0",
-    "jshint-stylish": "~0.1.5",
-    "rimraf": "~2.2.6",
-    "streamqueue": "0.0.5",
-    "gulp": "~3.5.5"
-*/
+ "gulp-dom-src": "~0.1.0",
+ "gulp-concat": "~2.1.7",
+ "gulp-uglify": "~0.2.1",
+ "gulp-cssmin": "~0.1.3",
+ "gulp-imagemin": "~0.1.5",
+ "gulp-less": "~1.2.2",
+ "gulp-cheerio": "~0.2.0",
+ "gulp-rename": "~1.2.0",
+ "gulp-ng-html2js": "~0.1.6",
+ "gulp-ngmin": "~0.1.2",
+ "gulp-htmlmin": "~0.1.2",
+ "gulp-jshint": "~1.5.0",
+ "gulp-jasmine": "~0.2.0",
+ "jshint-stylish": "~0.1.5",
+ "rimraf": "~2.2.6",
+ "streamqueue": "0.0.5",
+ "gulp": "~3.5.5"
+ */

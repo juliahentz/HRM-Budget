@@ -217,7 +217,10 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
                         $scope.selectedContract.endDate  = $scope.selectedStaffMember.endDate;
                         $scope.entitlements.startDate = $scope.selectedStaffMember.startDate;
                         $scope.entitlements.endDate = $scope.selectedStaffMember.endDate;
-                        $scope.selectedStaffMember = staff;
+                        staffService.getOne(staff._id, function(){
+                            $scope.selectedStaffMember = staffService.model.item;
+                        });
+
                         $scope.innerModalPageNum = 2;
                     });
                 });
@@ -233,6 +236,29 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
                 $scope.contractInnerItem.headOfUnit = $scope.selectedContract.headOfUnit;
                 $scope.contractInnerItem.placeOfEmployment = $scope.selectedContract.placeOfEmployment;
 
+                angular.forEach($scope.allContracts, function(contract, index){
+                    if( $scope.contractInnerItem.category == contract.name){
+                        angular.forEach(contract.grades, function(grade, i){
+                            if($scope.contractInnerItem.grade == grade.gradeNumber){
+                                angular.forEach(grade.steps, function(step, j){
+                                    if($scope.contractInnerItem.step == step.stepNumber){
+                                        $scope.contractInnerItem.basicSalary = step.basicSalary;
+                                        angular.forEach($scope.allPlaceOfEmployment, function(place, j){
+                                            if(place.place == $scope.contractInnerItem.placeOfEmployment){
+                                                $scope.contractInnerItem.adjustedBasicSalary = step.basicSalary * place.correctionCoefficient /100;
+                                            }
+                                        });
+
+                                    }
+                                })
+                            }
+                        })
+                    }
+                });
+                if($scope.contractInnerItem.headOfUnit){
+                    $scope.contractInnerItem.headOfUnitTop = $scope.contractInnerItem.basicSalary * 4.2021426/100;
+                }
+
                 $scope.contractItem.positionsFilled.push($scope.contractInnerItem);
 
                 // API CALL
@@ -240,7 +266,10 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
 
                     $scope.selectedStaffMember.stepByStep = item._id;
 
-                    staffService.update($scope.selectedStaffMember._id, $scope.selectedStaffMember, function (item) {
+                    staffService.update($scope.selectedStaffMember._id, $scope.selectedStaffMember, function (staff) {
+                        staffService.getOne(staff._id, function(){
+                            $scope.selectedStaffMember = staffService.model.item;
+                        });
 
                         $scope.innerModalPageNum = 3;
                     });
@@ -260,6 +289,7 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
 
                 $scope.entitlementsInnerItem.expatriationAllowance = $scope.entitlements.expatriationAllowance;
 
+
                 if($scope.entitlements.flatRateOvertime === 'No'){
                     $scope.entitlementsInnerItem.flatRateOvertime = false;
                 }else if($scope.entitlements.flatRateOvertime === 'Yes'){
@@ -275,13 +305,29 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
                 $scope.entitlementsInnerItem.placeOfOriginDistance = $scope.entitlements.placeOfOriginDistance;
                 $scope.entitlementsInnerItem.placeOfOriginNumOfTravellers = $scope.entitlements.placeOfOriginNumOfTravellers;
 
+                angular.forEach($scope.selectedStaffMember.stepByStep.positionsFilled, function(position, i){
+
+                    $scope.entitlementsInnerItem.expatriationAllowanceSum = position.basicSalary * $scope.entitlements.expatriationAllowance /100;
+                    if($scope.entitlementsInnerItem.householdAllowance){
+                        $scope.entitlementsInnerItem.householdAllowanceSum = position.basicSalary * 0.02;
+                        if($scope.entitlementsInnerItem.householdAllowanceSum < 176.01){
+                            $scope.entitlementsInnerItem.householdAllowanceSum = 176.01;
+                        }
+                    }
+                });
+
                 $scope.entitlementsItem.entitlements.push($scope.entitlementsInnerItem);
 
                 // API CALL
                 entitlementsService.create($scope.entitlementsItem, function(item){
+
                     $scope.selectedStaffMember.entitlements = item._id;
 
-                    staffService.update($scope.selectedStaffMember._id, $scope.selectedStaffMember, function(item){
+                    staffService.update($scope.selectedStaffMember._id, $scope.selectedStaffMember, function(staff){
+
+                        staffService.getOne(staff._id, function(){
+                            $scope.selectedStaffMember = staffService.model.item;
+                        });
 
                         $scope.innerModalPageNum = 4;
                     });
@@ -331,7 +377,20 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
 
                     staffService.update($scope.selectedStaffMember._id, $scope.staffItem, function(staff){
 
-                        $uibModalInstance.close('Staff');
+                        $scope.selectedStaffMember = {};
+                        $scope.modalTitle = null;
+
+                        $scope.currentTime = new Date();
+                        $scope.innerModalPageNum = 1;
+
+                        $scope.contractItem = {};
+                        $scope.allGradesInContract = [];
+                        $scope.allStepsInGrade = [];
+                        $scope.selectedContract = {};
+
+                        $scope.staffPersonalData = {};
+
+                        $uibModalInstance.close(staff);
                     });
                 });
             }
@@ -448,6 +507,19 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
 
                 // API CALL
                 socioStatusService.update($scope.selectedStaffMember.socioStatus._id, $scope.socioStatusItem, function (socioStatusItem) {
+
+                    $scope.selectedStaffMember = {};
+                    $scope.modalTitle = null;
+
+                    $scope.currentTime = new Date();
+                    $scope.innerModalPageNum = 1;
+
+                    $scope.contractItem = {};
+                    $scope.allGradesInContract = [];
+                    $scope.allStepsInGrade = [];
+                    $scope.selectedContract = {};
+
+                    $scope.staffPersonalData = {};
 
                     $uibModalInstance.close('Staff');
                 })
