@@ -1,5 +1,6 @@
 angular.module('HRMBudget').controller('BudgetCtrl',function(
     $scope,
+    Excel,
     staffService
 ){
 
@@ -11,9 +12,11 @@ angular.module('HRMBudget').controller('BudgetCtrl',function(
     $scope.budget.basicSalarySum = 0;
     $scope.budget.adjustedSalarySum = 0;
     $scope.budget.headOfUnitSum = 0;
+    $scope.budget.householdAllowanceSum = 0;
+    $scope.budget.expatriationAllowanceSum = 0;
+    $scope.budget.childrenAllowanceSum = 0;
 
     angular.forEach($scope.staffMembers, function(staff, index){
-        console.log(staff);
 
         angular.forEach(staff.stepByStep.positionsFilled, function(position, i){
 
@@ -26,15 +29,41 @@ angular.module('HRMBudget').controller('BudgetCtrl',function(
         });
 
         angular.forEach(staff.entitlements.entitlements, function(entitlement, i){
-            $scope.budget.householdAllowanceSum = entitlement.householdAllowanceSum;
-            $scope.budget.expatriationAllowanceSum = entitlement.expatriationAllowanceSum;
+            if(entitlement.householdAllowanceSum){
+                $scope.budget.householdAllowanceSum += entitlement.householdAllowanceSum;
+            }
+            if(entitlement.expatriationAllowanceSum){
+                $scope.budget.expatriationAllowanceSum += entitlement.expatriationAllowanceSum;
+            }
+        });
+
+        angular.forEach(staff.socioStatus.statuses, function(status, i){
+            console.log(status);
+            if(status.childrenAllowance){
+                $scope.budget.childrenAllowanceSum += status.childrenAllowance;
+            }
         });
     });
+    $scope.budget.sumPerMonth = $scope.budget.basicSalarySum + $scope.budget.adjustedSalarySum + $scope.budget.headOfUnitSum + $scope.budget.householdAllowanceSum + $scope.budget.expatriationAllowanceSum + $scope.budget.childrenAllowanceSum;
+
+    $scope.budget.totalSum = $scope.budget.sumPerMonth *12;
+
     $scope.budget.basicSalarySum = $scope.budget.basicSalarySum.toFixed(2);
     $scope.budget.adjustedSalarySum = $scope.budget.adjustedSalarySum.toFixed(2);
     $scope.budget.headOfUnitSum = $scope.budget.headOfUnitSum.toFixed(2);
     $scope.budget.householdAllowanceSum = $scope.budget.householdAllowanceSum.toFixed(2);
     $scope.budget.expatriationAllowanceSum = $scope.budget.expatriationAllowanceSum.toFixed(2);
+    $scope.budget.childrenAllowanceSum = $scope.budget.childrenAllowanceSum.toFixed(2);
+    $scope.budget.sumPerMonth = $scope.budget.sumPerMonth.toFixed(2);
+    $scope.budget.totalSum = $scope.budget.totalSum.toFixed(2);
+
+    $scope.exportToExcel=function(tableId){
+        var exportHref=Excel.tableToExcel(tableId,'Budget');
+        var a = document.createElement('a');
+        a.href = exportHref;
+        a.download = 'Budget.xls';
+        a.click();
+    };
 
 
 }).factory('Excel',function($window){

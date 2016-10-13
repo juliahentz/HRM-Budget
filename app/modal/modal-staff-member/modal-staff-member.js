@@ -335,10 +335,12 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
             }else if($scope.innerModalPageNum === 4){
 
                 $scope.socioStatusItem.statuses = [];
+                $scope.socioStatusInnerItem.childrenAllowance = 0;
 
                 $scope.socioStatusInnerItem.startDate = $scope.staffSocioStatus.startDate.toISOString();
                 $scope.socioStatusInnerItem.endDate = $scope.staffSocioStatus.endDate.toISOString();
                 $scope.socioStatusInnerItem.numChildren = $scope.staffSocioStatus.numChildren;
+                $scope.socioStatusInnerItem.childrenAllowance = $scope.staffSocioStatus.numChildren * 384.60;
                 $scope.socioStatusInnerItem.childrenUnderSix = $scope.staffSocioStatus.childrenUnderSix;
                 $scope.socioStatusInnerItem.childrenInUni = $scope.staffSocioStatus.childrenInUni;
                 $scope.socioStatusInnerItem.childrenInUniExpatAndFar = $scope.staffSocioStatus.childrenInUniExpatAndFar;
@@ -373,22 +375,10 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
 
                 // API CALL
                 socioStatusService.create($scope.socioStatusItem, function(item){
+                    console.log(item);
                     $scope.staffItem.socioStatus = item._id;
 
                     staffService.update($scope.selectedStaffMember._id, $scope.staffItem, function(staff){
-
-                        $scope.selectedStaffMember = {};
-                        $scope.modalTitle = null;
-
-                        $scope.currentTime = new Date();
-                        $scope.innerModalPageNum = 1;
-
-                        $scope.contractItem = {};
-                        $scope.allGradesInContract = [];
-                        $scope.allStepsInGrade = [];
-                        $scope.selectedContract = {};
-
-                        $scope.staffPersonalData = {};
 
                         $uibModalInstance.close(staff);
                     });
@@ -508,18 +498,6 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
                 // API CALL
                 socioStatusService.update($scope.selectedStaffMember.socioStatus._id, $scope.socioStatusItem, function (socioStatusItem) {
 
-                    $scope.selectedStaffMember = {};
-                    $scope.modalTitle = null;
-
-                    $scope.currentTime = new Date();
-                    $scope.innerModalPageNum = 1;
-
-                    $scope.contractItem = {};
-                    $scope.allGradesInContract = [];
-                    $scope.allStepsInGrade = [];
-                    $scope.selectedContract = {};
-
-                    $scope.staffPersonalData = {};
 
                     $uibModalInstance.close('Staff');
                 })
