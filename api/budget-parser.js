@@ -80,7 +80,7 @@ exports.budgetCalc = ()=> {
 
                             annualBudgetCalFile.year = 2016;
 
-                            console.log(annualBudgetCalFile);
+                            //console.log(annualBudgetCalFile);
 
                             const AnnualBudget = mongoose.model('AnnualBudget');
                             const annualBudget = new AnnualBudget(annualBudgetCalFile);
@@ -110,7 +110,7 @@ exports.budgetSave = ()=> {
 
     const query = StaffMember.find();
 
-    query.populate('stepByStep');
+    query.populate('stepByStep socioStatus entitlements');
 
     query.exec((err, staffMemberDoc)=> {
         if (!err) {
@@ -127,8 +127,9 @@ exports.budgetSave = ()=> {
             contractQeuery.exec((e, paramContractTypeDoc)=> {
                 if (!e) {
                     _.each(staffMemberDoc, (sm)=> {
-                        _.each(sm.stepByStep.positionsFilled, (position)=> {
+                        console.log(sm);
 
+                        _.each(sm.stepByStep.positionsFilled, (position)=> {
                             const ParamPlaceOfEmployment = mongoose.model('ParamPlaceOfEmployment');
 
                             ParamPlaceOfEmployment.find((error, ppoedoc)=> {
@@ -188,6 +189,40 @@ exports.budgetSave = ()=> {
                                 //budgetCalc();
                             });
                         });
+                        _.each(sm.entitlements.entitlements, (entitlement)=>{
+                            const AnnualBudget = mongoose.model('AnnualBudget');
+
+                            AnnualBudget.findOne({year: 2016},(err, annualBudgetDoc)=> {
+                                if (!err) {
+
+                                    let myCurrentDoc = {};
+                                    if(entitlement.householdAllowance){
+                                        annualBudgetDoc.householdAllowance = annualBudgetDoc.salarySum * 0.02;
+                                        if(annualBudgetDoc.householdAllowance < 176.01){
+                                            annualBudgetDoc.householdAllowance = 176.01;
+                                        }
+                                    }
+                                    annualBudgetDoc.expatriationAllowance = annualBudgetDoc.salarySum * entitlement.expatriationAllowance /100;
+                                    _.each(annualBudgetDoc.data, (data)=>{
+                                        //if(){}
+                                    });
+
+                                    //console.log(annualBudgetDoc);
+                                    AnnualBudget.findOneAndUpdate(annualBudgetDoc._id, annualBudgetDoc, (err, annualBudgetDocUpdate)=> {
+                                        if (!err) {
+                                            //console.log(annualBudgetDocUpdate);
+                                        } else {
+                                            console.log(err);
+                                        }
+                                    });
+
+                                } else {
+                                    console.log(err);
+                                }
+                            });
+
+
+                        });
                     });
                 } else {
                     console.log(e);
@@ -196,93 +231,5 @@ exports.budgetSave = ()=> {
         } else {
             console.log(err);
         }
-
     });
-
-
-
-
-
-
-    /*const StepByStep = mongoose.model('StepByStep');
-
-    StepByStep.aggregate([
-        {
-            $lookup:{
-                from: 'StaffMember',
-                localField: 'positionsFilled',
-                foreignField: 'stepByStep',
-                as: 'referencedPositions'
-            }
-        },
-        {
-            $project:{
-                positionsFilled:1
-            }
-        },
-        {
-            $unwind: '$positionsFilled'
-        },
-        {
-            $lookup:{
-                from: 'ParamContractType',
-                localField: 'positionsFilled.category',
-                foreignField: 'name',
-                as: 'referencedCategory'
-            }
-        },
-        {
-            $project:{
-                'positionsFilled.category':1,
-                'positionsFilled.grade':1,
-                'positionsFilled.step':1,
-                'positionsFilled.startDate':1,
-                'positionsFilled.endDate':1,
-                'referencedCategory':1
-            }
-        },
-        {
-            $unwind: '$referencedCategory'
-        },
-        {
-            $lookup:{
-                from: 'ParamContractGrade',
-                localField: 'positionsFilled.grade',
-                foreignField: 'gradeNumber',
-                as: 'referencedGrade'
-            }
-        }
-    ]
-    ).exec((err, docs)=>{
-
-        if(!err){
-            console.log(docs);
-        }else{
-            console.log(err);
-        }
-
-    });*/
-
-    /*const ParamContractType = mongoose.model('ParamContractType');
-
-    ParamContractType.aggregate([
-        {
-            $lookup: {
-                from: 'ParamContractGrade',
-                localField: 'grades',
-                foreignField: 'gradeNumber',
-                as: 'referencedGrade'
-            }
-        }
-    ]
-    ).exec((err, docs)=>{
-
-        if(!err){
-            console.log(docs);
-        }else{
-            console.log(err);
-        }
-
-    });*/
-
 };

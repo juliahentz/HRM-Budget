@@ -7,7 +7,9 @@ const schema = new mongoose.Schema({
         {
             month: {type: Number},
             salarySum: {type: Number},
-            headOfUnitSum: {type: Number}
+            headOfUnitSum: {type: Number},
+            householdAllowance: {type: Number},
+            expatriationAllowance: {type: Number}
         }
     ]
 
