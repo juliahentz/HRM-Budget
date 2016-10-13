@@ -1,3 +1,5 @@
+'use strict'
+
 exports.init = (server)=>{
 
 // POST DATA TYPE

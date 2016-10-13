@@ -1,6 +1,7 @@
+'use strict'
+
 const mongoose = require('mongoose');
 const budgetParser = require('../../budget-parser');
-
 
 exports.init = (app)=> {
 
