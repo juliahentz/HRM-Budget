@@ -1,4 +1,70 @@
-<div class="col-md-12" ng-controller="BudgetCtrl">
+<div class="hrm-budget-staffmember-container">
 
+    <div class="row top-bar-buttons">
 
+        <div class="col-xl-3">
+            <div class="icon-container" ng-click="" angular-ripple><i class="fa fa-plus" aria-hidden="true"></i></div>
+            <div class="btn btn-sm buhrma-btn" ng-click="" angular-ripple>Add New Staff</div>
+        </div>
+        <div class="col-xl-3">
+            <div class="icon-container" ng-click="exportToExcel('#table-to-export')" angular-ripple><i class="fa fa-cloud-download" aria-hidden="true"></i></div>
+            <div class="btn btn-sm buhrma-btn" ng-click="exportToExcel('#table-to-export')" angular-ripple>Export to excel</div>
+        </div>
+    </div>
+    <hr/>
+    <div>
+        <div class="buhrma-table-container">
+            <table class="table buhrma-table" id="table-to-export">
+                <thead>
+                    <tr>
+                        <th>{{currentBudget.year}}</th>
+                        <th>Jan</th>
+                        <th>Feb</th>
+                        <th>Mar</th>
+                        <th>Apr</th>
+                        <th>May</th>
+                        <th>Jun</th>
+                        <th>Jul</th>
+                        <th>Aug</th>
+                        <th>Sep</th>
+                        <th>Oct</th>
+                        <th>Nov</th>
+                        <th>Dec</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Adjusted Salary Sum</td>
+                        <td>{{jan.salarySum}}</td>
+                        <td>{{feb.salarySum}}</td>
+                        <td>{{mar.salarySum}}</td>
+                        <td>{{apr.salarySum}}</td>
+                        <td>{{may.salarySum}}</td>
+                        <td>{{jun.salarySum}}</td>
+                        <td>{{jul.salarySum}}</td>
+                        <td>{{aug.salarySum}}</td>
+                        <td>{{sep.salarySum}}</td>
+                        <td>{{oct.salarySum}}</td>
+                        <td>{{nov.salarySum}}</td>
+                        <td>{{dec.salarySum}}</td>
+                    </tr>
+                    <tr>
+                        <td>Head of Unit Sum</td>
+                        <td>{{jan.headOfUnitSum}}</td>
+                        <td>{{feb.headOfUnitSum}}</td>
+                        <td>{{mar.headOfUnitSum}}</td>
+                        <td>{{apr.headOfUnitSum}}</td>
+                        <td>{{may.headOfUnitSum}}</td>
+                        <td>{{jun.headOfUnitSum}}</td>
+                        <td>{{jul.headOfUnitSum}}</td>
+                        <td>{{aug.headOfUnitSum}}</td>
+                        <td>{{sep.headOfUnitSum}}</td>
+                        <td>{{oct.headOfUnitSum}}</td>
+                        <td>{{nov.headOfUnitSum}}</td>
+                        <td>{{dec.headOfUnitSum}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>

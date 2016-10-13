@@ -51,6 +51,11 @@ angular.module('HRMBudget').config(function($stateProvider, $urlRouterProvider) 
                 templateUrl: 'partial/budget/budget.html',
                 controller: 'BudgetCtrl'
             }
+        },
+        resolve:{
+            getAnnualBudget: function(budgetService){
+                return budgetService.getAll();
+            }
         }
     });
     /* Add New States Above */

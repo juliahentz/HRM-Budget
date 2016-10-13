@@ -111,7 +111,6 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
 
         $scope.selectedContract = {};
         $scope.selectedContract.headOfUnit = false;
-        $scope.selectedContract.TBAIncrease = false;
 
     }else if($scope.selectedStaffMember.stepByStep.length != 0){
         angular.forEach($scope.selectedStaffMember.stepByStep.positionsFilled, function(positions, index) {
@@ -126,7 +125,7 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
     }else{
         $scope.selectedContract = {};
         $scope.selectedContract.headOfUnit = false;
-        $scope.selectedContract.TBAIncrease = false;
+
     }
 
 // REFERENCING VARIABLES RELATED TO ENTITLEMENTS
@@ -232,7 +231,6 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
                 $scope.contractInnerItem.startDate = $scope.selectedContract.startDate;
                 $scope.contractInnerItem.endDate = $scope.selectedContract.endDate;
                 $scope.contractInnerItem.headOfUnit = $scope.selectedContract.headOfUnit;
-                $scope.contractInnerItem.TBAIncrease = $scope.selectedContract.TBAIncrease;
                 $scope.contractInnerItem.placeOfEmployment = $scope.selectedContract.placeOfEmployment;
 
                 $scope.contractItem.positionsFilled.push($scope.contractInnerItem);
@@ -357,7 +355,6 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
                 $scope.contractInnerItem.startDate = $scope.selectedContract.startDate;
                 $scope.contractInnerItem.endDate = $scope.selectedContract.endDate;
                 $scope.contractInnerItem.headOfUnit = $scope.selectedContract.headOfUnit;
-                $scope.contractInnerItem.TBAIncrease = $scope.selectedContract.TBAIncrease;
                 $scope.contractInnerItem.placeOfEmployment = $scope.selectedContract.placeOfEmployment;
 
                 angular.forEach($scope.selectedStaffMember.stepByStep.positionsFilled, function(positions, index, array){

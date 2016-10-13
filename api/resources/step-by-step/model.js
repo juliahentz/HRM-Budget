@@ -10,7 +10,7 @@ const schema = new mongoose.Schema({
             startDate           : {type: Date},
             endDate             : {type: Date},
             headOfUnit          : {type: Boolean},
-            TBAIncrease         : {type: Boolean},
+            //TBAIncrease         : {type: Boolean},
             placeOfEmployment   : {type: String}
         }
     ]

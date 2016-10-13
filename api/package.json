@@ -13,8 +13,9 @@
     "body-parser": "^1.15.2",
     "chalk": "^1.1.3",
     "express": "^4.14.0",
-    "lodash": "^4.15.0",
+    "lodash": "^4.16.4",
     "mongoose": "^4.6.0",
+    "node-rest-client": "^2.0.1",
     "require-all": "^2.0.0"
   }
 }

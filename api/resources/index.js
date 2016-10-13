@@ -6,6 +6,13 @@ exports.init = (server)=>{
     require('./post/router').init(server);
     require('./post/model');
 
+// BUDGET
+    require('./budget-file/router').init(server);
+    require('./budget-file/model');
+
+    require('./annual-budget/router').init(server);
+    require('./annual-budget/model');
+
 // PERSONAL DATA TYPE
 
     // Staff Member resource

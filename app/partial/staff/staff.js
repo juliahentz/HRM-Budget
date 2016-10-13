@@ -61,8 +61,6 @@ angular.module('HRMBudget').controller('StaffCtrl',function(
 
                     staffService.getAll(function(list){
                         $scope.staffMembers = list;
-                        console.log($scope.staffMembers);
-
                     });
                 }
 
@@ -97,8 +95,6 @@ angular.module('HRMBudget').controller('StaffCtrl',function(
 
                     staffService.getAll(function(list){
                         $scope.staffMembers = list;
-                        console.log($scope.staffMembers);
-
                     });
                 }
             });
@@ -133,13 +129,11 @@ angular.module('HRMBudget').controller('StaffCtrl',function(
             }
         }).result.then(function(message){
 
-            if(message === 'Staff'){
+            if(message === 'staff'){
                 staffService.model.item = {};
 
                 staffService.getAll(function(list){
                     $scope.staffMembers = list;
-                    console.log($scope.staffMembers);
-
                 });
             }
         });
