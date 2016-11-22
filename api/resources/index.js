@@ -17,6 +17,10 @@ exports.init = (server)=>{
 
 // PERSONAL DATA TYPE
 
+    // Date interval
+    require('./date-interval/router').init(server);
+    require('./date-interval/model');
+
     // Staff Member resource
     require('./staff-member/router').init(server);
     require('./staff-member/model');

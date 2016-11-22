@@ -8,7 +8,11 @@ exports.init = (app)=> {
 
         const StepByStep = mongoose.model('StepByStep');
 
-        StepByStep.find((err, stepByStepDoc)=> {
+        const query = StepByStep.find();
+
+        query.populate('dateInterval');
+
+        query.exec((err, stepByStepDoc)=> {
             if (!err) {
                 res.send(stepByStepDoc);
             } else {
@@ -23,7 +27,11 @@ exports.init = (app)=> {
 
         const StepByStep = mongoose.model('StepByStep');
 
-        StepByStep.findById(StepByStepId, (err, stepByStepDoc)=> {
+        const query = StepByStep.findById();
+
+        query.populate('dateInterval');
+
+        query.exec(StepByStepId, (err, stepByStepDoc)=> {
 
             if (!err) {
                 res.send(stepByStepDoc);

@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const mongoose = require('mongoose');
 
@@ -8,7 +8,11 @@ exports.init = (app)=> {
 
         const Entitlements = mongoose.model('Entitlements');
 
-        Entitlements.find((err, entitlementsDoc)=> {
+        const query = Entitlements.find();
+
+        query.populate('dateInterval');
+
+        query.exec((err, entitlementsDoc)=> {
             if (!err) {
                 res.send(entitlementsDoc);
             } else {
@@ -23,7 +27,11 @@ exports.init = (app)=> {
 
         const Entitlements = mongoose.model('Entitlements');
 
-        Entitlements.findById({_id: entitlementsId}, (err, entitlementsDoc)=> {
+        const query = Entitlements.findById();
+
+        query.populate('dateInterval');
+
+        query.exec({_id: entitlementsId}, (err, entitlementsDoc)=> {
 
             if (!err) {
                 res.send(entitlementsDoc);

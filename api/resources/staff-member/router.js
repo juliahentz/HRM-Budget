@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const mongoose = require('mongoose');
 
@@ -10,7 +10,7 @@ exports.init = (app)=> {
 
         const query = StaffMember.find();
 
-        query.populate('personalData stepByStep socioStatus entitlements');
+        query.populate('dateInterval personalData stepByStep socioStatus entitlements');
 
         query.exec((err, staffMemberDoc)=> {
             if (!err) {
@@ -30,7 +30,7 @@ exports.init = (app)=> {
 
         var query = StaffMember.findById({_id: staffMemberId});
 
-        query.populate('personalData stepByStep socioStatus entitlements');
+        query.populate('dateInterval personalData stepByStep socioStatus entitlements');
 
         query.exec((err, staffMemberDoc)=> {
 

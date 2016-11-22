@@ -8,7 +8,11 @@ exports.init = (app)=> {
 
         const SocioStatus = mongoose.model('SocioStatus');
 
-        SocioStatus.find((err, socioStatusDoc)=> {
+        const query = SocioStatus.find();
+
+        query.populate('dateInterval');
+
+        query.exec((err, socioStatusDoc)=> {
             if (!err) {
                 res.send(socioStatusDoc);
             } else {
@@ -23,7 +27,11 @@ exports.init = (app)=> {
 
         const SocioStatus = mongoose.model('SocioStatus');
 
-        SocioStatus.findById({_id: socioStatusId}, (err, socioStatusDoc)=> {
+        const query = SocioStatus.findById();
+
+        query.populate('dateInterval');
+
+        query.exec({_id: socioStatusId}, (err, socioStatusDoc)=> {
 
             if (!err) {
                 res.send(socioStatusDoc);
