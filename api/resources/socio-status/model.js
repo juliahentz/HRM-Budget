@@ -11,9 +11,7 @@ const schema = new mongoose.Schema({
     parentalLeaveExtension  : {type: Boolean},
     parentalLeaveIncrease   : {type: Boolean},
     fullTimePercentage      : {type: Number},
-    parttimePensionContr    : {type: Number},
-    childrenAllowance       : {type: Number}
-       
+    parttimePensionContr    : {type: Number}
 });
 
 mongoose.model('SocioStatus', schema);

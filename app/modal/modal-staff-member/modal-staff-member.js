@@ -10,7 +10,8 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
     publicApiService,
     personalDataService,
     socioStatusService,
-    entitlementsService
+    entitlementsService,
+    dateIntervalService
 ){
 
     $scope.filterDate = filterDate;
@@ -18,6 +19,9 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
     $scope.selectedStaffMember = staffService.model.item;
     $scope.allContracts = paramContractService.model.types;
     $scope.allPlaceOfEmployment = paramPlaceOfEmploymentService.model.list;
+    $scope.contractDateInterval = {};
+    $scope.entitlementsDateInterval = {};
+    $scope.socioDateInterval = {};
 
     $scope.modalTitle = title;
 
@@ -34,6 +38,7 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
 
 // REFERENCING VARIABLES FOR API COMMUNICATION
     $scope.contractItem = {};
+    //
     $scope.contractInnerItem = {};
 
     $scope.staffItem = {};
@@ -106,6 +111,7 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
             }
         });
     };
+
 // REFERENCING VARIABLES RELATED TO CONTRACT
     if(Object.keys($scope.selectedStaffMember).length == 0){
 
@@ -207,182 +213,121 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
 
                 // API CALL
                 personalDataService.create($scope.staffPersonalData, function(item){
-                    $scope.staffItem.personalData = item._id;
+                    $scope.selectedStaffMember.personalData = item._id;
 
                     staffService.create($scope.selectedStaffMember, function(staff){
 
-                        $scope.staffSocioStatus.startDate = $scope.selectedStaffMember.startDate;
-                        $scope.staffSocioStatus.endDate = $scope.selectedStaffMember.endDate;
-                        $scope.selectedContract.startDate  = $scope.selectedStaffMember.startDate;
-                        $scope.selectedContract.endDate  = $scope.selectedStaffMember.endDate;
-                        $scope.entitlements.startDate = $scope.selectedStaffMember.startDate;
-                        $scope.entitlements.endDate = $scope.selectedStaffMember.endDate;
-                        staffService.getOne(staff._id, function(){
-                            $scope.selectedStaffMember = staffService.model.item;
-                        });
+                        $scope.selectedStaffMember = staff;
 
                         $scope.innerModalPageNum = 2;
                     });
                 });
             }else if($scope.innerModalPageNum === 2) {
 
-                $scope.contractItem.positionsFilled = [];
-
-                $scope.contractInnerItem.category = $scope.selectedContract.category;
-                $scope.contractInnerItem.grade = $scope.selectedContract.grade;
-                $scope.contractInnerItem.step = $scope.selectedContract.step;
-                $scope.contractInnerItem.startDate = $scope.selectedContract.startDate;
-                $scope.contractInnerItem.endDate = $scope.selectedContract.endDate;
-                $scope.contractInnerItem.headOfUnit = $scope.selectedContract.headOfUnit;
-                $scope.contractInnerItem.placeOfEmployment = $scope.selectedContract.placeOfEmployment;
-
-                angular.forEach($scope.allContracts, function(contract, index){
-                    if( $scope.contractInnerItem.category == contract.name){
-                        angular.forEach(contract.grades, function(grade, i){
-                            if($scope.contractInnerItem.grade == grade.gradeNumber){
-                                angular.forEach(grade.steps, function(step, j){
-                                    if($scope.contractInnerItem.step == step.stepNumber){
-                                        $scope.contractInnerItem.basicSalary = step.basicSalary;
-                                        angular.forEach($scope.allPlaceOfEmployment, function(place, j){
-                                            if(place.place == $scope.contractInnerItem.placeOfEmployment){
-                                                $scope.contractInnerItem.adjustedBasicSalary = step.basicSalary * place.correctionCoefficient /100;
-                                            }
-                                        });
-
-                                    }
-                                })
-                            }
-                        })
-                    }
-                });
-                if($scope.contractInnerItem.headOfUnit){
-                    $scope.contractInnerItem.headOfUnitTop = $scope.contractInnerItem.basicSalary * 4.2021426/100;
-                }
-
-                $scope.contractItem.positionsFilled.push($scope.contractInnerItem);
+                console.log('this');
 
                 // API CALL
-                stepByStepService.create($scope.contractItem, function (item) {
+                dateIntervalService.create($scope.contractDateInterval, function(interval) {
+                    $scope.selectedContract.dateInterval = interval._id;
 
-                    $scope.selectedStaffMember.stepByStep = item._id;
+                    stepByStepService.create($scope.selectedContract, function (item) {
 
-                    staffService.update($scope.selectedStaffMember._id, $scope.selectedStaffMember, function (staff) {
-                        staffService.getOne(staff._id, function(){
-                            $scope.selectedStaffMember = staffService.model.item;
+                        console.log(item);
+
+                        $scope.selectedStaffMember.stepByStep = [];
+                        $scope.selectedStaffMember.stepByStep.push(item._id);
+
+                        staffService.update($scope.selectedStaffMember._id, $scope.selectedStaffMember, function (staff) {
+
+                            $scope.selectedStaffMember = staff;
+
+                            $scope.innerModalPageNum = 3;
                         });
+                    })
+                });
 
-                        $scope.innerModalPageNum = 3;
-                    });
-                })
             }else if($scope.innerModalPageNum === 3){
 
-                $scope.entitlementsItem.entitlements = [];
-
-                $scope.entitlementsInnerItem.startDate = $scope.entitlements.startDate;
-                $scope.entitlementsInnerItem.endDate = $scope.entitlements.endDate;
-
                 if($scope.entitlements.householdAllowance === 'No'){
-                    $scope.entitlementsInnerItem.householdAllowance = false;
+                    $scope.entitlements.householdAllowance = false;
                 }else if($scope.entitlements.householdAllowance === 'Yes'){
-                    $scope.entitlementsInnerItem.householdAllowance = true;
+                    $scope.entitlements.householdAllowance = true;
                 }
 
-                $scope.entitlementsInnerItem.expatriationAllowance = $scope.entitlements.expatriationAllowance;
-
-
                 if($scope.entitlements.flatRateOvertime === 'No'){
-                    $scope.entitlementsInnerItem.flatRateOvertime = false;
+                    $scope.entitlements.flatRateOvertime = false;
                 }else if($scope.entitlements.flatRateOvertime === 'Yes'){
-                    $scope.entitlementsInnerItem.flatRateOvertime = true;
+                    $scope.entitlements.flatRateOvertime = true;
                 }
 
                 if($scope.entitlements.nonFlatrateSchoolAllowance === 'No'){
-                    $scope.entitlementsInnerItem.nonFlatrateSchoolAllowance = false;
+                    $scope.entitlements.nonFlatrateSchoolAllowance = false;
                 }else if($scope.entitlements.nonFlatrateSchoolAllowance === 'Yes'){
-                    $scope.entitlementsInnerItem.nonFlatrateSchoolAllowance = true;
+                    $scope.entitlements.nonFlatrateSchoolAllowance = true;
                 }
-                $scope.entitlementsInnerItem.deductions = $scope.entitlements.deductions;
-                $scope.entitlementsInnerItem.placeOfOriginDistance = $scope.entitlements.placeOfOriginDistance;
-                $scope.entitlementsInnerItem.placeOfOriginNumOfTravellers = $scope.entitlements.placeOfOriginNumOfTravellers;
-
-                angular.forEach($scope.selectedStaffMember.stepByStep.positionsFilled, function(position, i){
-
-                    $scope.entitlementsInnerItem.expatriationAllowanceSum = position.basicSalary * $scope.entitlements.expatriationAllowance /100;
-                    if($scope.entitlementsInnerItem.householdAllowance){
-                        $scope.entitlementsInnerItem.householdAllowanceSum = position.basicSalary * 0.02;
-                        if($scope.entitlementsInnerItem.householdAllowanceSum < 176.01){
-                            $scope.entitlementsInnerItem.householdAllowanceSum = 176.01;
-                        }
-                    }
-                });
-
-                $scope.entitlementsItem.entitlements.push($scope.entitlementsInnerItem);
 
                 // API CALL
-                entitlementsService.create($scope.entitlementsItem, function(item){
+                dateIntervalService.create($scope.entitlementsDateInterval, function(interval) {
+                    $scope.entitlements.dateInterval = interval._id;
 
-                    $scope.selectedStaffMember.entitlements = item._id;
+                    entitlementsService.create($scope.entitlements, function(item){
 
-                    staffService.update($scope.selectedStaffMember._id, $scope.selectedStaffMember, function(staff){
+                        $scope.selectedStaffMember.entitlements = [];
+                        $scope.selectedStaffMember.entitlements.push(item._id);
 
-                        staffService.getOne(staff._id, function(){
-                            $scope.selectedStaffMember = staffService.model.item;
+                        staffService.update($scope.selectedStaffMember._id, $scope.selectedStaffMember, function(staff){
+
+                            $scope.selectedStaffMember = staff;
+
+                            $scope.innerModalPageNum = 4;
                         });
-
-                        $scope.innerModalPageNum = 4;
                     });
                 });
+
             }else if($scope.innerModalPageNum === 4){
 
-                $scope.socioStatusItem.statuses = [];
-                $scope.socioStatusInnerItem.childrenAllowance = 0;
-
-                $scope.socioStatusInnerItem.startDate = $scope.staffSocioStatus.startDate.toISOString();
-                $scope.socioStatusInnerItem.endDate = $scope.staffSocioStatus.endDate.toISOString();
-                $scope.socioStatusInnerItem.numChildren = $scope.staffSocioStatus.numChildren;
-                $scope.socioStatusInnerItem.childrenAllowance = $scope.staffSocioStatus.numChildren * 384.60;
-                $scope.socioStatusInnerItem.childrenUnderSix = $scope.staffSocioStatus.childrenUnderSix;
-                $scope.socioStatusInnerItem.childrenInUni = $scope.staffSocioStatus.childrenInUni;
-                $scope.socioStatusInnerItem.childrenInUniExpatAndFar = $scope.staffSocioStatus.childrenInUniExpatAndFar;
-
-                $scope.socioStatusInnerItem.fullTimePercentage = $scope.staffSocioStatus.fullTimePercentage;
 
                 if($scope.staffSocioStatus.parttimePensionContr === 'No'){
-                    $scope.socioStatusInnerItem.parttimePensionContr = false;
+                    $scope.staffSocioStatus.parttimePensionContr = false;
                 }else if($scope.staffSocioStatus.parttimePensionContr === 'Yes'){
-                    $scope.socioStatusInnerItem.parttimePensionContr = true;
+                    $scope.staffSocioStatus.parttimePensionContr = true;
                 }
 
                 if($scope.staffSocioStatus.parentalLeave === 'No'){
-                    $scope.socioStatusInnerItem.parentalLeave = false;
+                    $scope.staffSocioStatus.parentalLeave = false;
                 }else if($scope.staffSocioStatus.parentalLeave === 'Yes'){
-                    $scope.socioStatusInnerItem.parentalLeave = true;
+                    $scope.staffSocioStatus.parentalLeave = true;
                 }
 
                 if($scope.staffSocioStatus.parentalLeaveExtension === 'No'){
-                    $scope.socioStatusInnerItem.parentalLeaveExtension = false;
+                    $scope.staffSocioStatus.parentalLeaveExtension = false;
                 }else if($scope.staffSocioStatus.parentalLeaveExtension === 'Yes'){
-                    $scope.socioStatusInnerItem.parentalLeaveExtension = true;
+                    $scope.staffSocioStatus.parentalLeaveExtension = true;
                 }
 
                 if($scope.staffSocioStatus.parentalLeaveIncrease === 'No'){
-                    $scope.socioStatusInnerItem.parentalLeaveIncrease = false;
+                    $scope.staffSocioStatus.parentalLeaveIncrease = false;
                 }else if($scope.staffSocioStatus.parentalLeaveIncrease === 'Yes'){
-                    $scope.socioStatusInnerItem.parentalLeaveIncrease = true;
+                    $scope.staffSocioStatus.parentalLeaveIncrease = true;
                 }
 
-                $scope.socioStatusItem.statuses.push($scope.socioStatusInnerItem);
-
                 // API CALL
-                socioStatusService.create($scope.socioStatusItem, function(item){
-                    console.log(item);
-                    $scope.staffItem.socioStatus = item._id;
+                dateIntervalService.create($scope.socioDateInterval, function(interval) {
+                    $scope.staffSocioStatus.dateInterval = interval._id;
 
-                    staffService.update($scope.selectedStaffMember._id, $scope.staffItem, function(staff){
+                    socioStatusService.create($scope.staffSocioStatus, function(item){
+                        $scope.selectedStaffMember.socioStatus = [];
+                        $scope.selectedStaffMember.socioStatus.push(item._id);
 
-                        $uibModalInstance.close(staff);
+                        staffService.update($scope.selectedStaffMember._id, $scope.selectedStaffMember, function(staff){
+
+                            $scope.selectedStaffMember = staff;
+
+                            $uibModalInstance.close(staff);
+                        });
                     });
                 });
+
             }
     // EDIT STAFF
         }else if($scope.modalTitle === "Edit Staff Member") {

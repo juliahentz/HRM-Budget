@@ -23,15 +23,7 @@
                                  buhrma-input-text="Staff Number"
                                  buhrma-input-type="number"></ng-buhrma-input>
                 <br/>
-                <div class="row">
-                    <div class="col-xs-6">
-                        <ng-buhrma-date-input buhrma-date-model="selectedStaffMember.startDate" buhrma-date-text="Date of Entry"></ng-buhrma-date-input>
-                    </div>
-                    <div class="col-xs-6">
-                        <ng-buhrma-date-input buhrma-date-model="selectedStaffMember.endDate" buhrma-date-text="Actual / Planned end date"></ng-buhrma-date-input>
-                    </div>
-                </div>
-                <br/>
+
                 <div class="row">
                     <div class="col-xs-6">
                         <ng-buhrma-select buhrma-select-model="staffPersonalData.gender"
@@ -55,10 +47,10 @@
 
                 <div class="row">
                     <div class="col-xs-6">
-                        <ng-buhrma-date-input buhrma-date-model="selectedContract.startDate" buhrma-date-text="Start Date"></ng-buhrma-date-input>
+                        <ng-buhrma-date-input buhrma-date-model="contractDateInterval.start" buhrma-date-text="Start Date"></ng-buhrma-date-input>
                     </div>
                     <div class="col-xs-6">
-                        <ng-buhrma-date-input buhrma-date-model="selectedContract.endDate" buhrma-date-text="End Date"></ng-buhrma-date-input>
+                        <ng-buhrma-date-input buhrma-date-model="contractDateInterval.end" buhrma-date-text="End Date"></ng-buhrma-date-input>
                     </div>
                 </div>
                 <br/>
@@ -100,10 +92,10 @@
 
                 <div class="row">
                     <div class="col-xs-6">
-                        <ng-buhrma-date-input buhrma-date-model="entitlements.startDate" buhrma-date-text="Start Date"></ng-buhrma-date-input>
+                        <ng-buhrma-date-input buhrma-date-model="entitlementsDateInterval.start" buhrma-date-text="Start Date"></ng-buhrma-date-input>
                     </div>
                     <div class="col-xs-6">
-                        <ng-buhrma-date-input buhrma-date-model="entitlements.endDate" buhrma-date-text="End Date"></ng-buhrma-date-input>
+                        <ng-buhrma-date-input buhrma-date-model="entitlementsDateInterval.end" buhrma-date-text="End Date"></ng-buhrma-date-input>
                     </div>
                 </div>
                 <br/>
@@ -166,10 +158,10 @@
 
                 <div class="row">
                     <div class="col-xs-6">
-                        <ng-buhrma-date-input buhrma-date-model="staffSocioStatus.startDate" buhrma-date-text="Start Date"></ng-buhrma-date-input>
+                        <ng-buhrma-date-input buhrma-date-model="socioDateInterval.start" buhrma-date-text="Start Date"></ng-buhrma-date-input>
                     </div>
                     <div class="col-xs-6">
-                        <ng-buhrma-date-input buhrma-date-model="staffSocioStatus.endDate" buhrma-date-text="End Date"></ng-buhrma-date-input>
+                        <ng-buhrma-date-input buhrma-date-model="socioDateInterval.end" buhrma-date-text="End Date"></ng-buhrma-date-input>
                     </div>
                 </div>
                 <hr/>

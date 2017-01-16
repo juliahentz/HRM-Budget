@@ -10,7 +10,13 @@ exports.init = (app)=> {
 
         const query = StaffMember.find();
 
-        query.populate('dateInterval personalData stepByStep socioStatus entitlements');
+        query.populate({
+            path: 'personalData stepByStep socioStatus entitlements',
+            populate:{
+                path: 'dateInterval',
+                model: 'DateInterval'
+            }
+        });
 
         query.exec((err, staffMemberDoc)=> {
             if (!err) {
@@ -30,7 +36,13 @@ exports.init = (app)=> {
 
         var query = StaffMember.findById({_id: staffMemberId});
 
-        query.populate('dateInterval personalData stepByStep socioStatus entitlements');
+        query.populate({
+            path: 'personalData stepByStep socioStatus entitlements',
+            populate:{
+                path: 'dateInterval',
+                model: 'DateInterval'
+            }
+        });
 
         query.exec((err, staffMemberDoc)=> {
 

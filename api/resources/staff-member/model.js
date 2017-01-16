@@ -6,7 +6,6 @@ const schema = new mongoose.Schema({
     name            : {type: String},
     surname         : {type: String},
     staffNumber     : {type: Number},
-    dateInterval    : {type: mongoose.Schema.Types.ObjectId, ref: 'DateInterval'},
     personalData    : {type: mongoose.Schema.Types.ObjectId, ref: 'PersonalData'},
     stepByStep      : [{type: mongoose.Schema.Types.ObjectId, ref: 'StepByStep'}],
     socioStatus     : [{type: mongoose.Schema.Types.ObjectId, ref: 'SocioStatus'}],

@@ -7,10 +7,7 @@ const schema = new mongoose.Schema({
     grade               : {type: Number},
     step                : {type: Number},
     headOfUnit          : {type: Boolean},
-    placeOfEmployment   : {type: String},
-    basicSalary         : {type: Number},
-    headOfUnitTop       : {type: Number},
-    adjustedBasicSalary : {type: Number}
+    placeOfEmployment   : {type: String}
         
 });
 
