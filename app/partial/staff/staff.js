@@ -4,7 +4,8 @@ angular.module('HRMBudget').controller('StaffCtrl',function(
     postService,
     $uibModal,
     Excel,
-    timeNow
+    timeNow,
+    Upload
 ){
 
     $scope.posts = postService.model.list;
@@ -219,6 +220,20 @@ angular.module('HRMBudget').controller('StaffCtrl',function(
         a.download = 'StaffMembers.xls';
         a.click();
     };
+
+    $scope.importCSV = function(file, errFiles) {
+
+        $scope.f = file;
+        $scope.errFile = errFiles && errFiles[0];
+        if (file) {
+
+            Papa.parse(file, {header:true,dynamicTyping:true,complete: function(results) {
+                console.log(results.data);
+            }});
+
+        }
+    }
+
 
 }).factory('Excel',function($window){
 

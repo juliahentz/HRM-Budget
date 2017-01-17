@@ -2,21 +2,25 @@
 
     <div class="row top-bar-buttons">
 
-        <div class="col-xl-3">
+        <div class="col-xl-2">
             <div class="icon-container" ng-click="onClickButton('newStaff')" angular-ripple><i class="fa fa-plus" aria-hidden="true"></i></div>
             <div class="btn btn-sm buhrma-btn" ng-click="onClickButton('newStaff')" angular-ripple>Add New Staff</div>
         </div>
-        <div class="col-xl-3">
+        <div class="col-xl-2">
             <div class="icon-container" ng-click="onClickFilterDate()" angular-ripple><i class="fa fa-filter" aria-hidden="true"></i></i></div>
             <div class="btn btn-sm buhrma-btn" ng-click="onClickFilterDate()" angular-ripple>State: <em>{{filterTableDate | date:'dd.MM.yyyy'}}</em></div>
         </div>
-        <div class="col-xl-3">
+        <div class="col-xl-2">
             <div class="icon-container" ng-click="onCustomiseTableClick()" angular-ripple><i class="fa fa-check-square-o" aria-hidden="true"></i></div>
             <div class="btn btn-sm buhrma-btn" ng-click="onCustomiseTableClick()" angular-ripple>Customise table</div>
         </div>
-        <div class="col-xl-3">
+        <div class="col-xl-2">
             <div class="icon-container" ng-click="exportToExcel('#table-to-export')" angular-ripple><i class="fa fa-cloud-download" aria-hidden="true"></i></div>
             <div class="btn btn-sm buhrma-btn" ng-click="exportToExcel('#table-to-export')" angular-ripple>Export to excel</div>
+        </div>
+        <div class="col-xl-2">
+            <div class="icon-container" ngf-select="importCSV($file)" angular-ripple><i class="fa fa-cloud-upload" aria-hidden="true"></i></div>
+            <div class="btn btn-sm buhrma-btn" ngf-select="importCSV($file)" angular-ripple>Import CVS</div>
         </div>
     </div>
     <hr/>
