@@ -3,6 +3,10 @@
 const mongoose = require('mongoose');
 const _ = require('lodash');
 
+const filterYear = 2016;
+
+const monthArray= [1,2,3,4,5,6,7,8,9,10,11,12];
+
 exports.budgetCalc = ()=> {
 
     const StaffMember = mongoose.model('StaffMember');
@@ -11,6 +15,11 @@ exports.budgetCalc = ()=> {
     StaffMember.find((err, result)=> {
 
         StaffMember.aggregate([
+            {
+                "$match": {
+                    name: 'Eryn'
+                }
+            },
             {
                 "$unwind": "$stepByStep"
             },
@@ -78,10 +87,158 @@ exports.budgetCalc = ()=> {
                 }
             },
             {
+                "$lookup":
+                {
+                    from: 'dateintervals',
+                    localField: 'socioStatusDocs.dateInterval',
+                    foreignField: '_id',
+                    as: 'socioStatusDateIntervalDocs'
+                }
+            },
+            {
+                "$lookup":
+                {
+                    from: 'dateintervals',
+                    localField: 'entitlementsDocs.dateInterval',
+                    foreignField: '_id',
+                    as: 'entitlementsDateIntervalDocs'
+                }
+            },
+            {
                 "$unwind": "$stepByStepDateIntervalDocs"
+            },
+            {
+                "$unwind": "$socioStatusDateIntervalDocs"
+            },
+            {
+                "$unwind": "$entitlementsDateIntervalDocs"
+            },
+            {
+                "$lookup":
+                {
+                    from: 'paramcontracttypes',
+                    localField: 'stepByStepDocs.category',
+                    foreignField: 'name',
+                    as: 'ContractTypeDoc'
+                }
+            },
+            {
+                "$unwind": "$ContractTypeDoc"
+            },
+            {
+                "$unwind": "$ContractTypeDoc.grades"
+            },
+            {
+                "$lookup":
+                {
+                    from: 'paramcontractgrades',
+                    localField: 'ContractTypeDoc.grades',
+                    foreignField: '_id',
+                    as: 'ContractGradeDoc'
+                }
+            },
+            {
+                "$unwind": "$ContractGradeDoc"
+            },
+            {
+                "$unwind": "$ContractGradeDoc.steps"
+            },
+            {
+                "$lookup":
+                {
+                    from: 'paramcontactsteps',
+                    localField: 'ContractGradeDoc.steps',
+                    foreignField: '_id',
+                    as: 'ContractStepDoc'
+                }
+            },
+            {
+                "$unwind": "$ContractStepDoc"
+            },
+            {
+                "$project":
+                {
+                    name: "$name",
+                    surname: "$surname",
+                    staffNumber: "$staffNumber",
+                    personalDataDocs: "$personalDataDocs",
+                    stepByStepDocs: "$stepByStepDocs",
+                    socioStatusDocs: "$socioStatusDocs",
+                    entitlementsDocs: "$entitlementsDocs",
+                    ContractStepDoc: "$ContractStepDoc",
+
+                    startYear: {$year: "$stepByStepDateIntervalDocs.start"},
+                    startDay: {$dayOfMonth: "$stepByStepDateIntervalDocs.start"},
+                    startMonth: {$month: "$stepByStepDateIntervalDocs.start"},
+                    endYear: {$year: "$stepByStepDateIntervalDocs.end"},
+                    endDay: {$dayOfMonth: "$stepByStepDateIntervalDocs.end"},
+                    endMonth: {$month: "$stepByStepDateIntervalDocs.end"},
+
+                    startYearSS: {$year: "$socioStatusDateIntervalDocs.start"},
+                    startDaySS: {$dayOfMonth: "$socioStatusDateIntervalDocs.start"},
+                    startMonthSS: {$month: "$socioStatusDateIntervalDocs.start"},
+                    endYearSS: {$year: "$socioStatusDateIntervalDocs.end"},
+                    endDaySS: {$dayOfMonth: "$socioStatusDateIntervalDocs.end"},
+                    endMonthSS: {$month: "$socioStatusDateIntervalDocs.end"},
+
+                    startYearE: {$year: "$entitlementsDateIntervalDocs.start"},
+                    startDayE: {$dayOfMonth: "$entitlementsDateIntervalDocs.start"},
+                    startMonthE: {$month: "$entitlementsDateIntervalDocs.start"},
+                    endYearE: {$year: "$entitlementsDateIntervalDocs.end"},
+                    endDayE: {$dayOfMonth: "$entitlementsDateIntervalDocs.end"},
+                    endMonthE: {$month: "$entitlementsDateIntervalDocs.end"}
+                }
             }
         ]).exec((err, docs)=> {
             console.log(docs);
+
+            _.each(docs, (d)=>{
+
+                if(d.startYear <= filterYear && d.endYear >= filterYear){
+
+                    if(d.startYear < filterYear && d.endYear == filterYear){
+
+                        _.each(monthArray, (month)=>{
+                            if(d.endMonth <= month){
+                                //console.log('first scen');
+                            }
+                        });
+                    }
+
+                    if(d.startYear < filterYear && d.endYear > filterYear){
+
+                        _.each(monthArray, (month)=>{
+
+                            //console.log(d.startYearE);
+
+                            //console.log('second scen');
+
+                        });
+                    }
+
+                    if(d.startYear == filterYear && d.endYear == filterYear){
+
+                        _.each(monthArray, (month)=>{
+
+                            if(d.startMonth >= month && d.endMonth <= month){
+                                //console.log('third scen');
+                            }
+
+                        });
+                    }
+
+                    if(d.startYear == filterYear && d.endYear > filterYear){
+
+                        _.each(monthArray, (month)=>{
+
+                            if(d.startMonth >= month){
+                                //console.log('fourth scen');
+                            }
+                        });
+                    }
+                }
+            });
+
         });
     });
 
