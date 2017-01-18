@@ -5,7 +5,11 @@ angular.module('HRMBudget').controller('StaffCtrl',function(
     $uibModal,
     Excel,
     timeNow,
-    Upload
+    personalDataService,
+    dateIntervalService,
+    stepByStepService,
+    entitlementsService,
+    socioStatusService
 ){
 
     $scope.posts = postService.model.list;
@@ -227,12 +231,112 @@ angular.module('HRMBudget').controller('StaffCtrl',function(
         $scope.errFile = errFiles && errFiles[0];
         if (file) {
 
-            Papa.parse(file, {header:true,dynamicTyping:true,complete: function(results) {
-                console.log(results.data);
+            Papa.parse(file, {
+                header:true,
+                dynamicTyping:true,
+                complete: function(results) {
+
+                    angular.forEach(results.data, function(data, i){
+
+                        $scope.staffPersonalData = {};
+                        $scope.selectedStaffMember = {};
+                        $scope.contractDateInterval = {};
+                        $scope.selectedContract = {};
+                        $scope.entitlements = {};
+                        $scope.staffSocioStatus = {};
+
+                        $scope.staffSocioStatus.numChildren = data.numChildren;
+                        $scope.staffSocioStatus.childrenUnderSix = data.childrenUnderSix;
+                        $scope.staffSocioStatus.childrenInUni = data.childrenInUni;
+                        $scope.staffSocioStatus.childrenInUniExpatAndFar = data.childrenInUniExpatAndFar;
+                        $scope.staffSocioStatus.parentalLeave = data.parentalLeave;
+                        $scope.staffSocioStatus.parentalLeaveExtension = data.parentalLeaveExtension;
+                        $scope.staffSocioStatus.parentalLeaveIncrease = data.parentalLeaveIncrease;
+                        $scope.staffSocioStatus.fullTimePercentage = data.fullTimePercentage;
+                        $scope.staffSocioStatus.parttimePensionContr = data.parttimePensionContr;
+
+                        $scope.entitlements.householdAllowance = data.householdAllowance;
+                        $scope.entitlements.expatriationAllowance = data.expatriationAllowance;
+                        $scope.entitlements.flatRateOvertime = data.flatRateOvertime;
+                        $scope.entitlements.nonFlatrateSchoolAllowance = data.nonFlatrateSchoolAllowance;
+                        $scope.entitlements.deductions = data.deductions;
+                        $scope.entitlements.placeOfOriginDistance = data.placeOfOriginDistance;
+                        $scope.entitlements.placeOfOriginNumOfTravellers = data.placeOfOriginNumOfTravellers;
+
+                        $scope.selectedContract.category = data.category;
+                        $scope.selectedContract.grade = data.grade;
+                        $scope.selectedContract.step = data.step;
+                        $scope.selectedContract.headOfUnit = data.headOfUnit;
+                        $scope.selectedContract.placeOfEmployment = data.placeOfEmployment;
+
+                        $scope.partsStart = data.start.split('/');
+                        $scope.partsEnd = data.end.split('/');
+                        $scope.contractDateInterval.start = new Date($scope.partsStart[2],$scope.partsStart[1]-1,$scope.partsStart[0]);
+                        $scope.contractDateInterval.end = new Date($scope.partsEnd[2],$scope.partsEnd[1]-1,$scope.partsEnd[0]);
+
+                        $scope.parts = data.birthDate.split('/');
+                        $scope.staffPersonalData.birthDate = new Date($scope.parts[2],$scope.parts[1]-1,$scope.parts[0]);
+
+                        $scope.staffPersonalData.gender = data.gender;
+                        $scope.staffPersonalData.nationality = data.nationality;
+
+                        $scope.selectedStaffMember.name = data.name;
+                        $scope.selectedStaffMember.surname = data.surname;
+                        $scope.selectedStaffMember.staffNumber = data.staffNumber;
+
+                        $scope.apiCall(
+                            $scope.staffPersonalData,
+                            $scope.selectedStaffMember,
+                            $scope.contractDateInterval,
+                            $scope.selectedContract,
+                            $scope.entitlements,
+                            $scope.staffSocioStatus);
+
+                    });
+
             }});
 
         }
-    }
+    };
+
+    $scope.apiCall = function(a,b,c,d,e,f){
+
+        dateIntervalService.create(c, function(interval) {
+            d.dateInterval = interval._id;
+
+            stepByStepService.create(d, function (contractItem) {
+
+                b.stepByStep = [];
+                b.stepByStep.push(contractItem._id);
+
+                e.dateInterval = interval._id;
+
+                entitlementsService.create(e, function(entitlementItem){
+
+                    b.entitlements = [];
+                    b.entitlements.push(entitlementItem._id);
+
+                    f.dateInterval = interval._id;
+
+                    socioStatusService.create(f, function(socioItem){
+                        b.socioStatus = [];
+                        b.socioStatus.push(socioItem._id);
+
+                        personalDataService.create(a, function(item){
+
+                            b.personalData = item._id;
+
+                            staffService.create(b, function(staff){
+
+                                $scope.staffMembers.push(staff);
+
+                            });
+                        });
+                    });
+                });
+            });
+        });
+    };
 
 
 }).factory('Excel',function($window){

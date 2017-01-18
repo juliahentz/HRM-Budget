@@ -59,7 +59,15 @@ exports.init = (app)=> {
         const StaffMember = mongoose.model('StaffMember');
         const staffMember = new StaffMember(req.body);
 
-        staffMember.save((err)=> {
+        staffMember.save();
+
+        staffMember.populate({
+            path: 'personalData stepByStep socioStatus entitlements',
+            populate:{
+                path: 'dateInterval',
+                model: 'DateInterval'
+            }
+        }, (err)=> {
 
             if (!err) {
                 res.send(staffMember);
