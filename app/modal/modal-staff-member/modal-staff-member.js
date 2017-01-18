@@ -224,15 +224,11 @@ angular.module('HRMBudget').controller('ModalStaffMemberCtrl',function(
                 });
             }else if($scope.innerModalPageNum === 2) {
 
-                console.log('this');
-
                 // API CALL
                 dateIntervalService.create($scope.contractDateInterval, function(interval) {
                     $scope.selectedContract.dateInterval = interval._id;
 
                     stepByStepService.create($scope.selectedContract, function (item) {
-
-                        console.log(item);
 
                         $scope.selectedStaffMember.stepByStep = [];
                         $scope.selectedStaffMember.stepByStep.push(item._id);
