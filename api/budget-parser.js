@@ -3,6 +3,104 @@
 const mongoose = require('mongoose');
 const _ = require('lodash');
 
+exports.budgetCalc = ()=> {
+
+    const StaffMember = mongoose.model('StaffMember');
+    const PersonalData = mongoose.model('PersonalData');
+
+    StaffMember.find((err, result)=> {
+
+        StaffMember.aggregate([
+            {
+                "$unwind": "$stepByStep"
+            },
+            {
+                "$unwind": "$socioStatus"
+            },
+            {
+                "$unwind": "$entitlements"
+            },
+            {
+                '$lookup':
+                    {
+                        from: 'personaldatas',
+                        localField: 'personalData',
+                        foreignField: '_id',
+                        as: 'personalDataDocs'
+                    }
+            },
+            {
+                '$lookup':
+                    {
+                        from: 'stepbysteps',
+                        localField: 'stepByStep',
+                        foreignField: '_id',
+                        as: 'stepByStepDocs'
+                    }
+            },
+            {
+                '$lookup':
+                {
+                    from: 'sociostatuses',
+                    localField: 'socioStatus',
+                    foreignField: '_id',
+                    as: 'socioStatusDocs'
+                }
+            },
+            {
+                '$lookup':
+                {
+                    from: 'entitlements',
+                    localField: 'entitlements',
+                    foreignField: '_id',
+                    as: 'entitlementsDocs'
+                }
+            },
+            {
+                "$unwind": "$personalDataDocs"
+            },
+            {
+                "$unwind": "$stepByStepDocs"
+            },
+            {
+                "$unwind": "$socioStatusDocs"
+            },
+            {
+                "$unwind": "$entitlementsDocs"
+            },
+            {
+                "$lookup":
+                {
+                    from: 'dateintervals',
+                    localField: 'stepByStepDocs.dateInterval',
+                    foreignField: '_id',
+                    as: 'stepByStepDateIntervalDocs'
+                }
+            },
+            {
+                "$unwind": "$stepByStepDateIntervalDocs"
+            }
+        ]).exec((err, docs)=> {
+            console.log(docs);
+        });
+    });
+
+    //month: { $month: "$stepByStepDateIntervalDocs.start" }, day: { $dayOfMonth: "$stepByStepDateIntervalDocs.start" }, year: { $year: "$stepByStepDateIntervalDocs.start" },
+
+    /*query.aggregate([
+        { "$match":
+            { "personalData.gender": 'Female'
+            }
+        }
+    ]).exec((err, docs)=> {
+        console.log(docs);
+    });*/
+
+};
+
+
+
+
 /*
 exports.budgetCalc = ()=> {
 
