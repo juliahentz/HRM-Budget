@@ -6,8 +6,15 @@ angular.module('HRMBudget').controller('BudgetCtrl',function(
 
     $scope.staffMembers = staffService.model.list;
     $scope.today = new Date();
+    $scope.todayYear = $scope.today.getFullYear();
+    $scope.todayMonth = $scope.today.getMonth();
+    $scope.todayDate = $scope.today.getDate();
 
     $scope.budget = {};
+
+    $scope.months = 12;
+    $scope.salaryScale = [0,0,0,0,0,0,0,0,0,0,0,0];
+    $scope.adjustedSalaryScale = [0,0,0,0,0,0,0,0,0,0,0,0];
 
     $scope.budget.basicSalarySum = 0;
     $scope.budget.adjustedSalarySum = 0;
@@ -16,46 +23,70 @@ angular.module('HRMBudget').controller('BudgetCtrl',function(
     $scope.budget.expatriationAllowanceSum = 0;
     $scope.budget.childrenAllowanceSum = 0;
 
-    angular.forEach($scope.staffMembers, function(staff, index){
+    angular.forEach($scope.staffMembers, function(staff, index) {
 
-        angular.forEach(staff.stepByStep.positionsFilled, function(position, i){
+        angular.forEach(staff.stepByStep, function(stepByStepDoc, i){
 
-            $scope.budget.basicSalarySum += position.basicSalary;
-            $scope.budget.adjustedSalarySum += position.adjustedBasicSalary;
-            if(position.headOfUnitTop){
-                $scope.budget.headOfUnitSum += position.headOfUnitTop;
+            $scope.stepByStepDocStart = new Date(stepByStepDoc.dateInterval.start);
+            $scope.stepByStepDocEnd = new Date(stepByStepDoc.dateInterval.end);
+
+            $scope.stepByStepDocStartYear = $scope.stepByStepDocStart.getFullYear();
+            $scope.stepByStepDocStartMonth = $scope.stepByStepDocStart.getMonth()+1;
+            $scope.stepByStepDocStartDay = $scope.stepByStepDocStart.getDate();
+
+            $scope.stepByStepDocEndYear = $scope.stepByStepDocEnd.getFullYear();
+            $scope.stepByStepDocEndMonth = $scope.stepByStepDocEnd.getMonth()+1;
+            $scope.stepByStepDocEndDay = $scope.stepByStepDocEnd.getDate();
+
+            if($scope.todayYear > $scope.stepByStepDocStartYear){
+
+                if($scope.todayYear < $scope.stepByStepDocEndYear){
+                    for(var k=0; k<$scope.months; k++){
+                        $scope.salaryScale[k] += stepByStepDoc.salaryId.salary;
+
+                    }
+                }
+
+                if($scope.todayYear == $scope.stepByStepDocEndYear){
+                    for(var j=0; j<$scope.stepByStepDocEndMonth; j++){
+                        if(j == $scope.stepByStepDocEndMonth-1 && $scope.stepByStepDocEndDay <= 15){
+                            $scope.salaryScale[j] += stepByStepDoc.salaryId.salary/2;
+                        }else{
+                            $scope.salaryScale[j] += stepByStepDoc.salaryId.salary;
+                        }
+                    }
+                }
             }
 
-        });
+            if($scope.todayYear == $scope.stepByStepDocStartYear){
 
-        angular.forEach(staff.entitlements.entitlements, function(entitlement, i){
-            if(entitlement.householdAllowanceSum){
-                $scope.budget.householdAllowanceSum += entitlement.householdAllowanceSum;
-            }
-            if(entitlement.expatriationAllowanceSum){
-                $scope.budget.expatriationAllowanceSum += entitlement.expatriationAllowanceSum;
-            }
-        });
+                if($scope.todayYear < $scope.stepByStepDocEndYear){
+                    for(var l=$scope.stepByStepDocStartMonth-1; l<$scope.months; l++){
 
-        angular.forEach(staff.socioStatus.statuses, function(status, i){
-            console.log(status);
-            if(status.childrenAllowance){
-                $scope.budget.childrenAllowanceSum += status.childrenAllowance;
+                        if(l == $scope.stepByStepDocStartMonth-1 && $scope.stepByStepDocStartDay >= 16){
+                            $scope.salaryScale[l] += stepByStepDoc.salaryId.salary/2;
+
+                        }else{
+                            $scope.salaryScale[l] += stepByStepDoc.salaryId.salary;
+                        }
+                    }
+                }
+
+                if($scope.todayYear == $scope.stepByStepDocEndYear){
+                    for(var m=$scope.stepByStepDocStartMonth-1; m<$scope.stepByStepDocEndMonth; m++){
+
+                        if(m == $scope.stepByStepDocStartMonth-1 && $scope.stepByStepDocStartDay >= 16) {
+                            $scope.salaryScale[m] += stepByStepDoc.salaryId.salary / 2;
+                        }else if(m == $scope.stepByStepDocEndMonth-1 && $scope.stepByStepDocEndDay <= 15){
+                            $scope.salaryScale[m] += stepByStepDoc.salaryId.salary/2;
+                        }else{
+                            $scope.salaryScale[m] += stepByStepDoc.salaryId.salary;
+                        }
+                    }
+                }
             }
         });
     });
-    $scope.budget.sumPerMonth = $scope.budget.basicSalarySum + $scope.budget.adjustedSalarySum + $scope.budget.headOfUnitSum + $scope.budget.householdAllowanceSum + $scope.budget.expatriationAllowanceSum + $scope.budget.childrenAllowanceSum;
-
-    $scope.budget.totalSum = $scope.budget.sumPerMonth *12;
-
-    $scope.budget.basicSalarySum = $scope.budget.basicSalarySum.toFixed(2);
-    $scope.budget.adjustedSalarySum = $scope.budget.adjustedSalarySum.toFixed(2);
-    $scope.budget.headOfUnitSum = $scope.budget.headOfUnitSum.toFixed(2);
-    $scope.budget.householdAllowanceSum = $scope.budget.householdAllowanceSum.toFixed(2);
-    $scope.budget.expatriationAllowanceSum = $scope.budget.expatriationAllowanceSum.toFixed(2);
-    $scope.budget.childrenAllowanceSum = $scope.budget.childrenAllowanceSum.toFixed(2);
-    $scope.budget.sumPerMonth = $scope.budget.sumPerMonth.toFixed(2);
-    $scope.budget.totalSum = $scope.budget.totalSum.toFixed(2);
 
     $scope.exportToExcel=function(tableId){
         var exportHref=Excel.tableToExcel(tableId,'Budget');

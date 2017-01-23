@@ -1,4 +1,4 @@
-angular.module('admin', ['ui.bootstrap','ui.router','ngAnimate']);
+angular.module('admin', ['ui.bootstrap','ui.router','ngAnimate','ngFileUpload','ngPapaParse']);
 
 angular.module('admin').config(function($stateProvider, $urlRouterProvider) {
 

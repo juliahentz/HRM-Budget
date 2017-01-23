@@ -2,7 +2,9 @@ angular.module('admin').controller('ContractTypesCtrl',function(
     $scope,
     contractService,
     contractGradeService,
-    contractStepService
+    contractStepService,
+    Papa,
+    salaryService
 ){
 
     $scope.contracts = contractService.model.list;
@@ -75,5 +77,29 @@ angular.module('admin').controller('ContractTypesCtrl',function(
 
     $scope.deleteContactType = function(id){
         contractService.remove(id);
+    };
+
+    $scope.importCSV = function(file, errFiles) {
+
+        $scope.f = file;
+        $scope.errFile = errFiles && errFiles[0];
+        if (file) {
+
+            Papa.parse(file, {
+                header:true,
+                dynamicTyping:true,
+                complete: function(results) {
+
+                    angular.forEach(results.data, function(data, i){
+                        salaryService.create(data, function(salary){
+                            console.log(salary);
+                        })
+
+                    });
+
+                }
+            });
+
+        }
     };
 });

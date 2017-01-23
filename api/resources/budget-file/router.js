@@ -34,6 +34,21 @@ exports.init = (app)=> {
         });
     });
 
+    app.post('/api/budget-file', (req, res)=> {
+
+        const BudgetFile = mongoose.model('BudgetFile');
+        const budgetFile = new BudgetFile(req.body);
+
+        budgetFile.save((err)=> {
+
+            if (!err) {
+                res.send(budgetFile);
+            } else {
+                res.status(400).send(err);
+            }
+        });
+    });
+
     app.put('/api/budget-file/:id', (req, res)=> {
 
         const budgetFileData = req.body;

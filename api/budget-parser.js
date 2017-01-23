@@ -7,6 +7,8 @@ const filterYear = 2016;
 
 const monthArray= [1,2,3,4,5,6,7,8,9,10,11,12];
 
+let budgetFile = {};
+
 exports.budgetCalc = ()=> {
 
     const StaffMember = mongoose.model('StaffMember');
@@ -17,7 +19,7 @@ exports.budgetCalc = ()=> {
         StaffMember.aggregate([
             {
                 "$match": {
-                    name: 'Eryn'
+                    name: 'Gertrude'
                 }
             },
             {
@@ -116,44 +118,14 @@ exports.budgetCalc = ()=> {
             {
                 "$lookup":
                 {
-                    from: 'paramcontracttypes',
-                    localField: 'stepByStepDocs.category',
-                    foreignField: 'name',
-                    as: 'ContractTypeDoc'
-                }
-            },
-            {
-                "$unwind": "$ContractTypeDoc"
-            },
-            {
-                "$unwind": "$ContractTypeDoc.grades"
-            },
-            {
-                "$lookup":
-                {
-                    from: 'paramcontractgrades',
-                    localField: 'ContractTypeDoc.grades',
+                    from: 'paramsalaries',
+                    localField: 'salaryId',
                     foreignField: '_id',
-                    as: 'ContractGradeDoc'
+                    as: 'salaryFile'
                 }
             },
             {
-                "$unwind": "$ContractGradeDoc"
-            },
-            {
-                "$unwind": "$ContractGradeDoc.steps"
-            },
-            {
-                "$lookup":
-                {
-                    from: 'paramcontactsteps',
-                    localField: 'ContractGradeDoc.steps',
-                    foreignField: '_id',
-                    as: 'ContractStepDoc'
-                }
-            },
-            {
-                "$unwind": "$ContractStepDoc"
+                "$unwind": "$salaryFile"
             },
             {
                 "$project":
@@ -161,9 +133,12 @@ exports.budgetCalc = ()=> {
                     name: "$name",
                     surname: "$surname",
                     staffNumber: "$staffNumber",
-                    personalDataDocs: "$personalDataDocs",
+                    category: "$stepByStepDocs.category",
+                    grade: "$stepByStepDocs.grade",
+                    step: "$stepByStepDocs.step",
+                    headOfUnit: "$stepByStepDocs.headOfUnit",
+                    placeOfEmployment: "$stepByStepDocs.placeOfEmployment",
                     stepByStepDocs: "$stepByStepDocs",
-                    socioStatusDocs: "$socioStatusDocs",
                     entitlementsDocs: "$entitlementsDocs",
                     ContractStepDoc: "$ContractStepDoc",
 
@@ -190,9 +165,13 @@ exports.budgetCalc = ()=> {
                 }
             }
         ]).exec((err, docs)=> {
+
             console.log(docs);
 
             _.each(docs, (d)=>{
+                
+                budgetFile.contractType = d.category;
+                //console.log(budgetFile);
 
                 if(d.startYear <= filterYear && d.endYear >= filterYear){
 

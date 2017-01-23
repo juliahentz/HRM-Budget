@@ -30,19 +30,9 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td class="title">Basic Salary Sum</td>
-                        <td>{{budget.basicSalarySum}}</td>
-                        <td>{{budget.basicSalarySum}}</td>
-                        <td>{{budget.basicSalarySum}}</td>
-                        <td>{{budget.basicSalarySum}}</td>
-                        <td>{{budget.basicSalarySum}}</td>
-                        <td>{{budget.basicSalarySum}}</td>
-                        <td>{{budget.basicSalarySum}}</td>
-                        <td>{{budget.basicSalarySum}}</td>
-                        <td>{{budget.basicSalarySum}}</td>
-                        <td>{{budget.basicSalarySum}}</td>
-                        <td>{{budget.basicSalarySum}}</td>
-                        <td>{{budget.basicSalarySum}}</td>
+                        <td class="title">Basic Salary Scale</td>
+                        <td ng-repeat="salary in salaryScale track by $index">{{salary | currency : '€ ' : 2}}</td>
+
                     </tr>
                     <tr>
                         <td class="title">Adjusted Salary Sum</td>

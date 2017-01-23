@@ -11,10 +11,17 @@ exports.init = (app)=> {
         const query = StaffMember.find();
 
         query.populate({
-            path: 'personalData stepByStep socioStatus entitlements',
+            path: 'personalData stepByStep socioStatus entitlements budgetFile',
             populate:{
                 path: 'dateInterval',
                 model: 'DateInterval'
+
+            }
+        }).populate({
+            path: 'stepByStep',
+            populate:{
+                path: 'salaryId',
+                model: 'ParamSalary'
             }
         });
 
@@ -37,10 +44,16 @@ exports.init = (app)=> {
         var query = StaffMember.findById({_id: staffMemberId});
 
         query.populate({
-            path: 'personalData stepByStep socioStatus entitlements',
+            path: 'personalData stepByStep socioStatus entitlements salaryId budgetFile',
             populate:{
                 path: 'dateInterval',
                 model: 'DateInterval'
+            }
+        }).populate({
+            path: 'stepByStep',
+            populate:{
+                path: 'salaryId',
+                model: 'ParamSalary'
             }
         });
 
