@@ -2,25 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e334675e-fbcb-45fb-bf0d-4972e6b0528f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/resources/param-salaries/model.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/resources/param-salaries/router.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/app.js" afterPath="$PROJECT_DIR$/admin/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/bower.json" afterPath="$PROJECT_DIR$/admin/bower.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/index.html" afterPath="$PROJECT_DIR$/admin/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/partial/contract-types/contract-types.html" afterPath="$PROJECT_DIR$/admin/partial/contract-types/contract-types.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/partial/contract-types/contract-types.js" afterPath="$PROJECT_DIR$/admin/partial/contract-types/contract-types.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/budget-parser.js" afterPath="$PROJECT_DIR$/api/budget-parser.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/resources/budget-file/model.js" afterPath="$PROJECT_DIR$/api/resources/budget-file/model.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/resources/budget-file/router.js" afterPath="$PROJECT_DIR$/api/resources/budget-file/router.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/resources/index.js" afterPath="$PROJECT_DIR$/api/resources/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/resources/param-place-of-employment/router.js" afterPath="$PROJECT_DIR$/api/resources/param-place-of-employment/router.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/resources/staff-member/model.js" afterPath="$PROJECT_DIR$/api/resources/staff-member/model.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/resources/staff-member/router.js" afterPath="$PROJECT_DIR$/api/resources/staff-member/router.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/resources/step-by-step/model.js" afterPath="$PROJECT_DIR$/api/resources/step-by-step/model.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/index.html" afterPath="$PROJECT_DIR$/app/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/partial/budget/budget.html" afterPath="$PROJECT_DIR$/app/partial/budget/budget.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/partial/budget/budget.js" afterPath="$PROJECT_DIR$/app/partial/budget/budget.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/partial/staff/staff.js" afterPath="$PROJECT_DIR$/app/partial/staff/staff.js" />
     </list>
     <ignored path="FinalAssigment.iws" />
@@ -75,8 +56,8 @@
       <file leaf-file-name="staff.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/partial/staff/staff.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="522" column="56" selection-start-line="522" selection-start-column="56" selection-end-line="522" selection-end-column="56" />
+            <state relative-caret-position="134">
+              <caret line="510" column="34" selection-start-line="510" selection-start-column="34" selection-end-line="510" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -649,12 +630,12 @@
       <workItem from="1479828269726" duration="8143000" />
       <workItem from="1484555635421" duration="4715000" />
       <workItem from="1484703396537" duration="15760000" />
-      <workItem from="1484910354327" duration="55546000" />
+      <workItem from="1484910354327" duration="56061000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="402058000" />
+    <option name="totallyTimeSpent" value="402573000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1271" height="753" extended-state="0" />
@@ -1085,8 +1066,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/partial/staff/staff.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="522" column="56" selection-start-line="522" selection-start-column="56" selection-end-line="522" selection-end-column="56" />
+        <state relative-caret-position="134">
+          <caret line="510" column="34" selection-start-line="510" selection-start-column="34" selection-end-line="510" selection-end-column="34" />
           <folding />
         </state>
       </provider>

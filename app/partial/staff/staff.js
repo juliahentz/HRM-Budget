@@ -508,19 +508,22 @@ angular.module('HRMBudget').controller('StaffCtrl',function(
                         $scope.budgetFileCalc(data, function(items){
                             $q.resolve(items, function(result){
 
+                                //console.log(result._id);
+
+                                $scope.resultArray = [];
                                 $scope.resultArray.push(result);
 
-                                $timeout(function(){
+                                //$timeout(function(){
                                     angular.forEach($scope.resultArray, function(budgetFile, index){
                                         if(budgetFile.staffNumber == data.staffNumber){
                                             $scope.selectedStaffMember.budgetFile.push(budgetFile._id);
-                                            console.log($scope.selectedStaffMember.budgetFile);
+                                            //console.log($scope.selectedStaffMember.budgetFile);
                                         }
                                     });
-                                },10000);
+                                //},10000);
                             });
                         });
-                        console.log($scope.resultArray);
+                        //console.log($scope.resultArray);
 
                         $scope.apiCall(
                             $scope.staffPersonalData,
@@ -838,6 +841,7 @@ angular.module('HRMBudget').controller('StaffCtrl',function(
                                         // todo fix cc
                                         $scope.budgetFile.tax = -Math.min($scope.intCalcTaxImpot,$scope.intCalcTacTable)*0.807;
 
+                                        console.log($scope.budgetFile);
                                         //console.log($scope.selectedStaffMember);
                                         //console.log($scope.thisCall);
                                         $scope.thisResult = {};
@@ -869,7 +873,7 @@ angular.module('HRMBudget').controller('StaffCtrl',function(
                                     }
                                 }else{ // Full months (j)
 
-                                    $scope.budgetFile.contractType = data.category;
+                                    /*$scope.budgetFile.contractType = data.category;
                                     $scope.budgetFile.year = i;
                                     $scope.budgetFile.month = j+1;
                                     $scope.budgetFile.staffNumber = data.staffNumber;
@@ -1138,10 +1142,10 @@ angular.module('HRMBudget').controller('StaffCtrl',function(
 
                                     $scope.thisCall = $scope.budgetFileApiCall($scope.budgetFile).then(function () {
                                         return budgetFileService.model.item;
-                                        /*console.log(budgetFileService.model.item._id);
+                                        /!*console.log(budgetFileService.model.item._id);
                                          //$scope.selectedStaffMember.budgetFile.push(budgetFileService.model.item._id);
 
-                                         ;*/
+                                         ;*!/
                                     }).then(function(result){
                                         $scope.thisResult = result;
                                         return result;
@@ -1151,7 +1155,7 @@ angular.module('HRMBudget').controller('StaffCtrl',function(
                                     if(cb){
                                         //console.log($scope.thisCall);
                                         cb($scope.thisCall)
-                                    }
+                                    }*/
 
 
                                 }
